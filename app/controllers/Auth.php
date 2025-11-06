@@ -9,10 +9,16 @@ class Auth extends Controller {
     }
 
     public function index(){
+        $data = [
+            'captcha_token' => generateCaptchaToken()
+        ];
         $this->view('login/index');
     }
 
     public function formLogin(){
+        $data = [
+            'captcha_token' => generateCaptchaToken()
+        ];
         $this->view('login/index');
     }
 
@@ -24,7 +30,7 @@ class Auth extends Controller {
             }
 
             if (isset($_FILES['buktiKubaca'])) {
-                $buktiKubaca =  uploadImage($_FILES['buktiKubaca'], 'storage/FotoBukti/');
+                $buktiKubaca = uploadImage($_FILES['buktiKubaca'], 'storage/FotoBukti/');
             } else {
                 throw new Exception('Mohon upload files');
             }
@@ -50,6 +56,7 @@ class Auth extends Controller {
             if ($result <= 0) {
                 throw new Exception('Something Went Wrong');
             }
+            
 
             Flasher::setFlash('Sukses', 'Registrasi, Silahkan tunggu konfirmasi admin', 'success');
             header('Location: /auth/login');
@@ -58,7 +65,7 @@ class Auth extends Controller {
         } catch (\Exception $e ) {
             $error = $e->getMessage();
             Flasher::setFlash($error, 'Gagal Registrasi', 'danger');
-            header('Location: /registerForm');
+            header('Location: /auth/registerForm');
             exit;
         }
     }
@@ -103,5 +110,47 @@ class Auth extends Controller {
         session_destroy();
         header('location: /auth/formLogin');
         exit;
+    }
+
+    public function captchaImage(){
+        // Pastikan token sudah ada di session (dibuat oleh formLogin/index)
+        if (!isset($_SESSION['captcha_token'])) {
+             // Buat gambar darurat jika token tidak ada
+             $image = imagecreate(150, 50);
+             $bgColor = imagecolorallocate($image, 255, 255, 255); // Putih
+             $textColor = imagecolorallocate($image, 255, 0, 0); // Merah
+             imagestring($image, 5, 10, 15, "ERROR", $textColor);
+             header('Content-Type: image/png');
+             imagepng($image);
+             imagedestroy($image);
+             exit;
+        }
+
+        $token = $_SESSION['captcha_token'];
+
+        // 1. Buat kanvas gambar
+        $image = imagecreate(150, 50); // Lebar 150, Tinggi 50
+
+        // 2. Tentukan warna
+        $bgColor = imagecolorallocate($image, 240, 240, 240); // Abu-abu muda
+        $textColor = imagecolorallocate($image, 30, 30, 30); // Hitam/Abu tua
+        $lineColor = imagecolorallocate($image, 200, 200, 200); // Garis acak
+
+        // 3. (Opsional) Tambah garis-garis acak (noise)
+        for ($i = 0; $i < 3; $i++) {
+            imageline($image, 0, rand(0, 50), 150, rand(0, 50), $lineColor);
+        }
+
+        // 4. Tulis teks token ke gambar
+        // (Kita pakai font bawaan PHP, angka 5 itu ukuran fontnya)
+        imagestring($image, 5, 40, 15, $token, $textColor);
+
+        // 5. Kirim gambar ke browser
+        header('Content-Type: image/png');
+        imagepng($image);
+
+        // 6. Bersihkan memori
+        imagedestroy($image);
+        exit; // Penting, agar tidak ada output lain
     }
 }
