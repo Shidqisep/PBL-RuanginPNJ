@@ -1,6 +1,5 @@
 <?php Flasher::Flash() ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,70 +7,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="/css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
-<body class="bg-gray-400 min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
-        <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Selamat Datang</h1>
-            <p class="text-gray-600">Sign in to continue to your account</p>
+<body class="bg-cover bg-center min-h-screen flex items-center justify-center" 
+      style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200'); 
+             background-color: rgba(139, 92, 113, 0.7); background-blend-mode: multiply;">
+    
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
+        <!-- Logo & Header -->
+        <div class="text-center mb-6">
+            <div class="flex items-start justify-start mb-3">
+                <img src="/img/LogoPNJ.jpg" alt="Logo" class="w-auto h-10 mr-2">
+                <h1 class="text-2xl font-bold text-gray-800">ruanginPNJ</h1>
+            </div>
+            <p class="text-sm text-left  text-gray-600">Temukan, pinjam, dan nikmati fasilitas favortimu dengan mudah.</p>
         </div>
 
-        <form class="space-y-6" action="/auth/handlelogin" method="POST">
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-600 mb-2">
-                    Email Address
-                </label>
-                <input 
-                    type="email" 
-                    id="email" 
-                    name="email"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition"
-                    placeholder="you@example.com"
-                    required
-                >
+        <!-- Form -->
+        <form id="loginForm" method="POST" action="/auth/handleLogin">
+            <!-- Email -->
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input type="email" id="email" name="email" placeholder="Input email" 
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
             </div>
 
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-                    Password
-                </label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition"
-                    placeholder="••••••••"
-                    required
-                >
+            <!-- Password -->
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                <div class="relative">
+                    <input type="password" id="password" name="password" placeholder="••••••••"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <button type="button" onclick="togglePassword()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+                        <i class="fas fa-eye hover:cursor-pointer" id="toggleIcon"></i>
+                    </button>
+                </div>
             </div>
 
-            <div class="flex items-center justify-between">
+            <div class="mb-4 p-12 rounded-2xl border border-gray-300 rounded-lg">
+
+
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Captcha</label>
+                <input type="captcha" id="captcha" name="captcha" placeholder="Input captcha" 
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+
+            <!-- Links Row -->
+            <div class="flex items-center justify-between mb-4 text-sm">
+                <div>
+                    <span class="text-gray-600">Belum punya akun? </span>
+                    <a href="/auth/registerForm" class="text-blue-600 hover:underline font-medium">Registrasi</a>
+                </div>
+                <a href="#" class="text-blue-600 hover:underline font-medium">Lupa Password?</a>
+            </div>
+
+            <!-- Remember Me -->
+            <div class="mb-6">
                 <label class="flex items-center">
-                    <input type="checkbox" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                    <input type="checkbox" name="remember" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                    <span class="ml-2 text-sm text-gray-700">Ingat Saya</span>
                 </label>
-                <a href="#" class="text-sm text-indigo-600 hover:text-indigo-700 font-medium">
-                    Forgot password?
-                </a>
             </div>
 
-            <button 
-                type="submit"
-                class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-200 shadow-lg hover:shadow-xl"
-            >
-                Sign In
+            <!-- Submit Button -->
+            <button type="submit" class="w-full bg-gradient-to-r from-green-400 to-green-500 text-white py-3 rounded-lg font-semibold hover:from-green-500 hover:to-green-600 transition duration-200 shadow-lg hover:cursor-pointer">
+                Login - Explore Ruangan Sekarang
             </button>
-        </form>
 
-        <div class="mt-6 text-center">
-            <p class="text-gray-600">
-                Don't have an account? 
-                <a href="/auth/registerForm" class="text-indigo-600 hover:text-indigo-700 font-semibold">
-                    Register here
+            <!-- Booking Ruang Rapat Link -->
+            <div class="text-center mt-4">
+                <a href="../Ruang Rapat/index.php" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition duration-200">
+                    Booking Ruang Rapat
                 </a>
-            </p>
-        </div>
-        </div>
+            </div>
+        </form>
     </div>
+
+    <!-- JavaScript -->
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+    </script>
 </body>
 </html>
