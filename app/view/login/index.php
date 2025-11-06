@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="/css/output.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
 
 </head>
 <body class="bg-cover bg-center min-h-screen flex items-center justify-center" 
@@ -45,9 +45,12 @@
                 </div>
             </div>
 
-            <div class="mb-4 p-12 rounded-2xl border border-gray-300 rounded-lg">
-
-
+            <div class="mb-4 p-4 rounded-2xl border border-gray-300 rounded-lg bg-gray-100 text-center">
+                <img src="/auth/captchaImage?v=<?php echo microtime(true); ?>" 
+                     alt="Kode Captcha" 
+                     class="mx-auto border border-gray-400 rounded">
+                
+                <small class="text-gray-500">Masukkan kode di atas</Hsmall>
             </div>
 
             <div class="mb-4">

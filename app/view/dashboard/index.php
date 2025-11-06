@@ -38,6 +38,7 @@
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-8">
         <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Ruangan Yang Bisa Dipinjam</h2>
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Halo <?=  $_SESSION['user_username']?></h2>
 
         <!-- Capacity Filters -->
         <div class="flex justify-start mb-6 space-x-4">

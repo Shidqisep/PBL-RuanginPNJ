@@ -19,19 +19,19 @@
         </div>
 
         <!-- Form -->
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="/auth/handleRegister" method="POST" enctype="multipart/form-data">
             <div class="grid grid-cols-2 gap-4">
                 <!-- Nama -->
                 <div class="col-span-2 sm:col-span-1">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Nama</label>
-                    <input type="text" name="nama" placeholder="Input nama" 
+                    <input type="text" name="username" placeholder="Input nama" 
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
 
                 <!-- NIM -->
                 <div class="col-span-2 sm:col-span-1">
                     <label class="block text-sm font-medium text-gray-700 mb-2">NIM</label>
-                    <input type="text" name="nim" placeholder="Input NIM" 
+                    <input type="text" name="nomor_induk" placeholder="Input NIM" 
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
 
@@ -73,7 +73,7 @@
                 <div class="col-span-2 sm:col-span-1">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Konfirmasi Password</label>
                     <div class="relative">
-                        <input type="password" name="confirm_password" placeholder="••••••••" id="confirm_password"
+                        <input type="password" name="confirmPassword" placeholder="••••••••" id="confirmPassword"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <button type="button" onclick="togglePassword('confirm_password', 'toggleIcon2')" 
                             class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
@@ -89,10 +89,10 @@
                     Upload foto bukti akun KabacaPNJ
                 </label>
                 <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-500 transition duration-200 cursor-pointer">
-                    <input type="file" name="foto" id="foto" accept="image/*" class="hidden" onchange="previewFile()">
-                    <label for="foto" class="cursor-pointer">
+                    <input type="file" name="buktiKubaca" id="buktiKubaca" accept="image/*" class="hidden" onchange="previewFile()">
+                    <label for="buktiKubaca" class="cursor-pointer">
                         <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
-                        <p class="text-sm text-gray-600" id="fileName">Upload foto babi</p>
+                        <p class="text-sm text-gray-600" id="fileName">Upload foto bukti kubaca</p>
                     </label>
                 </div>
             </div>
@@ -128,7 +128,7 @@
         }
 
         function previewFile() {
-            const fileInput = document.getElementById('foto');
+            const fileInput = document.getElementById('buktiKubaca');
             const fileName = document.getElementById('fileName');
             
             if (fileInput.files.length > 0) {
