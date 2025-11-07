@@ -7,14 +7,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.8">
-    <title></title>
+    <title>Dashboard</title>
     <link href="/css/output.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50 min-h-screen">
 
 <!-- Header -->
     <navbar class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-4">
+        <div class="container mx-auto px-6 py-4 bg-white shadow-sm">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
                     <i class="fas fa-building text-blue-600 text-2xl mr-2"></i>
