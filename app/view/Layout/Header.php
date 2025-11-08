@@ -9,19 +9,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=0.8">
     <title>Dashboard</title>
     <link href="/css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body class="bg-gray-50 min-h-screen">
 
 <!-- Header -->
     <navbar class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-4 bg-white shadow-sm">
+        <div class="container mx-auto px-6 py-4 bg-white shadow-sm ">
             <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <i class="fas fa-building text-blue-600 text-2xl mr-2"></i>
+                <div class="flex items-center gap-0.5 mx-5">
+                    <img src="/img/LOGO PNJ FIX 1.png" alt="Logo" class="w-10 h-10 mr-3">
                     <h1 class="text-xl font-bold text-gray-800">ruanginPNJ</h1>
                 </div>
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="#" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-200">
+                <div class="hidden md:flex items-center space-x-20 mx-10">
+                    <a href="#" class="bg-blue-600 text-white px-6 py-1.5 rounded-4xl font-medium hover:bg-blue-700 transition duration-200">
                         Ruangan
                     </a>
                     <a href="../History/index.php" class="text-gray-600 hover:text-gray-800 font-medium">
