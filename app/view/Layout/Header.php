@@ -24,17 +24,17 @@ $current_page == 'index.php' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-0.5 mx-5">
                     <img src="/img/LOGO PNJ FIX 1.png" alt="Logo" class="w-10 h-10 mr-3">
-                    <h1 class="text-xl font-bold text-gray-800">ruanginPNJ</h1>
+                    <h1 class="text-xl font-bold text-[#171E29]">ruanginPNJ</h1>
                 </div>
 
                 <div class="hidden md:flex items-center space-x-20 mx-10">
-                    <a href="#" class="bg-blue-600 text-white px-6 py-1.5 rounded-full font-medium hover:bg-blue-700 transition duration-200">
+                    <a href="#" class="bg-[#1E68FB] text-white px-6 py-1.5 rounded-full font-medium hover:bg-blue-700 transition duration-200">
                         Ruangan
                     </a>
-                    <a href="../History/index.php" class="text-gray-600 hover:text-gray-800 font-medium">
+                    <a href="../History/index.php" class="text-[#171E29] hover:text-gray-800 font-medium">
                         History
                     </a>
-                    <a href="../Akun/index.php" class="text-gray-600 hover:text-gray-800 font-medium">
+                    <a href="../Akun/index.php" class="text-[#171E29] hover:text-gray-800 font-medium">
                         Akun
                     </a>
                 </div>
@@ -48,7 +48,7 @@ $current_page == 'index.php' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray
 
             <div id="mobile-menu" class="md:hidden hidden pb-4">
                 <div class="flex flex-col space-y-2 px-6 mt-4">
-                    <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-center hover:bg-blue-700 transition duration-200">
+                    <a href="#" class="bg-[#1E68FB] text-white px-4 py-2 rounded-lg font-medium text-center hover:bg-blue-700 transition duration-200">
                         Ruangan
                     </a>
                     <a href="../History/index.php" class="text-gray-600 hover:text-gray-800 font-medium px-4 py-2 hover:bg-gray-100 rounded-lg text-center">
