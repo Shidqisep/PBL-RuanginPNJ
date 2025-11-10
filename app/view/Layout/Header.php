@@ -1,8 +1,17 @@
 <?php Flasher::Flash();
 
-$current_page = basename($_SERVER['PHP_SELF']);
+// Dapatkan nama file yang sedang dieksekusi (misalnya 'index.php')
+$current_page_file = basename($_SERVER['PHP_SELF']);
 
-$current_page == 'index.php' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700';
+// Tentukan apakah halaman ini adalah halaman 'Ruangan' (Dashboard)
+// Asumsi: Dashboard/Ruangan dijalankan dari 'index.php' di view directory-nya
+$is_dashboard_active = ($current_page_file === 'index.php');
+
+// Definisikan set kelas untuk keadaan aktif dan tidak aktif
+$dashboard_classes = $is_dashboard_active ? 
+    'bg-[#1E68FB] text-white px-6 py-1.5 rounded-full font-medium hover:bg-blue-700 transition duration-200' : 
+    'text-[#171E29] hover:text-[#1E68FB] font-medium px-6 py-1.5'; 
+    // Catatan: Kelas inaktif harus disesuaikan agar cocok dengan link lainnya
 
 ?>
 
@@ -31,7 +40,7 @@ $current_page == 'index.php' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray
                     <a href="/Dashboard" class="bg-[#1E68FB] text-white px-6 py-1.5 rounded-full font-medium hover:bg-blue-700 transition duration-200">
                         Ruangan
                     </a>
-                    <a href="../History/index.php" class="text-[#171E29] hover:text-gray-800 font-medium">
+                    <a href="/History" class="text-[#171E29] hover:text-gray-800 font-medium">
                         History
                     </a>
                     <a href="../Akun/index.php" class="text-[#171E29] hover:text-gray-800 font-medium">
@@ -51,7 +60,7 @@ $current_page == 'index.php' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray
                     <a href="#" class="bg-[#1E68FB] text-white px-4 py-2 rounded-lg font-medium text-center hover:bg-blue-700 transition duration-200">
                         Ruangan
                     </a>
-                    <a href="../History/index.php" class="text-gray-600 hover:text-gray-800 font-medium px-4 py-2 hover:bg-gray-100 rounded-lg text-center">
+                    <a href="/History" class="text-gray-600 hover:text-gray-800 font-medium px-4 py-2 hover:bg-gray-100 rounded-lg text-center">
                         History
                     </a>
                     <a href="../Akun/index.php" class="text-gray-600 hover:text-gray-800 font-medium px-4 py-2 hover:bg-gray-100 rounded-lg text-center">
