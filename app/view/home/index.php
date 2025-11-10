@@ -1,4 +1,4 @@
-
+<?php Flasher::Flash() ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +31,17 @@
             </p>
         </div>
 
-        <a href="/auth/formLogin">Login</a>
+        <div class="flex space-x-4 mt-6">
+            <a href="/auth/formLogin" 
+               class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-200">
+                Login
+            </a>
+
+            <a href="/email/kirim" 
+               class="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition duration-200">
+                Kirim Test Email (ke Mailpit)
+            </a>
+        </div>
 
     </div>
 

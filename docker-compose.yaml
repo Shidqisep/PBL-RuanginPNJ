@@ -32,5 +32,15 @@ services:
     volumes:
       - db_data:/var/lib/mysql # Menyimpan data database secara permanen
 
+  mailpit:
+    image: axllent/mailpit
+    container_name: my_mail_server
+    ports:
+      - "8025:8025" # Ini adalah port untuk Web UI Mailpit
+      - "1025:1025" # Ini adalah port SMTP (internal)
+    environment:
+      - MP_SMTP_AUTH_ACCEPT_ANY=true # Menerima login apapun
+      - MP_SMTP_AUTH_ALLOW_INSECURE=true # Izinkan koneksi tanpa enkripsi
+
 volumes:
-  db_data: # Mendefinisikan volume untuk data persistence
+  db_data: # volume untuk data database agar permanen
