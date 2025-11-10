@@ -28,7 +28,7 @@ $current_page == 'index.php' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray
                 </div>
 
                 <div class="hidden md:flex items-center space-x-20 mx-10">
-                    <a href="#" class="bg-[#1E68FB] text-white px-6 py-1.5 rounded-full font-medium hover:bg-blue-700 transition duration-200">
+                    <a href="/Dashboard" class="bg-[#1E68FB] text-white px-6 py-1.5 rounded-full font-medium hover:bg-blue-700 transition duration-200">
                         Ruangan
                     </a>
                     <a href="../History/index.php" class="text-[#171E29] hover:text-gray-800 font-medium">
