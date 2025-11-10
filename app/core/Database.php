@@ -2,7 +2,7 @@
 
 class Database 
 {
-    //kredensial database dari .env
+//kredensial database dari .env
 private $host;
 private $dbname;
 private $username;
