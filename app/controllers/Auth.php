@@ -20,6 +20,7 @@ class Auth extends Controller {
             'captcha_token' => generateCaptchaToken()
         ];
         $this->view('login/index');
+        $this->view('Layout/Footer');
     }
 
     public function handleRegister(){
@@ -87,7 +88,7 @@ class Auth extends Controller {
         }
 
         if ($user['status'] !== 'active') {
-            throw new Exception('Akun anda belom AKtif!');
+            throw new Exception('Akun anda belum AKtif!');
         }
 
         $_SESSION['user_id'] = $user['id_user'];
@@ -95,8 +96,14 @@ class Auth extends Controller {
         $_SESSION['user_username'] = $user['username'];
         $_SESSION['email'] = $user['email'];
 
+
         Flasher::setFlash('Berhasil', 'login', 'success');
+        if ($user['role'] === 'admin') {
+            header('location: /admin');
+            exit;
+        }else{
         header('location: /dashboard');
+        }
         exit;
         } catch(\Exception $e) {
              Flasher::setFlash($e->getMessage(), 'Gagal login', 'danger');

@@ -1,17 +1,20 @@
 <?php Flasher::Flash();
+// Logika untuk menentukan Controller/Halaman aktif
+$url = isset($_GET['url']) ? $_GET['url'] : '';
+$urlSegments = explode('/', rtrim(filter_var($url, FILTER_SANITIZE_URL), '/'));
 
-// Dapatkan nama file yang sedang dieksekusi (misalnya 'index.php')
-$current_page_file = basename($_SERVER['PHP_SELF']);
+// Ambil segmen pertama sebagai nama Controller
+// Jika kosong, default ke 'Home' atau 'Dashboard' tergantung flow aplikasi
+// Di sini kita asumsikan Controller aktif adalah segmen pertama, dikapitalisasi
+$activeController = !empty($urlSegments[0]) ? ucfirst($urlSegments[0]) : 'Dashboard';
 
-// Tentukan apakah halaman ini adalah halaman 'Ruangan' (Dashboard)
-// Asumsi: Dashboard/Ruangan dijalankan dari 'index.php' di view directory-nya
-$is_dashboard_active = ($current_page_file === 'index.php');
+// Definisikan kelas CSS untuk link aktif dan tidak aktif (desktop)
+$activeClass = 'bg-[#1E68FB] text-white px-6 py-1.5 rounded-full font-medium hover:bg-blue-700 transition duration-200';
+$inactiveClass = 'text-[#171E29] hover:text-gray-800 font-medium';
 
-// Definisikan set kelas untuk keadaan aktif dan tidak aktif
-$dashboard_classes = $is_dashboard_active ? 
-    'bg-[#1E68FB] text-white px-6 py-1.5 rounded-full font-medium hover:bg-blue-700 transition duration-200' : 
-    'text-[#171E29] hover:text-[#1E68FB] font-medium px-6 py-1.5'; 
-    // Catatan: Kelas inaktif harus disesuaikan agar cocok dengan link lainnya
+// Definisikan kelas CSS untuk link aktif dan tidak aktif (mobile)
+$activeClassMobile = 'bg-[#1E68FB] text-white px-4 py-2 rounded-lg font-medium text-center hover:bg-blue-700 transition duration-200';
+$inactiveClassMobile = 'text-gray-600 hover:text-gray-800 font-medium px-4 py-2 hover:bg-gray-100 rounded-lg text-center';
 
 ?>
 
@@ -26,9 +29,9 @@ $dashboard_classes = $is_dashboard_active ?
     <link href="/css/output.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body class="bg-gray-50 min-h-screen font-sf-pro">
+<body class="bg-[#F3F5FA] min-h-screen font-sf-pro">
 
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <nav class="bg-[#F3F5FA] shadow-sm sticky top-0 z-50">
         <div class="mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-0.5 mx-5">
@@ -37,13 +40,13 @@ $dashboard_classes = $is_dashboard_active ?
                 </div>
 
                 <div class="hidden md:flex items-center space-x-20 mx-10">
-                    <a href="/Dashboard" class="bg-[#1E68FB] text-white px-6 py-1.5 rounded-full font-medium hover:bg-blue-700 transition duration-200">
+                    <a href="/Dashboard" class="<?php echo ($activeController == 'Dashboard') ? $activeClass : $inactiveClass; ?>">
                         Ruangan
                     </a>
-                    <a href="/History" class="text-[#171E29] hover:text-gray-800 font-medium">
-                        History
+                    <a href="/History" class="<?php echo ($activeController == 'History') ? $activeClass : $inactiveClass; ?>">
+                        Histori
                     </a>
-                    <a href="../Akun/index.php" class="text-[#171E29] hover:text-gray-800 font-medium">
+                    <a href="../Akun/index.php" class="<?php echo ($activeController == 'Akun') ? $activeClass : $inactiveClass; ?>">
                         Akun
                     </a>
                 </div>
@@ -57,13 +60,13 @@ $dashboard_classes = $is_dashboard_active ?
 
             <div id="mobile-menu" class="md:hidden hidden pb-4">
                 <div class="flex flex-col space-y-2 px-6 mt-4">
-                    <a href="#" class="bg-[#1E68FB] text-white px-4 py-2 rounded-lg font-medium text-center hover:bg-blue-700 transition duration-200">
+                    <a href="#" class="<?php echo ($activeController == 'Dashboard') ? $activeClass : $inactiveClass; ?>">
                         Ruangan
                     </a>
-                    <a href="/History" class="text-gray-600 hover:text-gray-800 font-medium px-4 py-2 hover:bg-gray-100 rounded-lg text-center">
-                        History
+                    <a href="/History" class="<?php echo ($activeController == 'History') ? $activeClass : $inactiveClass; ?>">
+                        Histori
                     </a>
-                    <a href="../Akun/index.php" class="text-gray-600 hover:text-gray-800 font-medium px-4 py-2 hover:bg-gray-100 rounded-lg text-center">
+                    <a href="../Akun/index.php" class="<?php echo ($activeController == 'Akun') ? $activeClass : $inactiveClass; ?>">
                         Akun
                     </a>
                 </div>
