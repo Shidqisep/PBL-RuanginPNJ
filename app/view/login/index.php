@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
-<body class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center mt-5" 
+<body class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center mt-5 font-sf-pro" 
       style="background-image: url('/img/Background 1.png'); 
              background-color: rgba(139, 92, 113, 0.7); background-blend-mode: multiply;">
     
-    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md md:h-full sm:h-full mb-5 mt-10">
+    <div class="bg-[#F3F5FA] rounded-2xl shadow-2xl p-8 w-full max-w-md md:h-full sm:h-full mb-5 mt-10">
         <!-- Logo & Header -->
         <div class="text-center mb-6">
             <div class="flex items-start justify-start mb-3">

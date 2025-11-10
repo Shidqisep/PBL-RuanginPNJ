@@ -46,7 +46,7 @@ $inactiveClassMobile = 'text-gray-600 hover:text-gray-800 font-medium px-4 py-2 
                     <a href="/History" class="<?php echo ($activeController == 'History') ? $activeClass : $inactiveClass; ?>">
                         Histori
                     </a>
-                    <a href="../Akun/index.php" class="<?php echo ($activeController == 'Akun') ? $activeClass : $inactiveClass; ?>">
+                    <a href="/Akun" class="<?php echo ($activeController == 'Akun') ? $activeClass : $inactiveClass; ?>">
                         Akun
                     </a>
                 </div>
@@ -66,7 +66,7 @@ $inactiveClassMobile = 'text-gray-600 hover:text-gray-800 font-medium px-4 py-2 
                     <a href="/History" class="<?php echo ($activeController == 'History') ? $activeClass : $inactiveClass; ?>">
                         Histori
                     </a>
-                    <a href="../Akun/index.php" class="<?php echo ($activeController == 'Akun') ? $activeClass : $inactiveClass; ?>">
+                    <a href="/Akun" class="<?php echo ($activeController == 'Akun') ? $activeClass : $inactiveClass; ?>">
                         Akun
                     </a>
                 </div>

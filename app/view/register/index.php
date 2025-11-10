@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
-<body class="bg-cover bg-center min-h-screen flex items-center justify-center py-8" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200'); background-color: rgba(139, 92, 113, 0.7); background-blend-mode: multiply;">
+<body class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center font-sf-pro" style="background-image: url('/img/Background 1.png'); background-color: rgba(139, 92, 113, 0.7); background-blend-mode: multiply;">
+    <section>
     
-    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg">
+    <div class="bg-[#F3F5FA] rounded-2xl shadow-2xl p-8 w-full max-w-lg mt-10">
         <!-- Header -->
         <div class="mb-6">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Registrasi Akun</h1>
+            <h1 class="text-3xl font-bold text-[#171E29] mb-2">Registrasi Akun</h1>
             <p class="text-sm text-gray-600">Temukan, pinjam, dan nikmati fasilitas favortimu dengan mudah.</p>
         </div>
 
@@ -105,7 +106,7 @@
 
             <!-- Submit Button -->
             <button type="submit" 
-                class="w-full mt-6 bg-gradient-to-r from-green-400 to-green-500 text-white py-3 rounded-lg font-semibold hover:from-green-500 hover:to-green-600 transition duration-200 shadow-lg">
+                class="w-full mt-6 bg-[#38C55C] text-white py-3 rounded-lg font-semibold hover:bg-green-600 hover:cursor-pointer transition duration-200 shadow-lg">
                 Daftar - Explore Ruangan Sekarang
             </button>
         </form>
@@ -136,5 +137,3 @@
             }
         }
     </script>
-</body>
-</html>

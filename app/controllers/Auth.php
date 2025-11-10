@@ -6,6 +6,7 @@ class Auth extends Controller {
 
     public function registerForm(){
         $this->view('register/index');
+        $this->view('Layout/Footer');
     }
 
     public function index(){
