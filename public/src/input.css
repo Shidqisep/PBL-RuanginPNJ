@@ -1,1 +1,32 @@
-@import "tailwindcss"
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'SF Pro Display';
+    font-weight: 400; 
+    src: url('../font/SF-Pro.woff2') format('woff2'); 
+    font-display: swap;
+}
+
+/* Medium (font-weight: 500) */
+@font-face {
+    font-family: 'SF Pro Display';
+    font-weight: 500;
+    src: url('../font/SF-Pro.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    font-weight: 700;
+    /* Ubah jalur ini sesuai lokasi file font Anda RELATIF ke main.css */
+    src: url('../font/SF-Pro.woff2') format('woff2'); 
+    font-display: swap;
+}
+
+
+
+@theme {
+  /* ... di sini Anda tambahkan konfigurasi font family Anda */
+  --font-sf-pro: 'SF Pro Display';
+  --color-dark-overlay: 23 30 41;
+}

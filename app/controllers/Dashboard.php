@@ -11,8 +11,9 @@ class Dashboard extends controller
         }
         $data['judul'] = 'Dashboard';
         $data['user'] = $this->model('UserModel')->findUserByEmail($_SESSION['email']);
-
+        $this->view('Layout/Header', $data);
         $this->view('dashboard/index', $data);
+        $this->view('Layout/Footer');
 
     }
 }
