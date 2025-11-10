@@ -45,14 +45,6 @@
                 </div>
             </div>
 
-            <div class="p-4 border border-gray-300 rounded-lg bg-gray-100 text-center">
-                <img src="/auth/captchaImage?v=<?php echo microtime(true); ?>" 
-                     alt="Kode Captcha" 
-                     class="mx-auto border border-gray-400 rounded">
-                
-                <small class="text-gray-500">Masukkan kode di atas</Hsmall>
-            </div>
-
             <div class="mb-4 mt-4">
                 <!-- <label class="block text-sm font-medium text-gray-700 mb-2">Captcha</label> -->
                 <input type="captcha" id="captcha" name="captcha" placeholder="Input captcha" 
