@@ -61,7 +61,7 @@
     </div>
 
     <!-- Logout Button -->
-    <a href="../../Login%20%26%20Auth/Login/logout.php"
+    <a href="Auth/handleLogout"
        class="block w-full bg-[#C90B0B] text-white hover:bg-red-700 text-center py-3 rounded-lg font-semibold transition duration-200">
         Logout
     </a>

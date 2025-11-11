@@ -5,23 +5,18 @@ use App\services\AuthServices;
 class Auth extends Controller {
 
     public function registerForm(){
-        $this->view('register/index');
+        $this->view('Auth/register');
         $this->view('Layout/Footer');
     }
 
     public function index(){
-        $data = [
-            'captcha_token' => generateCaptchaToken()
-        ];
-        $this->view('login/index');
+        $this->view('Auth/login');
+        $this->view('Layout/Footer');
     }
 
     public function formLogin(){
-        $data = [
-            'captcha_token' => generateCaptchaToken()
-        ];
-        $this->view('login/index');
-        $this->view('Layout/Footer');
+    $this->view('Auth/login');
+    $this->view('Layout/Footer');
     }
 
     public function handleRegister(){
@@ -160,5 +155,9 @@ class Auth extends Controller {
         // 6. Bersihkan memori
         imagedestroy($image);
         exit; // Penting, agar tidak ada output lain
+    }
+
+    public function forgetPassword(){
+
     }
 }
