@@ -1,0 +1,20 @@
+# Abaikan semua yang ada di .gitignore
+/node_modules
+/public/css/output.css
+npm-debug.log
+/.vscode/
+.DS_Store
+Thumbs.db
+.env
+/vendor
+/public/testemail/sendemail.php
+
+# Tambahan khusus Docker
+.git
+.gitignore
+.dockerignore
+docker-compose.yaml
+Dockerfile
+.docker
+README.md
+penjelasan.txt

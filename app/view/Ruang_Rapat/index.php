@@ -118,7 +118,7 @@
             </div>
             <h3 class="text-xl font-bold text-gray-800 mb-2">Daftar Berhasil</h3>
             <p class="text-sm text-gray-600 mb-6">Tunggu approval dari admin dan selalau cek email kamu untuk mendapatkan informasi terbaru</p>
-            <button onclick="window.location.href = '../Ruangan/index.php';" 
+            <button onclick="window.location.href = '/auth/formLogin';" 
                     class="w-full px-6 py-3 bg-[#38C55C] text-white rounded-lg font-semibold hover:bg-green-600 transition hover:cursor-pointer">
                 Kembali ke halaman Login
             </button>
