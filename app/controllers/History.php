@@ -1,7 +1,6 @@
-<?php
+<?php 
 
-class Akun extends Controller{
-
+class History extends Controller{
     public function __construct()
         {
             parent::__construct();
@@ -15,14 +14,10 @@ class Akun extends Controller{
 
     public function index(){
             // 1. Tentukan judul halaman
-        $data['judul'] = 'Profil Akun';
+        $data['judul'] = 'History';
         // 3. Panggil view (Urutan pemanggilan harus benar: Header, Body, Footer)
         $this->view('Layout/Header', $data);
-        $this->view('Akun/index', $data); 
+        $this->view('History/index', $data); 
         $this->view('Layout/Footer');
-    }
-
-    public function forgetPassword(){
-        $this->view('Auth/forgetPassword');
     }
 }

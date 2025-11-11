@@ -21,16 +21,6 @@ class Dashboard extends controller
         $this->view('dashboard/index', $data);
         $this->view('Layout/Footer');
     }
-
-    public function Akun(){
-        // 1. Tentukan judul halaman
-        $data['judul'] = 'Profil Akun';
-        // 3. Panggil view (Urutan pemanggilan harus benar: Header, Body, Footer)
-        $this->view('Layout/Header', $data);
-        $this->view('Akun/index', $data); 
-        $this->view('Layout/Footer');
-    }
-
     public function History(){
         $data['judul'] = 'Riwayat Peminjaman';
         $this->view('Layout/Header', $data);
