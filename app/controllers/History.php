@@ -13,9 +13,8 @@ class History extends Controller{
         }
 
     public function index(){
-            // 1. Tentukan judul halaman
+        
         $data['judul'] = 'History';
-        // 3. Panggil view (Urutan pemanggilan harus benar: Header, Body, Footer)
         $this->view('Layout/Header', $data);
         $this->view('History/index', $data); 
         $this->view('Layout/Footer');
