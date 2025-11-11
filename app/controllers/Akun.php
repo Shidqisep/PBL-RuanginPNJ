@@ -15,10 +15,6 @@ class Akun extends Controller
         // 1. Tentukan judul halaman
         $data['judul'] = 'Profil Akun';
         
-        // 2. Ambil data yang diperlukan (jika ada)
-        // Jika Anda perlu data user atau data ruangan tertentu, ambil di sini.
-        // Contoh: $data['ruangan'] = $this->model('RuanganModel')->getRuangan($_GET['id']);
-
         // 3. Panggil view (Urutan pemanggilan harus benar: Header, Body, Footer)
         $this->view('Layout/Header', $data);
         
