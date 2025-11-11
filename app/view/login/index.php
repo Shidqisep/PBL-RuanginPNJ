@@ -75,7 +75,7 @@
 
             <!-- Booking Ruang Rapat Link -->
             <div class="text-center mt-2">
-                <a href="../Ruang Rapat/index.php" class="w-full inline-block bg-[#1E68FB] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-blue-700 transition shadow-[0_1px_2.7px_0_rgba(0,0,0,0.15)] duration-200">
+                <a href="/RuangRapat/index" class="w-full inline-block bg-[#1E68FB] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-blue-700 transition shadow-[0_1px_2.7px_0_rgba(0,0,0,0.15)] duration-200">
                     Booking Ruang Rapat
                 </a>
             </div>
