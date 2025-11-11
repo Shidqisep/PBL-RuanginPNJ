@@ -23,8 +23,6 @@
     font-display: swap;
 }
 
-
-
 @theme {
   /* ... di sini Anda tambahkan konfigurasi font family Anda */
   --font-sf-pro: 'SF Pro Display';
