@@ -2,6 +2,7 @@
 // Logika untuk menentukan Controller/Halaman aktif
 $url = isset($_GET['url']) ? $_GET['url'] : '';
 $urlSegments = explode('/', rtrim(filter_var($url, FILTER_SANITIZE_URL), '/'));
+// $lastSegment = end($urlSegments);
 
 // Ambil segmen pertama sebagai nama Controller
 // Jika kosong, default ke 'Home' atau 'Dashboard' tergantung flow aplikasi

@@ -1,4 +1,8 @@
-<?php Flasher::Flash() ?>
+<?php Flasher::Flash();
+
+echo $_SESSION['user_id'];
+
+?>
 
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-8">
