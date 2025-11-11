@@ -9,11 +9,13 @@ class Dashboard extends controller
             header('Location: /auth/formLogin'); // Redirect ke halaman login
             exit; //Hentikan eksekusi script
         }
+
         $data['judul'] = 'Dashboard';
         $data['user'] = $this->model('UserModel')->findUserByEmail($_SESSION['email']);
         $this->view('Layout/Header', $data);
         $this->view('dashboard/index', $data);
         $this->view('Layout/Footer');
-
     }
+
+
 }

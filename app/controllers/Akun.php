@@ -1,7 +1,6 @@
-<?php
+<?php 
 
-// Pastikan Booking mewarisi dari Controller base class Anda
-class History extends Controller 
+class Akun extends Controller 
 {
     // Metode default saat mengakses URL /booking atau /booking/index
     public function index()
@@ -14,7 +13,7 @@ class History extends Controller
             exit; //Hentikan eksekusi script
         }
         // 1. Tentukan judul halaman
-        $data['judul'] = 'Riwayat Peminjaman';
+        $data['judul'] = 'Profil Akun';
         
         // 2. Ambil data yang diperlukan (jika ada)
         // Jika Anda perlu data user atau data ruangan tertentu, ambil di sini.
@@ -24,8 +23,18 @@ class History extends Controller
         $this->view('Layout/Header', $data);
         
         // Asumsi: View Anda akan berada di 'app/view/booking/index.php'
-        $this->view('History/index', $data); 
+        $this->view('Akun/index', $data); 
         
         $this->view('Layout/Footer');
     }
+    
+    // Anda bisa menambahkan metode lain, misalnya untuk memproses form booking:
+    /*
+    public function prosesBooking()
+    {
+        // Logika untuk memproses data POST dari form booking
+    }
+    */
 }
+
+?>

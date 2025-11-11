@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
-<body class="bg-cover bg-center min-h-screen flex items-center justify-center" 
-      style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200'); 
+<body class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center mt-5 font-sf-pro" 
+      style="background-image: url('/img/Background 1.png'); 
              background-color: rgba(139, 92, 113, 0.7); background-blend-mode: multiply;">
     
-    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md md:h-full sm:h-full">
+    <div class="bg-[#F3F5FA] rounded-2xl shadow-2xl p-8 w-full max-w-md md:h-full sm:h-full mb-5 mt-10">
         <!-- Logo & Header -->
         <div class="text-center mb-6">
             <div class="flex items-start justify-start mb-3">
@@ -45,12 +45,6 @@
                 </div>
             </div>
 
-            <div class="mb-4 mt-4">
-                <!-- <label class="block text-sm font-medium text-gray-700 mb-2">Captcha</label> -->
-                <input type="captcha" id="captcha" name="captcha" placeholder="Input captcha" 
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-            </div>
-
             <!-- Links Row -->
             <div class="flex items-center justify-between mb-4 text-sm">
                 <div>
@@ -69,13 +63,19 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="w-full bg-gradient-to-r from-green-400 to-green-500 text-white py-3 text-sm rounded-lg font-semibold hover:from-green-500 hover:to-green-600 transition duration-200 shadow-lg hover:cursor-pointer">
+            <button type="submit" class="w-full bg-[#38C55C] text-white py-3 text-sm rounded-lg font-semibold hover:bg-green-600 transition duration-200 hover:cursor-pointer mb-2">
                 Login - Explore Ruangan Sekarang
             </button>
 
+            <div class="flex items-center text-center w-full max-w-md py-2">
+                <div class="flex-1 border-t border-gray-300 mx-3"></div>
+                <span class="text-xs text-gray-600 font-normal px-2">atau lanjut dengan</span>
+                <div class="flex-1 border-t border-gray-300 mx-3"></div>
+            </div>
+
             <!-- Booking Ruang Rapat Link -->
-            <div class="text-center mt-4">
-                <a href="../Ruang Rapat/index.php" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition duration-200">
+            <div class="text-center mt-2">
+                <a href="../Ruang Rapat/index.php" class="w-full inline-block bg-[#1E68FB] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-blue-700 transition shadow-[0_1px_2.7px_0_rgba(0,0,0,0.15)] duration-200">
                     Booking Ruang Rapat
                 </a>
             </div>
@@ -96,5 +96,3 @@
             }
         }
     </script>
-</body>
-</html>
