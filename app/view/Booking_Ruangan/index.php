@@ -30,7 +30,7 @@ $formAction = '/Booking/handleBooking';
                                     Total Jam
                                 </label>
                                 <div id="totalTime" class="inline-flex items-center px-4 py-2 text-gray-800 font-bold rounded-full text-lg">
-                                    <i class="fas fa-hourglass-half mr-2"></i> 
+                                    <i class="fas fa-hourglass-half mr-2 text-gray-500"></i> 
                                     0 Jam 0 Menit
                                 </div>
                             </div>
@@ -99,7 +99,7 @@ $formAction = '/Booking/handleBooking';
                                 </div>
                             </div>
                         </div>
-                        <button type="button" onclick="addMember()" 
+                        <button type="button"
                                 class="mt-4 flex items-center text-blue-600 hover:text-blue-800 hover:cursor-pointer text-sm font-medium transition">
                             <i class="fas fa-plus mr-1"></i> Tambah Anggota
                         </button>
@@ -146,6 +146,9 @@ $formAction = '/Booking/handleBooking';
     </div>
 </main>
 
+<!-- **************************************************
+INI POP UP KONFIRMASI
+******************************************************* -->
 <div id="confirmModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
     <div class="bg-white rounded-2xl p-8 w-full max-w-sm mx-4 text-center">
         <div class="mb-4">
@@ -154,18 +157,21 @@ $formAction = '/Booking/handleBooking';
         <h3 class="text-xl font-bold text-gray-800 mb-2">Konfirmasi Booking</h3>
         <p class="text-sm text-gray-600 mb-6">Data anggota akan tersimpan untuk selamanya dan tidak bisa diubah.</p>
         <div class="grid grid-cols-2 gap-3">
-            <button type="button" onclick="closeConfirmModal()" 
-                    class="px-6 py-3 bg-white text-[#171E29] rounded-lg border font-semibold hover:bg-gray-300 transition hover:cursor-pointer">
+            <button type="button"
+                    class="px-6 py-2 bg-white text-[#171E29] rounded-lg border font-semibold hover:bg-gray-300 transition hover:cursor-pointer text-sm">
                 Batalkan
             </button>
             <button type="button" 
-                    class="px-6 py-3 bg-[#38C55C] text-white rounded-lg font-semibold hover:bg-green-600 transition hover:cursor-pointer">
+                    class="px-6 py-2 bg-[#38C55C] text-white rounded-lg font-semibold hover:bg-green-600 transition hover:cursor-pointer text-sm">
                 Konfirmasi
             </button>
         </div>
     </div>
 </div>
 
+<!-- **************************************************
+INI POP UP SUCCESS
+******************************************************* -->
 <div id="successModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
     <div class="bg-white rounded-2xl p-8 w-full max-w-sm mx-4 text-center border border-[#8E97A6]">
         <div class="mb-4">
@@ -173,37 +179,18 @@ $formAction = '/Booking/handleBooking';
         </div>
         <h3 class="text-xl font-bold text-gray-800 mb-2">Request Booking Berhasil</h3>
         <p class="text-sm text-gray-600 mb-6">Tunggu approval dari admin</p>
-        <button onclick="window.location.href = '../Ruangan/index.php';" 
-                class="w-full px-6 py-3 bg-[#38C55C] text-white rounded-lg font-semibold hover:bg-green-600 transition hover:cursor-pointer">
+        <button
+                class="w-full px-6 py-2 bg-[#38C55C] text-white rounded-lg font-semibold hover:bg-green-600 transition hover:cursor-pointer">
             OK
         </button>
     </div>
 </div>
 
 
+<!-- **************************************************
+JS DIGUNAKAN UNTUK MENAMBAH & MENGHAPUS MEMBER
+******************************************************* -->
 <script>
-    // Calculate total time (WAJIB JS)
-    function calculateTotal() {
-        const start = document.getElementById('jamMulai').value;
-        const end = document.getElementById('jamSelesai').value;
-        const totalEl = document.getElementById('totalTime');
-        // Logika perhitungan jam (hanya bisa dilakukan di client-side JS tanpa reload)
-        if (!start || !end) {
-            totalEl.innerHTML = '<i class="fas fa-hourglass-half mr-2 text-gray-500"></i> 0 Jam 0 Menit';
-            return;
-        }
-        const [sh, sm] = start.split(':').map(Number);
-        const [eh, em] = end.split(':').map(Number);
-        let diff = (eh * 60 + em) - (sh * 60 + sm);
-        if (diff <= 0) {
-            totalEl.innerHTML = '<i class="fas fa-hourglass-half mr-2 text-gray-500"></i> 0 Jam 0 Menit';
-            return;
-        }
-        const hours = Math.floor(diff / 60);
-        const minutes = diff % 60;
-        totalEl.innerHTML = `<i class="fas fa-hourglass-half mr-2 text-gray-500"></i> ${hours} Jam ${minutes} Menit`;
-    }
-
     // Add member (WAJIB JS)
     let memberCount = 2;
     function addMember() {
@@ -243,15 +230,4 @@ $formAction = '/Booking/handleBooking';
         });
         memberCount = document.querySelectorAll('.member-card').length;
     }
-
-    function closeConfirmModal() {
-        document.getElementById('confirmModal').classList.add('hidden');
-    }
-
-    // Event Listeners
-    document.addEventListener('DOMContentLoaded', () => {
-        const jamSelects = document.querySelectorAll('#jamMulai, #jamSelesai');
-        jamSelects.forEach(select => select.addEventListener('change', calculateTotal));
-        calculateTotal();  
-    });
 </script>

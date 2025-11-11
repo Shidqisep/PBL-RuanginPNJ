@@ -65,6 +65,29 @@
        class="block w-full bg-[#C90B0B] text-white hover:bg-red-700 text-center py-3 rounded-lg font-semibold transition duration-200">
         Logout
     </a>
+
+    <!-- **************************************************
+    INI POP UP KONFIRMASI LOGOUT
+    ******************************************************* -->
+    <div id="successModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-2xl p-8 w-full max-w-sm mx-4 text-center border border-[#8E97A6]">
+            <div class="mb-4">
+                <i class="fas fa-sign-out-alt text-[#C90B0B] text-5xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Logout</h3>
+            <p class="text-sm text-gray-600 mb-6">Apakah anda yakin ingin logout?</p>
+            <div class="flex justify-center space-x-4">
+                <button
+                        class="w-full px-6 py-1 bg-white text-sm text-black rounded-lg border border-gray-500 font-semibold hover:bg-gray-100 transition hover:cursor-pointer">
+                    Batalkan
+                </button>
+                <button
+                        class="w-full px-6 py-1 bg-[#C90B0B] text-sm text-white rounded-lg font-semibold hover:bg-red-800 transition hover:cursor-pointer">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </div>
 </main>
 
 <!-- Modal Ganti Avatar -->
@@ -112,59 +135,3 @@
         </div>
     </div>
 </div> -->
-
-<!-- JavaScript -->
-<!-- <script>
-    // Daftar avatar (ikon + gradient)
-    const avatars = [
-        null,
-        { icon: 'fa-user-astronaut', gradient: 'from-blue-400 to-blue-600', label: 'Astronaut' },
-        { icon: 'fa-user-ninja', gradient: 'from-green-400 to-green-600', label: 'Ninja' },
-        { icon: 'fa-user-graduate', gradient: 'from-purple-400 to-purple-600', label: 'Lulusan' },
-        { icon: 'fa-user-tie', gradient: 'from-yellow-400 to-orange-500', label: 'Profesional' },
-        { icon: 'fa-user', gradient: 'from-pink-400 to-red-500', label: 'Default' }
-    ];
-
-    // Load avatar saat halaman dimuat
-    document.addEventListener('DOMContentLoaded', () => {
-        const saved = localStorage.getItem('selectedAvatar');
-        if (saved) {
-            applyAvatar(parseInt(saved));
-        } else {
-            applyAvatar(5); // default
-        }
-    });
-
-    // Buka modal
-    function openAvatarModal() {
-        document.getElementById('avatarModal').classList.remove('hidden');
-    }
-
-    // Tutup modal
-    function closeAvatarModal() {
-        document.getElementById('avatarModal').classList.add('hidden');
-    }
-
-    // Pilih avatar
-    function selectAvatar(id) {
-        applyAvatar(id);
-        localStorage.setItem('selectedAvatar', id);
-        closeAvatarModal();
-    }
-
-    // Terapkan avatar ke UI
-    function applyAvatar(id) {
-        const avatar = avatars[id];
-        const mainAvatar = document.getElementById('mainAvatar');
-        const badge = document.getElementById('avatarBadge');
-
-        // Update gradient
-        mainAvatar.className = `w-32 h-32 bg-gradient-to-br ${avatar.gradient} rounded-full flex items-center justify-center shadow-lg`;
-        
-        // Update ikon
-        mainAvatar.innerHTML = `<i class="fas ${avatar.icon} text-white text-5xl"></i>`;
-        
-        // Update badge
-        badge.textContent = avatar.label;
-    }
-</script> -->

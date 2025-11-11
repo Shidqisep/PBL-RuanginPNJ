@@ -158,6 +158,7 @@ class Auth extends Controller {
     }
 
     public function forgetPassword(){
-
+        $this->view('Auth/forgetPassword');
+        $this->view('Layout/Footer');
     }
 }

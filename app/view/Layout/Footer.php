@@ -1,7 +1,6 @@
         </section>
-
         
-        <footer class="bg-white border-t border-gray-200 py-8 mt-16">
+        <footer class="bg-white border-t border-gray-200 py-8">
             <div class="mx-8 px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 gap-8 text-sm">
 
