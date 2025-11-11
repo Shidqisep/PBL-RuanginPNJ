@@ -1,13 +1,4 @@
 <?php
-// $pageTitle = "Booking Ruangan - ruanginPNJ";
-// $showNav = true;
-// $activePage = "ruangan";
-// include '../Layout/Header.php';
-
-// $roomId = isset($_GET['id']) ? $_GET['id'] : 'R001';
-
-// Catatan: Pastikan Anda mengganti action form ini dengan endpoint Controller/Method yang benar
-// Contoh: /Booking/handleBooking (jika Anda memiliki Controller Booking dengan method handleBooking)
 $formAction = '/Booking/handleBooking'; 
 ?>
 
@@ -77,7 +68,6 @@ $formAction = '/Booking/handleBooking';
 
                     <div class="mb-8">
                         <label class="block text-sm font-semibold text-gray-700 mb-4 flex items-center">
-                            <i class="fas fa-users text-indigo-600 mr-2"></i> 
                             Daftar Anggota <span class="text-red-500 ml-1">*</span>
                             <span class="ml-2 text-xs text-gray-500 font-normal">(Minimal 2 orang)</span>
                         </label>
@@ -120,8 +110,8 @@ $formAction = '/Booking/handleBooking';
                         <span></span>
                     </div>
 
-                    <button type="button" onclick="openConfirmModal(event)" 
-                            class="w-full py-3 hover:cursor-pointer bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:from-green-600 hover:to-emerald-700 transition shadow-lg text-base">
+                    <button type="button"
+                            class="w-full py-3 hover:cursor-pointer bg-[#38C55C] text-white font-bold rounded-xl hover:bg-emerald-600 transition shadow-sm text-base">
                         Booking Ruangan Ini
                     </button>
                 </form>
@@ -131,7 +121,7 @@ $formAction = '/Booking/handleBooking';
         <div class="order-1 lg:order-none lg:col-span-1">
             <div class="bg-white rounded-2xl shadow-lg overflow-hidden sticky top-24">
                 <div class="h-56">
-                    <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600" 
+                    <img src="/img/DefaultRuangan.jpg" 
                         alt="Ruangan" class="w-full h-full object-cover">
                 </div>
                 <div class="p-6">
@@ -144,8 +134,9 @@ $formAction = '/Booking/handleBooking';
                     <details class="text-gray-600">
                         <summary class="text-base font-semibold cursor-pointer text-blue-600 hover:text-blue-800 flex items-center">
                             <i class="fas fa-info-circle mr-2"></i> Deskripsi Lengkap
+                            <i class="fas fa-chevron-down text-sm ml-1 transform details-arrow-icon transition duration-300"></i>
                         </summary>
-                        <p class="mt-3 text-sm leading-relaxed">
+                        <p class="mt-3 text-sm leading-relaxed text-justify">
                             Ruang Lentera Edukasi adalah ruangan modern yang dirancang untuk mendukung kegiatan pembelajaran dan diskusi kelompok.
                         </p>
                     </details>
@@ -155,7 +146,7 @@ $formAction = '/Booking/handleBooking';
     </div>
 </main>
 
-<div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+<div id="confirmModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
     <div class="bg-white rounded-2xl p-8 w-full max-w-sm mx-4 text-center">
         <div class="mb-4">
             <i class="fas fa-calendar-check text-green-500 text-5xl"></i>
@@ -164,26 +155,26 @@ $formAction = '/Booking/handleBooking';
         <p class="text-sm text-gray-600 mb-6">Data anggota akan tersimpan untuk selamanya dan tidak bisa diubah.</p>
         <div class="grid grid-cols-2 gap-3">
             <button type="button" onclick="closeConfirmModal()" 
-                    class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition">
+                    class="px-6 py-3 bg-white text-[#171E29] rounded-lg border font-semibold hover:bg-gray-300 transition hover:cursor-pointer">
                 Batalkan
             </button>
-            <button type="button" onclick="confirmBooking()" 
-                    class="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition">
+            <button type="button" 
+                    class="px-6 py-3 bg-[#38C55C] text-white rounded-lg font-semibold hover:bg-green-600 transition hover:cursor-pointer">
                 Konfirmasi
             </button>
         </div>
     </div>
 </div>
 
-<div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-    <div class="bg-white rounded-2xl p-8 w-full max-w-sm mx-4 text-center">
+<div id="successModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-2xl p-8 w-full max-w-sm mx-4 text-center border border-[#8E97A6]">
         <div class="mb-4">
             <i class="fas fa-check-circle text-green-500 text-5xl"></i>
         </div>
         <h3 class="text-xl font-bold text-gray-800 mb-2">Request Booking Berhasil</h3>
         <p class="text-sm text-gray-600 mb-6">Tunggu approval dari admin</p>
         <button onclick="window.location.href = '../Ruangan/index.php';" 
-                class="w-full px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition">
+                class="w-full px-6 py-3 bg-[#38C55C] text-white rounded-lg font-semibold hover:bg-green-600 transition hover:cursor-pointer">
             OK
         </button>
     </div>
@@ -253,37 +244,8 @@ $formAction = '/Booking/handleBooking';
         memberCount = document.querySelectorAll('.member-card').length;
     }
 
-    // FUNGSI INI MENGGANTIKAN handleSubmit dan MEMASTIKAN VALIDASI DASAR DULU
-    function openConfirmModal(e) {
-        // Pemicu validasi bawaan HTML5
-        const form = document.getElementById('bookingForm');
-        if (!form.checkValidity()) {
-            // Jika validasi HTML5 gagal, form tidak bisa disubmit (tombol ini type="button" jadi perlu trigger manual)
-            form.reportValidity(); 
-            return;
-        }
-
-        // Cek validasi sederhana lain (Jam)
-        const jamMulai = document.getElementById('jamMulai').value;
-        const jamSelesai = document.getElementById('jamSelesai').value;
-        if (jamMulai >= jamSelesai) {
-             alert('Jam selesai harus lebih lambat dari jam mulai.');
-             return;
-        }
-
-        // Semua validasi client-side dasar OK, tampilkan modal konfirmasi
-        document.getElementById('confirmModal').classList.remove('hidden');
-    }
-
     function closeConfirmModal() {
         document.getElementById('confirmModal').classList.add('hidden');
-    }
-
-    // FUNGSI INI MENGGANTIKAN confirmBooking dan MENGIRIM FORM KE PHP
-    function confirmBooking() {
-        document.getElementById('confirmModal').classList.add('hidden');
-        // Kirim form ke Controller PHP
-        document.getElementById('bookingForm').submit();
     }
 
     // Event Listeners

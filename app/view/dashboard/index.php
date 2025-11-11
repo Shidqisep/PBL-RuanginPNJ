@@ -6,7 +6,7 @@ echo $_SESSION['user_id'];
 
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-8">
-        <h2 class="text-3xl font-bold text-[#000] mb-8 text-center">Ruangan Yang Bisa Dipinjam</h2>
+        <h2 class="text-3xl font-bold text-black mb-8 text-center">Ruangan Yang Bisa Dipinjam</h2>
 
         <!-- Capacity Filters -->
         <div class="flex justify-start mb-6 space-x-4 mx-5">
@@ -15,11 +15,11 @@ echo $_SESSION['user_id'];
                 Semua
             </button>
             <button onclick="filterRooms('2-4')" id="filter-2-4" 
-                    class="px-4 py-2 bg-gray-200 text-[#171E29] rounded-full font-medium text-sm hover:bg-gray-300 transition duration-200 hover:cursor-pointer">
+                    class="px-4 py-2 bg-white text-[#171E29] rounded-full font-medium text-sm hover:bg-gray-300 transition duration-200 hover:cursor-pointer">
                 2-4 Orang
             </button>
             <button onclick="filterRooms('4-8')" id="filter-4-8" 
-                    class="px-4 py-2 bg-gray-200 text-[#171E29] rounded-full font-medium text-sm hover:bg-gray-300 transition duration-200 hover:cursor-pointer">
+                    class="px-4 py-2 bg-white text-[#171E29] rounded-full font-medium text-sm hover:bg-gray-300 transition duration-200 hover:cursor-pointer">
                 4-8 Orang
             </button>
         </div>
@@ -42,7 +42,7 @@ echo $_SESSION['user_id'];
                         <span class="inline-flex items-center lg:flex-row flex-col"><i class="fas fa-users text-indigo-600 mr-2"></i> 2-4 Orang</span>
                     </div>
                     <a href="/booking" 
-                    class="block w-full bg-[#1E68FB] text-white text-center py-2 rounded-xl font-semibold text-xs lg:text-sm hover:bg-[#1553CD] transition duration-200">
+                    class="block w-full bg-[#1E68FB] text-white text-center py-2 rounded-xl font-semibold text-xs lg:text-sm hover:bg-[#38C55C] transition duration-200">
                     Booking Sekarang
                     </a>
                 </div>
@@ -63,7 +63,7 @@ echo $_SESSION['user_id'];
                         <span class="inline-flex items-center lg:flex-row flex-col"><i class="fas fa-users text-indigo-600 mr-2"></i> 2-4 Orang</span>
                     </div>
                     <a href="/booking" 
-                    class="block w-full bg-[#1E68FB] text-white text-center py-2 rounded-xl font-semibold text-xs lg:text-sm hover:bg-[#1553CD] transition duration-200">
+                    class="block w-full bg-[#1E68FB] text-white text-center py-2 rounded-xl font-semibold text-xs lg:text-sm hover:bg-[#38C55C] transition duration-200">
                     Booking Sekarang
                     </a>
                 </div>
@@ -84,7 +84,7 @@ echo $_SESSION['user_id'];
                         <span class="inline-flex items-center lg:flex-row flex-col"><i class="fas fa-users text-indigo-600 mr-2"></i> 2-4 Orang</span>
                     </div>
                     <a href="/booking" 
-                    class="block w-full bg-[#1E68FB] text-white text-center py-2 rounded-xl font-semibold text-xs lg:text-sm hover:bg-[#1553CD] transition duration-200">
+                    class="block w-full bg-[#1E68FB] text-white text-center py-2 rounded-xl font-semibold text-xs lg:text-sm hover:bg-[#38C55C] transition duration-200">
                     Booking Sekarang
                     </a>
                 </div>

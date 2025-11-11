@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Akun</title>
+    <title>Ruang Rapat</title>
     <link href="/css/output.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -14,12 +14,12 @@
     <div class="bg-[#F3F5FA] rounded-2xl shadow-2xl p-8 w-full max-w-lg mt-10">
         <!-- Header -->
         <div class="mb-6">
-            <h1 class="text-3xl font-bold text-[#171E29] mb-2">Registrasi Akun</h1>
-            <p class="text-sm text-gray-600">Temukan, pinjam, dan nikmati fasilitas favortimu dengan mudah.</p>
+            <h1 class="text-3xl font-bold text-[#171E29] mb-2">Booking Ruang Rapat</h1>
+            <p class="text-sm text-gray-600">Pinjam ruangan perpustakaan dengan mudah, praktis, dan cepat.</p>
         </div>
 
         <!-- Form -->
-        <form action="/auth/handleRegister" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
             <div class="grid grid-cols-2 gap-4">
                 <!-- Nama -->
                 <div class="col-span-2 sm:col-span-1">
