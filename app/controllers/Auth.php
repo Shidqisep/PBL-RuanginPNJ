@@ -53,10 +53,8 @@ class Auth extends Controller {
             if ($result <= 0) {
                 throw new Exception('Something Went Wrong');
             }
-            
 
-            Flasher::setFlash('Sukses', 'Registrasi, Silahkan tunggu konfirmasi admin', 'success');
-            header('Location: /auth/login');
+            header('Location: /auth/pending');
             exit;
 
         } catch (\Exception $e ) {
@@ -159,5 +157,10 @@ class Auth extends Controller {
 
     public function forgetPassword(){
 
+    }
+
+    public function pending(){
+        $this->view('Auth/pending');
+        $this->view('Layout/Footer');
     }
 }
