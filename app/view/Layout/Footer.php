@@ -34,18 +34,18 @@
                     <div class="grid lg:grid-cols-3 grid-rows-1 gap-8 mt-5 pt-6 border-t border-gray-200">
                         <div class>
                             <h3 class="font-bold text-[#171E29] mb-3">Jam Kerja</h3>
-                            <p class="mb-1">Senin-Kamis: 08:00-18:00</p>
+                            <p class="mb-1 text-xs">Senin-Kamis: 08:00-18:00</p>
                             <p>Jumat: 08:00-16:00</p>
                         </div>
                         <div class="md:w-5/6">
                             <h3 class="font-bold text-[#171E29] mb-3">Tentang Kami</h3>
-                            <p class="mb-2 text-justify">
+                            <p class="mb-2 text-justify text-xs">
                                 Kami adalah Perpustakaan PNJ, pusat informasi dan pembelajaran di Politeknik Negeri Jakarta, menyediakan koleksi lengkap dan layanan digital yang mendukung pendidikan dan penelitian.
                             </p>
                         </div>
                         <div class="md:w-5/6">
                             <h3 class="font-bold text-[#171E29] mb-3">Alamat</h3>
-                            <p class="text-justify">
+                            <p class="text-justify text-xs">
                             Universitas Indonesia Gedung Perpustakaan Politeknik
                             Negeri Jakarta, Jl. Mini, Bali, People City, West Java
                             18425
@@ -54,7 +54,7 @@
                     </div>
 
                     <!-- Copyright -->
-                    <div class="mt-5 pt-6 border-t border-gray-200 text-center text-dark-overlay/70 text-xs">
+                    <div class="pt-6 border-t border-gray-200 text-center text-dark-overlay/70 text-xs">
                         © 2025 ruanginPNJ. All rights reserved.
                     </div>
                 </div>

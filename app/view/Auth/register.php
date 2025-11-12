@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Akun</title>
     <link href="/css/output.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
 <body class="font-sf-pro" >
@@ -129,7 +128,37 @@
                     Kembali ke halaman Login
                 </button>
             </div>
+<<<<<<< HEAD
         </div>
+=======
+
+            <!-- Upload Foto -->
+            <div class="mt-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Upload foto bukti akun KabacaPNJ (Halaman profil)
+                </label>
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-500 transition duration-200 cursor-pointer">
+                    <input type="file" name="buktiKubaca" id="buktiKubaca" accept="image/*" class="hidden" onchange="previewFile()">
+                    <label for="buktiKubaca" class="cursor-pointer">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
+                        <p class="text-sm text-gray-600" id="fileName">Upload foto bukti kubaca</p>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Login Link -->
+            <div class="mt-6 text-sm">
+                <span class="text-gray-600">Sudah punya akun? </span>
+                <a href="/auth/formLogin" class="text-blue-600 hover:underline font-medium">Login</a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" 
+                class="w-full mt-6 bg-[#38C55C] text-white py-3 rounded-lg font-semibold hover:bg-green-600 hover:cursor-pointer transition duration-200 shadow-lg">
+                Daftar - Explore Ruangan Sekarang
+            </button>
+        </form>
+>>>>>>> develop
     </div>
 
     <script>
