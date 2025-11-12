@@ -50,11 +50,11 @@
 
     <!-- Action Buttons -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-        <a href="ganti-password.php" 
+        <a href="/Akun/gantiPassword" 
            class="bg-[#1E68FB] text-white hover:from-blue-600 hover:to-blue-700 text-center py-3 rounded-lg font-semibold transition duration-200">
             Ganti Password
         </a>
-        <a href="hapus-akun.php" 
+        <a href="/Akun/hapusAkun" 
            class="bg-[#1E68FB] text-white hover:from-blue-600 hover:to-blue-700 text-center py-3 rounded-lg font-semibold transition duration-200">
             Hapus Akun
         </a>

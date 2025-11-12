@@ -22,6 +22,20 @@ class Akun extends Controller{
         $this->view('Layout/Footer');
     }
 
+    public function gantiPassword(){
+        $data['judul'] = 'Ganti Password';
+        $this->view('Layout/Header', $data);
+        $this->view('Akun/Ganti_Password', $data);
+        $this->view('Layout/Footer');
+    }
+
+    public function hapusAkun(){
+        $data['judul'] = 'Hapus Akun';
+        $this->view('Layout/Header', $data);
+        $this->view('Akun/Hapus', $data);
+        $this->view('Layout/Footer');
+    }
+
     public function forgetPassword(){
         $this->view('Auth/forgetPassword');
     }

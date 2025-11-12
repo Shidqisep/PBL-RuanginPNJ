@@ -120,7 +120,7 @@
         <div id="successModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
             <div class="bg-white rounded-2xl p-8 w-full max-w-sm mx-4 text-center border border-[#8E97A6]">
                 <div class="mb-4">
-                    <i class="fas fa-check-circle text-green-500 text-5xl"></i>
+                    <i class="fas fa-check-circle text-[#38C55C] text-5xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-gray-800 mb-2">Daftar Berhasil</h3>
                 <p class="text-sm text-gray-600 mb-6">Tunggu approval dari admin dan selalau cek email kamu untuk mendapatkan informasi terbaru</p>

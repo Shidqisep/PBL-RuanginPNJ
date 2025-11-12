@@ -24,7 +24,7 @@ class Flasher{
     
         echo '
         <div id="flash-message" 
-            class="fixed top-5 right-5 px-4 py-3 rounded-lg shadow-lg '.$color.' flex items-center gap-2 z-50">
+            class="fixed top-5 right-5 px-4 py-3 rounded-lg'.$color.' flex items-center gap-2 z-50">
             <span class="text-lg">⚡</span>
             <span>'.htmlspecialchars($flash['pesan']).' '.htmlspecialchars($flash['aksi']).'</span>
             <button class="ml-3 font-bold" onclick="this.parentElement.remove()">×</button>

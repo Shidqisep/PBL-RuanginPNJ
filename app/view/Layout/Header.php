@@ -61,7 +61,7 @@ $inactiveClassMobile = 'text-gray-600 hover:text-gray-800 font-medium px-4 py-2 
 
             <div id="mobile-menu" class="md:hidden hidden pb-4">
                 <div class="flex flex-col space-y-2 px-6 mt-4">
-                    <a href="#" class="<?php echo ($activeController == 'Dashboard') ? $activeClass : $inactiveClass; ?>">
+                    <a href="/Dashboard" class="<?php echo ($activeController == 'Dashboard') ? $activeClass : $inactiveClass; ?>">
                         Ruangan
                     </a>
                     <a href="/History" class="<?php echo ($activeController == 'History') ? $activeClass : $inactiveClass; ?>">
