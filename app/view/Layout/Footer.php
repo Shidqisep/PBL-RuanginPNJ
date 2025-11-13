@@ -2,7 +2,7 @@
         
         <footer class="bg-white border-t border-gray-200 py-8 shadow-xl">
             <div class="mx-8 px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 gap-8 text-sm">
+                <div class="grid grid-cols-1 gap-5   text-sm">
 
                     <!-- Logo & Tagline -->
                     <div class="flex flex-col lg:flex-row items-start justify-between">
@@ -31,7 +31,7 @@
                         </div>
                     </div>
 
-                    <div class="grid lg:grid-cols-3 grid-rows-1 gap-8 mt-5 pt-6 border-t border-gray-200">
+                    <div class="grid lg:grid-cols-3 grid-rows-1 gap-5 pt-6 border-t border-gray-200">
                         <div class>
                             <h3 class="font-bold text-[#171E29] mb-3">Jam Kerja</h3>
                             <p class="mb-1 text-xs">Senin-Kamis: 08:00-18:00</p>

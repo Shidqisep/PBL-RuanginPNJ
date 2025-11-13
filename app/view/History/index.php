@@ -50,6 +50,7 @@
                             <th class="px-4 py-3 text-center font-semibold text-gray-700">Ruangan</th>
                             <th class="px-4 py-3 text-center font-semibold text-gray-700">Jam</th>
                             <th class="px-4 py-3 text-center font-semibold text-gray-700">Jumlah Orang</th>
+                            <th class="px-4 py-3 text-center font-semibold text-gray-700">Status</th>
                             <th class="px-4 py-3 text-center font-semibold text-gray-700 rounded-tr-xl">Aksi</th>
                         </tr>
                     </thead>
@@ -64,6 +65,12 @@
                             <td class="px-4 py-3 text-center text-sm border-b border-[#8E97A6]">Ruang Lentera Edukasi</td>
                             <td class="px-4 py-3 text-center text-sm border-b border-[#8E97A6]">09:00 - 12:00</td>
                             <td class="px-4 py-3 text-center text-sm border-b border-[#8E97A6]">4 Orang</td>
+                            <td class="px-4 py-3 text-center text-sm border-b border-[#8E97A6]">
+                                <div
+                                        class="flex bg-[#38C55C] items-center justify-center text-white px-2 py-2 rounded-sm text-xs font-medium shadow-md min-w-1/2">
+                                    <span>Selesai</span>
+                                </div>
+                            </td>
                             <td class="px-4 py-3 text-center justify-center flex border-b border-[#8E97A6]">
                                 <button
                                         class="flex bg-[#1E68FB] items-center text-white hover:bg-blue-600 hover:cursor-pointer px-5 py-2 rounded-sm text-xs font-medium transition shadow-md transform hover:scale-105">
@@ -89,6 +96,12 @@
                             <td class="px-4 py-3 text-center text-sm border-b border-[#8E97A6]">Ruang Lentera Edukasi</td>
                             <td class="px-4 py-3 text-center text-sm border-b border-[#8E97A6]">09:00 - 12:00</td>
                             <td class="px-4 py-3 text-center text-sm border-b border-[#8E97A6]">4 Orang</td>
+                            <td class="px-4 py-3 text-center text-sm border-b border-[#8E97A6]">
+                                <div
+                                        class="flex bg-[#C90B0B] items-center justify-center text-white px-2 py-2 rounded-sm text-xs font-medium shadow-md min-w-1/2">
+                                    <span>Ditolak</span>
+                                </div>
+                            </td>
                             <td class="px-4 py-3 text-center justify-center flex border-b border-[#8E97A6]">
                                 <button
                                         class="flex bg-[#1E68FB] items-center text-white hover:bg-blue-600 hover:cursor-pointer px-5 py-2 rounded-sm text-xs font-medium transition shadow-md transform hover:scale-105">
@@ -114,16 +127,20 @@
                             <td class="px-4 py-3 text-center text-sm border-b border-[#8E97A6]">Ruang Lentera Edukasi</td>
                             <td class="px-4 py-3 text-center text-sm border-b border-[#8E97A6]">09:00 - 12:00</td>
                             <td class="px-4 py-3 text-center text-sm border-b border-[#8E97A6]">4 Orang</td>
+                            <td class="px-4 py-3 text-center text-sm border-b border-[#8E97A6]">
+                                <div
+                                        class="flex bg-[#38C55C] items-center justify-center text-white px-2 py-2 rounded-sm text-xs font-medium shadow-md min-w-1/2">
+                                    <span>Selesai</span>
+                                </div>
+                            </td>
                             <td class="px-4 py-3 text-center justify-center flex border-b border-[#8E97A6]">
                                 <button
-                                        class="flex bg-[#1E68FB] items-center text-white hover:bg-blue-600 hover:cursor-pointer px-5 py-2 rounded-sm text-xs font-medium transition shadow-md transform hover:scale-105">
+                                        class="flex bg-[#8D9198] items-center text-dark-overlay/70 px-5 py-2 rounded-sm text-xs font-medium shadow-md">
                                     <span>Feedback</span>
                                     
-                                    <div class="bg-white p-1 rounded-xs ml-3"> 
-                                        <svg class="w-3 h-3 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                            
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <div class="bg-black/70 p-1 rounded-xs ml-3"> 
+                                        <svg class="w-3 h-3 text-[#8D9198]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
                                         </svg>
                                     </div>
                                 </button>

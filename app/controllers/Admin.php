@@ -14,9 +14,8 @@ class Admin extends Controller {
         }
 
         $data['judul'] = 'Dashboard Admin';
-        $this->view('Layout/Header', $data);
+        $this->view('Layout/Sidebar', $data);
         $this->view('Admin/index');
-        $this->view('Layout/Footer');
 
     }
 

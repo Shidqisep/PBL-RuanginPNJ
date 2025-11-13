@@ -54,17 +54,14 @@
            class="bg-[#1E68FB] text-white hover:from-blue-600 hover:to-blue-700 text-center py-3 rounded-lg font-semibold transition duration-200">
             Ganti Password
         </a>
-        <a href="/Akun/hapusAkun" 
-           class="bg-[#1E68FB] text-white hover:from-blue-600 hover:to-blue-700 text-center py-3 rounded-lg font-semibold transition duration-200">
-            Hapus Akun
+        <a href="Auth/handleLogout"
+            class="block w-full bg-[#C90B0B] text-white hover:bg-red-700 text-center py-3 rounded-lg font-semibold transition duration-200">
+            Logout
         </a>
     </div>
 
     <!-- Logout Button -->
-    <a href="Auth/handleLogout"
-       class="block w-full bg-[#C90B0B] text-white hover:bg-red-700 text-center py-3 rounded-lg font-semibold transition duration-200">
-        Logout
-    </a>
+    
 
     <!-- **************************************************
     INI POP UP KONFIRMASI LOGOUT

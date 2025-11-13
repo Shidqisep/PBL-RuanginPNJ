@@ -99,7 +99,7 @@ $formAction = '/Booking/handleBooking';
                                 </div>
                             </div>
                         </div>
-                        <button type="button"
+                        <button type="button" onclick="addMember()"
                                 class="mt-4 flex items-center text-blue-600 hover:text-blue-800 hover:cursor-pointer text-sm font-medium transition">
                             <i class="fas fa-plus mr-1"></i> Tambah Anggota
                         </button>
@@ -118,28 +118,68 @@ $formAction = '/Booking/handleBooking';
             </div>
         </div>
 
-        <div class="order-1 lg:order-none lg:col-span-1">
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden sticky top-24">
+        <div class="order-1 lg:order-none lg:col-span-1 space-y-6">
+    
+            <!-- KARTU RUANGAN (TIDAK STICKY) -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <div class="h-56">
-                    <img src="/img/DefaultRuangan.jpg" 
-                        alt="Ruangan" class="w-full h-full object-cover">
+                    <img src="/img/DefaultRuangan.jpg" alt="Ruangan" class="w-full h-full object-cover">
                 </div>
                 <div class="p-6">
                     <h3 class="font-bold text-2xl text-gray-800 mb-4">Ruang Lentera Edukasi</h3>
                     <div class="space-y-3 text-sm text-gray-600 mb-6">
-                        <p class="flex items-center"><i class="fas fa-layer-group text-blue-600 mr-3"></i> Lantai 2</p>
-                        <p class="flex items-center"><i class="fas fa-vector-square text-green-600 mr-3"></i> 30m²</p>
-                        <p class="flex items-center"><i class="fas fa-users text-indigo-600 mr-3"></i> 4 - 8 Orang</p>
+                        <p class="flex items-center">
+                            <svg class="w-5 h-5 text-blue-600 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                <polyline points="9 22 9 12 15 12 15 22"/>
+                            </svg>
+                            Lantai 2
+                        </p>
+                        <p class="flex items-center">
+                            <svg class="w-5 h-5 text-indigo-600 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                            4 - 8 Orang
+                        </p>
                     </div>
                     <details class="text-gray-600">
                         <summary class="text-base font-semibold cursor-pointer text-blue-600 hover:text-blue-800 flex items-center">
-                            <i class="fas fa-info-circle mr-2"></i> Deskripsi Lengkap
-                            <i class="fas fa-chevron-down text-sm ml-1 transform details-arrow-icon transition duration-300"></i>
+                            Deskripsi Lengkap
+                            <svg class="w-4 h-4 ml-1 transform transition duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
                         </summary>
                         <p class="mt-3 text-sm leading-relaxed text-justify">
                             Ruang Lentera Edukasi adalah ruangan modern yang dirancang untuk mendukung kegiatan pembelajaran dan diskusi kelompok.
                         </p>
                     </details>
+                </div>
+            </div>
+
+            <!-- KARTU TATA TERTIB (STICKY) -->
+            <div class="lg:sticky lg:top-6 bg-white rounded-lg shadow-sm border border-gray-200 p-5 z-10">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <!-- SVG Timbangan -->
+                        <svg class="w-6 h-6 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v4"/>
+                            <path d="M12 18v4"/>
+                            <path d="M5 8h14"/>
+                            <path d="M7 12h10"/>
+                            <path d="M8.5 15c-.8 0-1.5-.9-1.5-2s.7-2 1.5-2"/>
+                            <path d="M15.5 15c.8 0 1.5-.9 1.5-2s-.7-2-1.5-2"/>
+                            <path d="M12 12c-1.1 0-2-1.3-2-3s.9-3 2-3 2 1.3 2 3-.9 3-2 3z"/>
+                            <path d="M12 12v6"/>
+                            <path d="M9 18h6"/>
+                        </svg>
+                        <span class="text-lg font-semibold text-gray-900">Tata Tertib</span>
+                    </div>
+                    <svg class="w-5 h-5 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
                 </div>
             </div>
         </div>
@@ -205,7 +245,12 @@ JS DIGUNAKAN UNTUK MENAMBAH & MENGHAPUS MEMBER
                     <span class="ml-2 font-medium text-sm text-gray-800">Anggota</span>
                 </div>
                 <button type="button" onclick="removeMember(this)" class="text-red-600 hover:text-red-800 transition">
-                    <i class="fas fa-trash-alt"></i>
+                    <svg class="w-5 h-5 text-red-600 hover:text-red-800 transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                    </svg>
                 </button>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">

@@ -25,75 +25,143 @@ echo $_SESSION['user_id'];
         </div>
 
         <!-- Rooms Grid -->
-        <div id="rooms-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:gap-6 mb-8 mx-5 md:gap-3 gap-3">
+        <div id="rooms-container" class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-2 mb-8 mx-5 md:gap-10 lg:gap-12 gap-5">
             <!-- **************************************************
             INI UNTUK CARD RUANGAN
             ******************************************************* -->
             <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
                 <div class="relative h-48 bg-gradient-to-br from-gray-300 to-gray-400">
                     <img src="/img/DefaultRuangan.jpg" 
-                        alt="${room.name}" class="w-full h-full object-cover">
+                        alt="Ruang Lentera Edukasi" class="w-full h-full object-cover">
                 </div>
                 <div class="p-5">
                     <h3 class="font-bold text-lg text-[#1A1A1A] mb-2">Ruang Lentera Edukasi</h3>
-                    <p class="text-dark-overlay/80 mb-4 text-justify text-sm">Temukan, pinjam, dan nikmati bacaan favoritmu dengan mudah.</p>
-                    <hr class="border-t border-gray-300 mb-4">
-                    <div class="flex justify-between text-sm text-gray-600 mb-4">
-                        <span class="inline-flex items-center lg:flex-row flex-col"><i class="fas fa-layer-group text-blue-600 mr-2"></i> Lt 2</span>
-                        <span class="inline-flex items-center lg:flex-row flex-col"><i class="fas fa-vector-square text-green-600 mr-2"></i> 30m&sup2</span>
-                        <span class="inline-flex items-center lg:flex-row flex-col"><i class="fas fa-users text-indigo-600 mr-2"></i> 2-4 Orang</span>
+                    <p class="text-dark-overlay/80 mb-4 text-justify text-sm">Ruang bersih, tenang, dilengkapi wifi, cocok untuk belajar, rapat, dan aktivitas produktif.</p>
+                    <hr class="border-t border-[#171E29] mb-4">
+                    <div class="grid grid-cols-2 items-center text-sm text-gray-600">
+                        <div class="grid grid-cols-2 justify-items-start mb-2 mr-6 md:text-md text-xs">
+                            <div class="flex md:flex-col lg:flex-row flex-col justify-center items-center md:mr-2">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" 
+                                        fill="none" 
+                                        stroke="currentColor" 
+                                        stroke-width="1.5" 
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round"/>
+                                </svg>
+                                <span class="inline-flex items-center lg:flex-row flex-col">
+                                    Lt 2
+                                </span>
+                            </div>
+                            <div class="flex md:flex-col lg:flex-row flex-col justify-center items-center">                            
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" 
+                                        fill="none" 
+                                        stroke="currentColor" 
+                                        stroke-width="1.5" 
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round"/>
+                                </svg>
+                                <span class="inline-flex items-center lg:flex-row flex-col">2-4 Orang</span>
+                            </div>                          
+                        </div>
+                        <a href="/booking" 
+                            class="flex items-center justify-center w-full bg-[#1E68FB] text-white text-center rounded-xl font-semibold text-sm hover:bg-[#38C55C] transition duration-200 mr-2 p-3">
+                            Booking Sekarang
+                        </a>
                     </div>
-                    <a href="/booking" 
-                    class="block w-full bg-[#1E68FB] text-white text-center py-2 rounded-xl font-semibold text-sm hover:bg-[#38C55C] transition duration-200">
-                    Booking Sekarang
-                    </a>
                 </div>
             </div>
-
-
-
 
 
 
             <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
                 <div class="relative h-48 bg-gradient-to-br from-gray-300 to-gray-400">
                     <img src="/img/DefaultRuangan.jpg" 
-                        alt="${room.name}" class="w-full h-full object-cover">
+                        alt="Ruang Lentera Edukasi" class="w-full h-full object-cover">
                 </div>
                 <div class="p-5">
                     <h3 class="font-bold text-lg text-[#1A1A1A] mb-2">Ruang Lentera Edukasi</h3>
-                    <p class="text-dark-overlay/80 mb-4 text-justify text-sm">Temukan, pinjam, dan nikmati bacaan favoritmu dengan mudah.</p>
-                    <hr class="border-t border-gray-300 mb-4">
-                    <div class="flex justify-between text-sm text-gray-600 mb-4">
-                        <span class="inline-flex items-center lg:flex-row flex-col"><i class="fas fa-layer-group text-blue-600 mr-2"></i> Lt 2</span>
-                        <span class="inline-flex items-center lg:flex-row flex-col"><i class="fas fa-vector-square text-green-600 mr-2"></i> 30m&sup2</span>
-                        <span class="inline-flex items-center lg:flex-row flex-col"><i class="fas fa-users text-indigo-600 mr-2"></i> 2-4 Orang</span>
+                    <p class="text-dark-overlay/80 mb-4 text-justify text-sm">Ruang bersih, tenang, dilengkapi wifi, cocok untuk belajar, rapat, dan aktivitas produktif.</p>
+                    <hr class="border-t border-[#171E29] mb-4">
+                    <div class="grid grid-cols-2 items-center text-sm text-gray-600">
+                        <div class="grid grid-cols-2 justify-items-start mb-2 mr-6 md:text-md text-xs">
+                            <div class="flex md:flex-row flex-col justify-center items-center md:mr-2">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" 
+                                        fill="none" 
+                                        stroke="currentColor" 
+                                        stroke-width="1.5" 
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round"/>
+                                </svg>
+                                <span class="inline-flex items-center lg:flex-row flex-col">
+                                    Lt 2
+                                </span>
+                            </div>
+                            <div class="flex md:flex-row flex-col justify-center items-center">                            
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" 
+                                        fill="none" 
+                                        stroke="currentColor" 
+                                        stroke-width="1.5" 
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round"/>
+                                </svg>
+                                <span class="inline-flex items-center lg:flex-row flex-col">2-4 Orang</span>
+                            </div>                          
+                        </div>
+                        <a href="/booking" 
+                            class="flex items-center justify-center w-full bg-[#1E68FB] text-white text-center rounded-xl font-semibold text-sm hover:bg-[#38C55C] transition duration-200 mr-2 p-3">
+                            Booking Sekarang
+                        </a>
                     </div>
-                    <a href="/booking" 
-                    class="block w-full bg-[#1E68FB] text-white text-center py-2 rounded-xl font-semibold text-sm hover:bg-[#38C55C] transition duration-200">
-                    Booking Sekarang
-                    </a>
                 </div>
             </div>
+
+
 
             <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
                 <div class="relative h-48 bg-gradient-to-br from-gray-300 to-gray-400">
                     <img src="/img/DefaultRuangan.jpg" 
-                        alt="${room.name}" class="w-full h-full object-cover">
+                        alt="Ruang Lentera Edukasi" class="w-full h-full object-cover">
                 </div>
                 <div class="p-5">
                     <h3 class="font-bold text-lg text-[#1A1A1A] mb-2">Ruang Lentera Edukasi</h3>
-                    <p class="text-dark-overlay/80 mb-4 text-justify text-sm">Temukan, pinjam, dan nikmati bacaan favoritmu dengan mudah.</p>
-                    <hr class="border-t border-gray-300 mb-4">
-                    <div class="flex justify-between text-sm text-gray-600 mb-4">
-                        <span class="inline-flex items-center lg:flex-row flex-col"><i class="fas fa-layer-group text-blue-600 mr-2"></i> Lt 2</span>
-                        <span class="inline-flex items-center lg:flex-row flex-col"><i class="fas fa-vector-square text-green-600 mr-2"></i> 30m&sup2</span>
-                        <span class="inline-flex items-center lg:flex-row flex-col"><i class="fas fa-users text-indigo-600 mr-2"></i> 2-4 Orang</span>
+                    <p class="text-dark-overlay/80 mb-4 text-justify text-sm">Ruang bersih, tenang, dilengkapi wifi, cocok untuk belajar, rapat, dan aktivitas produktif.</p>
+                    <hr class="border-t border-[#171E29] mb-4">
+                    <div class="grid grid-cols-2 items-center text-sm text-gray-600">
+                        <div class="grid grid-cols-2 justify-items-start mb-2 mr-6 md:text-md text-xs">
+                            <div class="flex md:flex-row flex-col justify-center items-center md:mr-2">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" 
+                                        fill="none" 
+                                        stroke="currentColor" 
+                                        stroke-width="1.5" 
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round"/>
+                                </svg>
+                                <span class="inline-flex items-center lg:flex-row flex-col">
+                                    Lt 2
+                                </span>
+                            </div>
+                            <div class="flex md:flex-row flex-col justify-center items-center">                            
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" 
+                                        fill="none" 
+                                        stroke="currentColor" 
+                                        stroke-width="1.5" 
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round"/>
+                                </svg>
+                                <span class="inline-flex items-center lg:flex-row flex-col">2-4 Orang</span>
+                            </div>                          
+                        </div>
+                        <a href="/booking" 
+                            class="flex items-center justify-center w-full bg-[#1E68FB] text-white text-center rounded-xl font-semibold text-sm hover:bg-[#38C55C] transition duration-200 mr-2 p-3">
+                            Booking Sekarang
+                        </a>
                     </div>
-                    <a href="/booking" 
-                    class="block w-full bg-[#1E68FB] text-white text-center py-2 rounded-xl font-semibold text-sm hover:bg-[#38C55C] transition duration-200">
-                    Booking Sekarang
-                    </a>
                 </div>
             </div>
 
