@@ -18,5 +18,23 @@ class Admin extends Controller {
         $this->view('Admin/index');
 
     }
+    
+    public function Anggota(){
+        $data['judul'] = 'Data Anggota';
+        $this->view('Layout/Sidebar', $data);
+        $this->view('Admin/anggota');
+    }
+
+    public function Ruangan(){
+        $data['judul'] = 'Data Ruangan';
+        $this->view('Layout/Sidebar', $data);
+        $this->view('Admin/ruangan');
+    }
+
+    public function Akun(){
+        $data['judul'] = 'Profile Admin';
+        $this->view('Layout/Sidebar', $data);
+        $this->view('Admin/akun');
+    }
 
 }
