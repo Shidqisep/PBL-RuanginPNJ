@@ -28,5 +28,12 @@ class Dashboard extends controller
         $this->view('Layout/Footer');
     }
 
+    public function Booking(){
+        $data['judul'] = 'Booking Ruangan';
+        $this->view('Layout/Header', $data);
+        $this->view('Dashboard/Booking_Ruangan', $data); 
+        $this->view('Layout/Footer');
+    }
+
 
 }
