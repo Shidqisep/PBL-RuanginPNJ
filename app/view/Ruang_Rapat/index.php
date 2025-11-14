@@ -13,7 +13,7 @@
     <div class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center"
          style="background-image: url('/img/Background 1.png'); 
              background-color: rgba(139, 92, 113, 0.7); background-blend-mode: multiply;">
-
+ <div class="flex items-center justify-center w-fit h-fit max-w-lg my-8git"> 
         <div class="bg-[#F3F5FA] rounded-2xl shadow-2xl p-8 w-full max-w-lg">
 
             <!-- Links Row -->
@@ -80,7 +80,7 @@
                 </button>
             </form>
         </div>
-
+    </div>
         <!-- **************************************************
         INI KONFIRMASI BOOKING DAN SUCCESS MODAL
         ******************************************************* -->
