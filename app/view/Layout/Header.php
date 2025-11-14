@@ -26,7 +26,8 @@ $inactiveClassMobile = 'text-gray-600 hover:text-gray-800 font-medium px-4 py-2 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.8">
-    <title>Dashboard</title>
+    <link rel="icon" type="image/png" href="/img/LOGO PNJ FIX 1.png">
+    <title>RuanginPNJ - <?= $data['judul']; ?></title>
     <link href="/css/output.css" rel="stylesheet">
 </head>
 <body class="bg-[#F3F5FA] min-h-screen font-sf-pro">
