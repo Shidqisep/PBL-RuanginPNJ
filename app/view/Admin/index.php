@@ -15,7 +15,7 @@
             </div>
 
             <div>
-                <a class="px-4 py-2 bg-white text-[#1A1A1A] rounded-md font-medium border border-bg-[var(--White---2,linear-gradient(0deg,rgba(30,104,251,0.02)0%,rgba(30,104,251,0.02)100%),#FFF)] text-sm hover:bg-gray-200 transition duration-200 hover:cursor-pointer">
+                <a class="px-4 py-2 bg-white text-[#1A1A1A] rounded-md font-medium border border-[linear-gradient(0deg,rgba(30,104,251,0.02)0%,rgba(30,104,251,0.02)100%),#FFFFF)] text-sm hover:bg-gray-200 transition duration-200 hover:cursor-pointer">
                     Export
                 </a>
             </div>

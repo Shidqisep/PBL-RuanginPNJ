@@ -22,7 +22,19 @@ class Admin extends Controller {
     public function Anggota(){
         $data['judul'] = 'Data Anggota';
         $this->view('Layout/Sidebar', $data);
-        $this->view('Admin/anggota');
+        $this->view('Admin/Anggota/index');
+    }
+
+    public function detailAnggota(){
+        $data['judul'] = 'Detail Anggota';
+        $this->view('Layout/Sidebar', $data);
+        $this->view('Admin/Anggota/detail');
+    }
+
+    public function Selesaikan(){
+        $data['judul'] = 'Selesaikan Peminjaman';
+        $this->view('Layout/Sidebar', $data);
+        $this->view('Admin/Anggota/selesaikan');
     }
 
     public function Ruangan(){

@@ -18,10 +18,10 @@
         </div>
 
         <!-- Menu Utama -->
-        <nav class="flex-1 px-4 py-6 space-y-1">
+        <nav class="flex-1 px-4 py-6 space-y-1 pr-0">
         
             <!-- Dashboard (AKTIF) -->
-            <a href="/Admin/index" class="flex items-center px-4 py-3 text-[rgba(30,104,251,0.80)] bg-blue-50 rounded-lg border-l-4 border-blue-600 font-medium text-xs">
+            <a href="/Admin/index" class="flex items-center px-4 my-3 text-[rgba(30,104,251,0.80)] border-r-3 border-[#1E68FB] font-medium text-sm">
                 <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="3" y="3" width="7" height="10" rx="1" fill="currentcolor"/>
                     <rect x="14" y="3" width="7" height="6" rx="1" fill="currentcolor"/>
