@@ -12,31 +12,30 @@
 <body class="font-sf-pro" >
     
     <div class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center"
-         style="background-image: url('/img/Background 1.png'); 
-             background-color: rgba(139, 92, 113, 0.7); background-blend-mode: multiply;">   
+         style="background-image: url('/img/Background 1.png');>   
 
-        <div class="flex items-center justify-center w-fit h-fit max-w-xl my-8git"> 
-            <div class="bg-[#F3F5FA] rounded-2xl shadow-2xl p-8 w-fit h-fit max-w-md md:h-fit sm:h-full mb-5 mt-1">
+        <div class="flex items-center justify-center w-fit h-fit max-w-lg my-8git"> 
+            <div class="bg-[#F3F5FA] rounded-2xl shadow-2xl p-8 w-lg h-fit max-w-lg md:h-fit sm:h-full mb-5 mt-1">
                 <!-- Logo & Header -->
-                <div class="text-center mb-6">
+                <div class="text-center mb-5">
                     <div class="flex items-start justify-start mb-3">
                         <img src="/img/LOGO PNJ FIX 1.png" alt="Logo" class="w-auto h-10 mr-2">
                         <h1 class="text-4xl font-bold text-gray-800">ruanginPNJ</h1>
                     </div>
-                    <p class="text-sm text-left  text-gray-600">Temukan, pinjam, dan nikmati fasilitas favortimu dengan mudah.</p>
+                    <p class="text-xs text-left  text-gray-600">Temukan, pinjam, dan nikmati fasilitas favortimu dengan mudah.</p>
                 </div>
 
                 <!-- Form -->
                 <form id="loginForm" method="POST" action="/auth/handleLogin">
                     <!-- Email -->
-                    <div class="mb-4">
+                    <div class="mb-5">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
                         <input type="email" id="email" name="email" placeholder="Input email" 
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                     </div>
 
                     <!-- Password -->
-                    <div class="mb-4">
+                    <div class="mb-5">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
                         <div class="relative">
                             <input type="password" id="password" name="password" placeholder="••••••••"
