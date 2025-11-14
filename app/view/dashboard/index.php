@@ -65,7 +65,7 @@ echo $_SESSION['user_id'];
                                 <span class="inline-flex items-center lg:flex-row flex-col">2-4 Orang</span>
                             </div>                          
                         </div>
-                        <a href="/booking" 
+                        <a href="/Dashboard/Booking" 
                             class="flex items-center justify-center w-full bg-[#1E68FB] text-white text-center rounded-xl font-semibold text-sm hover:bg-[#38C55C] transition duration-200 mr-2 p-3">
                             Booking Sekarang
                         </a>
@@ -111,7 +111,7 @@ echo $_SESSION['user_id'];
                                 <span class="inline-flex items-center lg:flex-row flex-col">2-4 Orang</span>
                             </div>                          
                         </div>
-                        <a href="/booking" 
+                        <a href="/Dashboard/Booking" 
                             class="flex items-center justify-center w-full bg-[#1E68FB] text-white text-center rounded-xl font-semibold text-sm hover:bg-[#38C55C] transition duration-200 mr-2 p-3">
                             Booking Sekarang
                         </a>
@@ -157,7 +157,7 @@ echo $_SESSION['user_id'];
                                 <span class="inline-flex items-center lg:flex-row flex-col">2-4 Orang</span>
                             </div>                          
                         </div>
-                        <a href="/booking" 
+                        <a href="/Dashboard/Booking" 
                             class="flex items-center justify-center w-full bg-[#1E68FB] text-white text-center rounded-xl font-semibold text-sm hover:bg-[#38C55C] transition duration-200 mr-2 p-3">
                             Booking Sekarang
                         </a>
