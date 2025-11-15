@@ -9,7 +9,7 @@ class Auth extends Controller {
     }
 
     public function index(){
-        if(isset($_SESSION['user_id'])){
+        if(isset($_SESSION['user'])){
             header('location: /dashboard');
             exit;
         } 

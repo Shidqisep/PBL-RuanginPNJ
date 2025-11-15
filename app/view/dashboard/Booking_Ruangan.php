@@ -126,14 +126,14 @@ $formAction = '/Booking/handleBooking';
                     <img src="/img/DefaultRuangan.jpg" alt="Ruangan" class="w-full h-full object-cover">
                 </div>
                 <div class="p-6">
-                    <h3 class="font-bold text-2xl text-gray-800 mb-4">Ruang Lentera Edukasi</h3>
+                    <h3 class="font-bold text-2xl text-gray-800 mb-4"><?= $detailRuangan['nama_ruangan'] ?></h3>
                     <div class="space-y-3 text-sm text-gray-600 mb-6">
                         <p class="flex items-center">
                             <svg class="w-5 h-5 text-blue-600 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                                 <polyline points="9 22 9 12 15 12 15 22"/>
                             </svg>
-                            Lantai 2
+                            lt <?= $detailRuangan['lantai'] ?>
                         </p>
                         <p class="flex items-center">
                             <svg class="w-5 h-5 text-indigo-600 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -142,7 +142,7 @@ $formAction = '/Booking/handleBooking';
                                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
                                 <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                             </svg>
-                            4 - 8 Orang
+                            <?= $detailRuangan['jumlah_minimal'] . ' - ' . $detailRuangan['jumlah_maksimal'] ?> orang
                         </p>
                     </div>
                     <details class="text-gray-600">
@@ -153,7 +153,7 @@ $formAction = '/Booking/handleBooking';
                             </svg>
                         </summary>
                         <p class="mt-3 text-sm leading-relaxed text-justify">
-                            Ruang Lentera Edukasi adalah ruangan modern yang dirancang untuk mendukung kegiatan pembelajaran dan diskusi kelompok.
+                            <?=  $detailRuangan['deskripsi'] ?>
                         </p>
                     </details>
                 </div>

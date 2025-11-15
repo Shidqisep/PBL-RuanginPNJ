@@ -15,9 +15,10 @@ class Dashboard extends controller
 
         }
     public function index(){
+
+        $data['ruangan'] = $this->model('RuanganModel')->getRuanganForDashboard();
         $data['judul'] = 'Dashboard';
         $this->view('Layout/Header', $data);
-        var_dump($_SESSION['role']);
         $this->view('dashboard/index', $data);
         $this->view('Layout/Footer');
     }
@@ -28,7 +29,17 @@ class Dashboard extends controller
         $this->view('Layout/Footer');
     }
 
-    public function Booking(){
+    public function Booking($id = null){
+
+        $id = param_number($id, "ID ruangan tidak valid");
+
+        $data['detailRuangan'] = $this->model('RuanganModel')->getRuanganById($id);
+
+    if (!$data['detailRuangan']) {
+        http_response_code(404);
+        die("Ruangan tidak ditemukan");
+    }
+
         $data['judul'] = 'Booking Ruangan';
         $this->view('Layout/Header', $data);
         $this->view('Dashboard/Booking_Ruangan', $data); 
