@@ -1,6 +1,5 @@
 <?php
 
-use App\services\AuthServices;
 
 class Auth extends Controller {
 
@@ -10,15 +9,15 @@ class Auth extends Controller {
     }
 
     public function index(){
+        if(isset($_SESSION['user_id'])){
+            header('location: /dashboard');
+            exit;
+        } 
         $this->view('Auth/login');
         $this->view('Layout/Footer');
     }
 
-    public function formLogin(){
-    $this->view('Auth/login');
-    $this->view('Layout/Footer');
-    }
-
+    //belum bisa jangan dipake
     public function handleRegister(){
         try {
 
@@ -85,17 +84,32 @@ class Auth extends Controller {
             throw new Exception('Akun anda belum AKtif!');
         }
 
-        $_SESSION['user_id'] = $user['id_user'];
-        $_SESSION['user_role'] = $user['role'];
-        $_SESSION['user_username'] = $user['username'];
-        $_SESSION['email'] = $user['email'];
+        if (!$user['suspend_count'] < 3){
+            throw new Exception('Akun anda sedang di suspend, silahkan hubungi admin!');
+        }
+
+        $user['role'] = $this->model('UserModel')->getRole($user['id_role'])['role'];
+
+        $_SESSION['user'] = [
+            'user_id' => $user['id_user'],
+            'username' => $user['username'],
+            'email' => $user['email'],
+            'jurusanUnit' => $user['jurusanUnit'],
+            'prodi' => $user['prodi'],
+            'foto_profil' => $user['foto_profil']
+        ];
+        $_SESSION['role'] = $user['role'];
 
 
         Flasher::setFlash('Berhasil', 'login', 'success');
         if ($user['role'] === 'admin') {
             header('location: /admin');
             exit;
-        }else{
+        } else if ($user['role'] === 'superadmin'){
+            header('Location: /admin');
+            exit;
+        }
+        else{
         header('location: /dashboard');
         }
         exit;

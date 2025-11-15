@@ -21,7 +21,12 @@
         <nav class="flex-1 px-4 py-6 space-y-1 pr-0">
         
             <!-- Dashboard (AKTIF) -->
-            <a href="/Admin/index" class="flex items-center px-4 my-3 text-[rgba(30,104,251,0.80)] border-r-3 border-[#1E68FB] font-medium text-sm">
+            <a href="/Admin/index"
+                class="flex items-center px-4 py-3
+                    <?= ($data['navbar'] === 'dashboard')
+                ? 'text-[rgba(30,104,251,0.80)] border-r-4 border-[#1E68FB] font-medium'
+                : 'text-gray-700 hover:bg-gray-100 rounded-lg' ?>
+          transition text-sm">
                 <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="3" y="3" width="7" height="10" rx="1" fill="currentcolor"/>
                     <rect x="14" y="3" width="7" height="6" rx="1" fill="currentcolor"/>
@@ -32,7 +37,12 @@
             </a>
 
             <!-- Data Anggota -->
-            <a href="/Admin/Anggota" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition text-xs">
+            <a href="/Admin/Anggota"
+                class="flex items-center px-4 py-3
+                    <?= ($data['navbar'] === 'Anggota')
+                ? 'text-[rgba(30,104,251,0.80)] border-r-4 border-[#1E68FB] font-medium'
+                : 'text-gray-700 hover:bg-gray-100 rounded-lg' ?>
+          transition text-sm">
                 <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                     <circle cx="9" cy="7" r="4"/>
@@ -43,16 +53,26 @@
             </a>
 
             <!-- Data Ruangan -->
-            <a href="/Admin/Ruangan" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition text-xs">
+           <a href="/Admin/Ruangan"
+                class="flex items-center px-4 py-3
+                    <?= ($data['navbar'] === 'Ruangan')
+                ? 'text-[rgba(30,104,251,0.80)] border-r-4 border-[#1E68FB] font-medium'
+                : 'text-gray-700 hover:bg-gray-100 rounded-lg' ?>
+                transition text-sm">
                 <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                 <polyline points="9 22 9 12 15 12 15 22"/>
                 </svg>
-                Data Ruangan
+                Data Ruangan    
             </a>
 
             <!-- Akun -->
-            <a href="/Admin/Akun" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition text-xs">
+            <a href="/Admin/Akun"
+                class="flex items-center px-4 py-3
+                    <?= ($data['navbar'] === 'Akun')
+                    ? 'text-[rgba(30,104,251,0.80)] border-r-4 border-[#1E68FB] font-medium'
+                : 'text-gray-700 hover:bg-gray-100 rounded-lg' ?>
+                    transition text-sm">
                 <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                 <circle cx="12" cy="7" r="4"/>

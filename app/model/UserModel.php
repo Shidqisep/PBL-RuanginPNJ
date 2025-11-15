@@ -8,6 +8,12 @@ class UserModel {
         $this->db = new Database;
     }
 
+    public function getUserById($id){
+        $this->db->query("SELECT * FROM users WHERE id_user = :id_user limit 1");
+        $this->db->bind(':id_user', $id);
+        return $this->db->singleSet();
+    }
+
     public function findUserByEmail($email){
     $this->db->query("SELECT * FROM users WHERE email = :email");
     $this->db->bind(':email', $email);
@@ -21,8 +27,14 @@ class UserModel {
     }
 
     public function loginUserByEmailorNomor_Induk($input){
-        $this->db->query("SELECT * FROM users WHERE email = :input or nomor_induk = :input");
+        $this->db->query("SELECT * FROM users WHERE email = :input or nomor_induk = :input LIMIT 1");
         $this->db->bind(':input', $input);
+        return $this->db->singleSet();
+    }
+
+    public function getRole($id_role){
+        $this->db->query("SELECT role_name AS role FROM roles where id_role = :id_role LIMIT 1" );
+        $this->db->bind(':id_role', $id_role);
         return $this->db->singleSet();
     }
 

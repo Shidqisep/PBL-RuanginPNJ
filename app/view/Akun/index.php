@@ -18,7 +18,7 @@
 
     <!-- Ganti Avatar -->
     <div class="text-center mb-10">
-        <button type="button" onclick="openAvatarModal()" 
+        <button type="button" 
                 class="text-blue-600 hover:text-blue-800 text-sm font-medium transition hover:cursor-pointer">
             <i class="fas fa-sync-alt mr-1"></i> Ganti Avatar
         </button>
@@ -29,21 +29,21 @@
         <div>
             <label class="block text-sm font-medium text-gray-600 mb-1">Nama</label>
             <div class="border-b border-gray-300 pb-2">
-                <p class="text-gray-800 font-medium">Muhammad Reza Arifin</p>
+                <p class="text-gray-800 font-medium"><?= $data['user']['username'] ?></p>
             </div>
         </div>
 
         <div>
             <label class="block text-sm font-medium text-gray-600 mb-1">Email</label>
             <div class="border-b border-gray-300 pb-2">
-                <p class="text-gray-800">email@stu.pnj.ac.id</p>
+                <p class="text-gray-800"><?= $data['user']['email'] ?></p>
             </div>
         </div>
 
         <div>
             <label class="block text-sm font-medium text-gray-600 mb-1">Jurusan</label>
             <div class="border-b border-gray-300 pb-2">
-                <p class="text-gray-800">Akuntansi</p>
+                <p class="text-gray-800"><?= $data['user']['jurusanUnit'] ?></p>
             </div>
         </div>
     </div>

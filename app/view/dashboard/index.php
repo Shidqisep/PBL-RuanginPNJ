@@ -1,6 +1,6 @@
 <?php Flasher::Flash();
 
-echo $_SESSION['user_id'];
+var_dump($_SESSION['user']);
 
 ?>
 

@@ -1,3 +1,4 @@
+# !!! ini tadinya buat otomatis migrtasi phinx pas containernya jalan, tapi error mulu !!!
 # #!/bin/sh
 # set -e
 
