@@ -13,8 +13,10 @@ class s_20251119_00_truncateAll extends Seeder{
             'announcement',
             'rooms',
             'bookings',
-            'booking_members'
-
+            'booking_members',
+            'reschedule',
+            'reschedule_members',
+            'feedback'
         ];
 
         foreach ($tables as $table) {

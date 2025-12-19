@@ -220,18 +220,19 @@
             </div>
         </div>
     </div>
-            <form id="bookingForm" method="POST" action="<?= BASEURL; ?>/admin/startBooking">
-                <input type="hidden" name="id_booking" value="<?= $detailBooking['id_booking']; ?>">
-                <input type="hidden" name="status" value="ongoing"> 
+            <form id="approveForm" method="POST" action="<?= BASEURL; ?>/admin/approveReschedule/<?= $reschedule['id_reschedule'] ?>">
+                <input type="hidden" name="id_reschedule" value="<?= $reschedule['id_reschedule']; ?>">
+                <input type="hidden" name="id_booking" value="<?= $reschedule['id_booking']; ?>">
+                <input type="hidden" name="new_start_time" value="<?= $reschedule['new_start_time']; ?>">
+                <input type="hidden" name="new_end_time" value="<?= $reschedule['new_end_time']; ?>">
+                <input type="hidden" name="username" value="<?= $reschedule['username']; ?>">
+                <input type="hidden" name="email" value="<?= $reschedule['email']; ?>">
             </form>
 
-            <form id="declineForm" method="POST" action="<?= BASEURL; ?>/admin/cancelBooking">
-                <input type="hidden" name="id_booking" value="<?= $detailBooking['id_booking']; ?>">
-                <input type="hidden" name="status" value="cancelled">
-            </form>
-
-            <form id="finishForm" method="POST" action="<?= BASEURL; ?>/admin/finishBooking">
-                <input type="hidden" name="id_booking" value="<?= $detailBooking['id_booking']; ?>">
+            <form id="declineForm" method="POST" action="<?= BASEURL; ?>/admin/declineReschedule">
+                <input type="hidden" name="id_reschedule" value="<?= $reschedule['id_reschedule']; ?>">
+                <input type="hidden" name="username" value="<?= $reschedule['username']; ?>">
+                <input type="hidden" name="email" value="<?= $reschedule['email']; ?>">
             </form>
 </main>
 

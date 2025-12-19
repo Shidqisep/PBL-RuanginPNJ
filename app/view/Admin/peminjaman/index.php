@@ -10,6 +10,8 @@ if (!in_array($tab, $valid_tabs)) {
 function isActive($current, $check) {
     return $current === $check;
 }
+
+$nomor = ($current_page - 1) * $limit + 1
 ?>
 
 
@@ -26,7 +28,7 @@ function isActive($current, $check) {
             <?php 
             $tab_labels = [
                 'hariIni' => 'Hari ini',
-                'berlangsung' => 'Berlangsung',
+                'berlangsung' => 'Menunggu',
                 'reschedule' => 'Reschedule',
                 'riwayat' => 'Riwayat'
             ];
@@ -40,17 +42,17 @@ function isActive($current, $check) {
         <h2 class="text-2xl font-bold text-dark-overlay"> 
             <?php 
             $title_labels = [
-                'hariIni' => 'Booking Hari ini',
-                'berlangsung' => 'Berlangsung',
+                'hariIni' => 'Peminjaman Hari ini',
+                'berlangsung' => 'Menunggu',
                 'reschedule' => 'Reschedule',
-                'riwayat' => 'Riwayat Booking'
+                'riwayat' => 'Riwayat Peminjaman'
             ];
             echo $title_labels[$tab] ?? 'Hari ini';
             ?>
         </h2>
-        <a href="/Admin/buatBooking"
+        <a href="/Admin/buatPeminjaman"
            class="flex items-center gap-2 px-3 py-2 bg-blue-overlay hover:bg-blue-700 text-white text-xs font-medium rounded-lg shadow-sm hover:shadow-md transition duration-200">
-            Buat Booking
+            Buat Peminjaman
             <div>
                 <?= icon('plus', 'w-4 h-4') ?>
             </div>
@@ -75,7 +77,7 @@ function isActive($current, $check) {
                         <?= isActive($tab, 'berlangsung') 
                             ? 'bg-blue-overlay text-white shadow-md' 
                             : 'bg-blue-overlay1 text-blue-overlay hover:bg-blue-overlay2' ?>">
-                    Berlangsung
+                    Menunggu
                 </a></a>
                 <a href="?tab=reschedule"
                 class="px-6 py-2.5 font-medium text-sm transition-all duration-200 text-center
@@ -157,7 +159,7 @@ function isActive($current, $check) {
                 </div>
                 </form>
             </div>
-            <?php if (!empty($bookings)): ?>
+            <?php if (!empty($Peminjamans)): ?>
             <div class="rounded-lg shadow-sm border border-dark-overlay4 overflow-hidden mx-8">
                 <div class="overflow-x-auto">
                     <table class="w-full">
@@ -166,7 +168,7 @@ function isActive($current, $check) {
                                 <th class="px-4 py-4 text-left text-xs font-semibold text-dark-overlay7 uppercase tracking-wider">No</th>
                                 <th class="px-4 py-4 text-left text-xs font-semibold text-dark-overlay7 uppercase tracking-wider">Tanggal</th>
                                 <th class="px-4 py-4 text-left text-xs font-semibold text-dark-overlay7 uppercase tracking-wider">Ruangan</th>
-                                <th class="px-4 py-4 text-left text-xs font-semibold text-dark-overlay7 uppercase tracking-wider">Kode Booking</th>
+                                <th class="px-4 py-4 text-left text-xs font-semibold text-dark-overlay7 uppercase tracking-wider">Kode Peminjaman</th>
                                 <th class="px-4 py-4 text-left text-xs font-semibold text-dark-overlay7 uppercase tracking-wider">Penanggung Jawab</th>      
                                 <th class="px-4 py-4 text-left text-xs font-semibold text-dark-overlay7 uppercase tracking-wider">Status</th>
                                 <th class="px-4 py-4 text-center text-xs font-semibold text-dark-overlay7 uppercase tracking-wider">Aksi</th>
@@ -174,38 +176,37 @@ function isActive($current, $check) {
                         </thead>
                         
                         <tbody class="divide-y divide-dark-overlay4">
-                            <?php $i = 1 ?>
-                            <?php foreach($bookings as $booking) : ?>
+                            <?php foreach($Peminjamans as $Peminjaman) : ?>
                             <tr class="hover:bg-gray-50 transition-colors duration-150">
-                                <td class="px-4 py-4 text-xs text-dark-overlay"><?= $i ?></td>
-                                <td class="px-4 py-4 text-xs font-medium text-dark-overlay"><?= tanggal_indonesia($booking['start_time']) ?>
+                                <td class="px-4 py-4 text-xs text-dark-overlay"><?= $nomor ?></td>
+                                <td class="px-4 py-4 text-xs font-medium text-dark-overlay"><?= tanggal_indonesia($Peminjaman['start_time']) ?>
                                     <br>
-                                    <span><?= waktu_indonesia($booking['start_time']) . '-' . waktu_indonesia($booking['end_time']) ?></span>
+                                    <span><?= waktu_indonesia($Peminjaman['start_time']) . '-' . waktu_indonesia($Peminjaman['end_time']) ?></span>
                                 </td>
-                                <td class="px-4 py-4 text-xs text-dark-overlay"><?= htmlspecialchars( $booking['room_name'] ?? '-') ?></td>
-                                <td class="px-4 py-4 text-xs text-dark-overlay"><?= $booking['booking_code']?></td>
-                                <td class="px-4 py-4 text-xs text-dark-overlay"><?= $booking['username'] ?></td>
+                                <td class="px-4 py-4 text-xs text-dark-overlay"><?= htmlspecialchars( $Peminjaman['room_name'] ?? '-') ?></td>
+                                <td class="px-4 py-4 text-xs text-dark-overlay"><?= $Peminjaman['booking_code']?></td>
+                                <td class="px-4 py-4 text-xs text-dark-overlay"><?= $Peminjaman['username'] ?></td>
                                 <td class="px-4 py-4">
-                                    <span class="inline-flex px-3 py-1 text-xs min-w-5/6 justify-center font-medium rounded-sm <?= getStyleStatus($booking['status']) ?> text-background2">
-                                        <?= translateStatus($booking['status']) ?>
+                                    <span class="inline-flex px-3 py-1 text-xs min-w-5/6 justify-center font-medium rounded-sm <?= getStyleStatus($Peminjaman['status']) ?> text-background2">
+                                        <?= translateStatus($Peminjaman['status']) ?>
                                     </span>
                                 </td>
                                 <td class="px-4 py-4 text-center">
-                                    <a href="<?= BASEURL . '/admin/' . $link . '/'. $booking[$data['id_column']] ?>"
+                                    <a href="<?= BASEURL . '/admin/' . $link . '/'. $Peminjaman[$data['id_column']] ?>"
                                        class="inline-flex items-center px-4 py-2 text-xs font-medium text-dark-overlay bg-white border border-dark-overlay4 rounded-lg hover:bg-gray-50 transition-colors duration-150">
                                         Lihat Detail
                                     </a>
                                 </td>
                             </tr>
-                            <?php $i++ ?>
-                            <?php endforeach ?>
+                            <?php $nomor++ ?>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
             </div>
 
          <?php if ($total_page >= 1): ?>   
-        <div class="flex items-center justify-center px-6 py-4 bg-white mx-8">
+        <div class="flex items-center justify-center px-6 py-4 mx-8">
             
             <div class="flex items-center gap-2">
                 
@@ -320,11 +321,11 @@ function isActive($current, $check) {
                     <?= icon('fileList', 'h-20 w-20 text-gray-400') ?>
                 </div>
                 <div class="flex items-center flex-col justify-center">
-                    <h3 class="text-lg font-semibold text-dark-overlay7 mb-2">Belum Ada Data Booking</h3>
-                    <p class="text-sm text-dark-overlay6 text-center mb-6">Tidak ada booking untuk filter ini</p>
-                    <a href="/Admin/buatBooking"
+                    <h3 class="text-lg font-semibold text-dark-overlay7 mb-2">Belum Ada Data Peminjaman</h3>
+                    <p class="text-sm text-dark-overlay6 text-center mb-6">Tidak ada Peminjaman untuk filter ini</p>
+                    <a href="/Admin/buatPeminjaman"
                         class="inline-flex items-center gap-2 px-4 py-2 bg-blue-overlay hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition duration-200">
-                        Buat Booking Baru
+                        Buat Peminjaman Baru
                         <?= icon('plus', 'w-4 h-4') ?>
                     </a>
                 </div>

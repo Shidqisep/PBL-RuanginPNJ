@@ -1,7 +1,7 @@
 <?php
 
 
-function uploadImage(array $fileData, $targetDir) : string{
+function uploadImage(array $fileData, $targetDir, $compressQuality = 75, $maxWidth = 1200) : string{
     //Pastikan folder storage/FotoBukti/ ada
     //$uploadPath = __DIR__ . '/../../public/' . $targetDir; // Path relatif dari folder helper
     $uploadPath = dirname($_SERVER['DOCUMENT_ROOT']) . '/' . trim($targetDir, '/') . '/';
@@ -37,10 +37,58 @@ function uploadImage(array $fileData, $targetDir) : string{
     $targetFile = $uploadPath . $fileName;
 
     //Pindahkan file ke $targetFile
-    if (move_uploaded_file($fileData['tmp_name'], $targetFile)) {
-        return $fileName; // Kembalikan nama file baru jika sukses
+list($width, $height) = getimagesize($fileData['tmp_name']);
+    
+    // Hitung rasio resize
+    // Jika lebar asli > maxWidth (misal 1200px), kita kecilkan
+    if ($width > $maxWidth) {
+        $ratio = $maxWidth / $width;
+        $newWidth = $maxWidth;
+        $newHeight = $height * $ratio;
     } else {
-        throw new \Exception("Gagal memindahkan file yang diupload.");
+        $newWidth = $width;
+        $newHeight = $height;
+    }
+
+    // Buat canvas gambar baru (kosong)
+    $imageResource = imagecreatetruecolor($newWidth, $newHeight);
+    
+    // Load gambar sumber berdasarkan tipe
+    switch ($mimeType) {
+        case 'image/jpeg':
+            $source = imagecreatefromjpeg($fileData['tmp_name']);
+            break;
+        case 'image/png':
+            $source = imagecreatefrompng($fileData['tmp_name']);
+            
+            // Khusus PNG: Pertahankan transparansi
+            imagealphablending($imageResource, false);
+            imagesavealpha($imageResource, true);
+            break;
+        default:
+            throw new \Exception("Format gambar tidak didukung untuk kompresi.");
+    }
+
+    // Copy dan Resize gambar sumber ke canvas baru
+    // imagecopyresampled memberikan hasil resize lebih halus daripada imagecopyresized
+    imagecopyresampled($imageResource, $source, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+    // Simpan file ke server
+    $result = false;
+    if ($mimeType == 'image/jpeg') {
+        // Parameter ke-3 adalah Quality (0 - 100). 75 adalah sweet spot.
+        $result = imagejpeg($imageResource, $targetFile, $compressQuality);
+    } elseif ($mimeType == 'image/png') {
+        // Parameter ke-3 adalah Compression Level (0 - 9). 
+        // PNG tidak punya "quality" lossy di PHP Native, jadi kita pakai level kompresi max (9).
+        // (Note: PNG biasanya tetap lebih besar dari JPG)
+        $result = imagepng($imageResource, $targetFile, 9);
+    }
+
+    if ($result) {
+        return $fileName;
+    } else {
+        throw new \Exception("Gagal mengompresi dan menyimpan file.");
     }
 }
 

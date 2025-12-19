@@ -23,5 +23,4 @@ class AnnouncementModel {
         $this->db->execute();
         return $this->db->rowCount();
     }
-
 }

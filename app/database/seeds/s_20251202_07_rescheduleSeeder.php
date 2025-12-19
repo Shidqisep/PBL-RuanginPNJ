@@ -21,8 +21,7 @@ class s_20251202_07_rescheduleSeeder extends Seeder{
             new_end_time, created_at, updated_at
             ) VALUES
             (1, 5, NULL, 'pending', NULL, '$resched_start_5', '$resched_end_5', '$now', '$now'),
-            (2, 6, NULL, 'pending', NULL, '$resched_start_6', '$resched_end_6', '$now', '$now'),
-            (3, 7, NULL, 'pending', NULL, '2025-12-05 13:00:00', '2025-12-05 15:00:00', '$now', '$now')
+            (2, 7, NULL, 'pending', NULL, '2025-12-05 13:00:00', '2025-12-05 15:00:00', '$now', '$now')
             ";
         
         $this->db->query($sql);

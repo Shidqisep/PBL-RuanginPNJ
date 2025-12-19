@@ -58,7 +58,7 @@
                 <?= icon('check', 'w-4 h-4 text-blue-overlay') ?>
             </div>
              <span id="filter-action-text" 
-                        class="ms-2" 
+                        class="ms-2 text-blue-overlay" 
                         data-text-check="Terapkan" 
                         data-text-cross="Reset">
                         Terapkan
@@ -142,13 +142,12 @@
         <?php endforeach ?>
 
 
-
         <!-- <?php //endif; ?> -->
     </div>
 
     <?php if ($total_page >= 1): ?>
             
-        <div class="flex items-center justify-center px-6 py-4 bg-white border-t border-gray-200 mx-8">
+        <div class="flex items-center justify-center px-6 py-4 mx-8 mt-4">
             
             <div class="flex items-center gap-2">
                 

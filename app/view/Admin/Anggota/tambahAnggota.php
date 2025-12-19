@@ -32,7 +32,7 @@
                 <div>
                     <label for="jenis_anggota" class="block text-sm font-medium text-dark-overlay mb-2">Jenis Anggota</label>
                     <select id="jenis_anggota" name="jenis_anggota"
-                            class="w-full px-4 py-2 border border-dark-overlay4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition appearance-none">
+                            class="w-full px-4 py-2 border border-dark-overlay4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition">
                         <option value=""disabled selected hidden>Pilih Jenis Anggota</option>
                         <option value="mahasiswa">Mahasiswa</option>
                         <option value="dosen">Dosen</option>
@@ -43,7 +43,7 @@
                 <div>
                     <label for="jurusan" class="block text-sm font-medium text-dark-overlay mb-2">Jurusan/Unit Kerja</label>
                     <select id="jurusan_select" name="jurusan_unit"
-                            class="w-full px-4 py-2 border border-dark-overlay4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition appearance-none">
+                            class="w-full px-4 py-2 border border-dark-overlay4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition">
                         <option value="" disabled selected hidden>Pilih Jurusan</option>
                     </select>
                     <input type="text" id="jurusan_text" name="jurusan_text" placeholder="Masukkan Unit Kerja" class="hidden w-full px-4 py-2 border border-dark-overlay4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition">
@@ -52,7 +52,7 @@
                 <div id="container_prodi" class="hidden">
                     <label for="prodi" class="block text-sm font-medium text-dark-overlay mb-2">Prodi (Untuk Mahasiswa)</label>
                     <select id="prodi" name="prodi"
-                            class="w-full px-4 py-2 border border-dark-overlay4 text-sm rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 outline-none transition appearance-none">
+                            class="w-full px-4 py-2 border border-dark-overlay4 text-sm rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 outline-none transition">
                         <option value="" disabled selected hidden>Pilih Prodi</option>
                         </select>
                 </div>

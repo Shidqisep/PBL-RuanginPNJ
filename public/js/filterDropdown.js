@@ -8,17 +8,68 @@
  */
 function toggleDropdown(dropdownId) {
     const dropdownMenu = document.getElementById(dropdownId);
-    if (dropdownMenu) {
-        // Toggle class 'hidden' untuk menampilkan/menyembunyikan menu
-        dropdownMenu.classList.toggle('hidden');
-        
-        // Logika untuk menutup dropdown lain saat dropdown ini dibuka (opsional tapi disarankan)
+    if (!dropdownMenu) return;
+
+    // find container and toggle button arrow
+    const container = dropdownMenu.closest('.filter-dropdown-container');
+    const toggleBtn = container ? container.querySelector('.filter-dropdown-toggle') : null;
+    const arrow = container ? container.querySelector('.filter-dropdown-arrow') : null;
+
+    // If hidden -> open with animation; else close with animation
+    if (dropdownMenu.classList.contains('hidden')) {
+        // Close other menus with animation
         document.querySelectorAll('.filter-dropdown-menu').forEach(menu => {
-            if (menu.id !== dropdownId) {
-                menu.classList.add('hidden');
+            if (menu.id !== dropdownId && !menu.classList.contains('hidden')) {
+                const otherContainer = menu.closest('.filter-dropdown-container');
+                const otherArrow = otherContainer ? otherContainer.querySelector('.filter-dropdown-arrow') : null;
+                closeDropdown(menu, otherArrow);
             }
         });
+        openDropdown(dropdownMenu, arrow);
+        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+    } else {
+        closeDropdown(dropdownMenu, arrow);
+        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
     }
+}
+
+function openDropdown(menu, arrow) {
+    menu.classList.remove('hidden');
+    menu.style.overflow = 'hidden';
+    menu.style.transition = 'max-height 260ms ease, opacity 200ms ease';
+    menu.style.maxHeight = '0px';
+    menu.style.opacity = '0';
+    // force reflow
+    // eslint-disable-next-line no-unused-expressions
+    menu.offsetHeight;
+    menu.style.maxHeight = menu.scrollHeight + 'px';
+    menu.style.opacity = '1';
+    if (arrow) arrow.classList.add('rotate-180');
+
+    const cleanup = () => {
+        menu.style.maxHeight = '';
+        menu.style.opacity = '';
+        menu.removeEventListener('transitionend', cleanup);
+    };
+    menu.addEventListener('transitionend', cleanup);
+}
+
+function closeDropdown(menu, arrow) {
+    menu.style.maxHeight = menu.scrollHeight + 'px';
+    // force reflow
+    // eslint-disable-next-line no-unused-expressions
+    menu.offsetHeight;
+    menu.style.maxHeight = '0px';
+    menu.style.opacity = '0';
+    if (arrow) arrow.classList.remove('rotate-180');
+
+    const onEnd = () => {
+        menu.classList.add('hidden');
+        menu.style.maxHeight = '';
+        menu.style.opacity = '';
+        menu.removeEventListener('transitionend', onEnd);
+    };
+    menu.addEventListener('transitionend', onEnd);
 }
 
 // === 2. LOGIKA STATE (CHECKBOX DAN HIDDEN INPUT) ===
@@ -74,7 +125,7 @@ function applyFilters() {
     const currentTab = params.get('tab');
     params.set('page', 1);
 
-    const filterNames = ['status', 'jurusan', 'jenis', 'Status', 'Jurusan', 'Jenis', 'tab', 'Tahun', 'Bulan', 'Ruangan', 'ruangan', 'bulan', 'tahun'];
+    const filterNames = ['status', 'jurusan', 'jenis', 'Status', 'Jurusan', 'Jenis', 'tab', 'Tahun', 'Bulan', 'Ruangan', 'ruangan', 'bulan', 'tahun', 'Prodi', 'Role'];
 
     // ambil semua hidden input filter
     document.querySelectorAll('input[type="hidden"]').forEach(input => {
@@ -98,7 +149,8 @@ function applyFilters() {
     // return;
 
 
-    window.location.href = window.location.pathname + '?' + params.toString();
+    const newUrl = window.location.origin + window.location.pathname + '?' + params.toString();
+    window.location.href = newUrl
 }
 
 
@@ -125,14 +177,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
              });
         }
+        // Set initial aria-expanded and arrow rotation based on visibility
+        const menu = container.querySelector('.filter-dropdown-menu');
+        const btn = container.querySelector('.filter-dropdown-toggle');
+        const arrow = container.querySelector('.filter-dropdown-arrow');
+        if (btn) btn.setAttribute('aria-expanded', menu && !menu.classList.contains('hidden') ? 'true' : 'false');
+        if (arrow) {
+            if (menu && !menu.classList.contains('hidden')) arrow.classList.add('rotate-180');
+            else arrow.classList.remove('rotate-180');
+        }
     });
 
-    // Event listener untuk menutup dropdown saat klik di luar
-document.addEventListener('click', (event) => {
+    // Event listener untuk menutup dropdown saat klik di luar (gunakan animasi)
+    document.addEventListener('click', (event) => {
         let isDropdown = event.target.closest('.filter-dropdown-container');
         if (!isDropdown) {
             document.querySelectorAll('.filter-dropdown-menu').forEach(menu => {
-                menu.classList.add('hidden');
+                if (!menu.classList.contains('hidden')) {
+                    const otherContainer = menu.closest('.filter-dropdown-container');
+                    const otherArrow = otherContainer ? otherContainer.querySelector('.filter-dropdown-arrow') : null;
+                    closeDropdown(menu, otherArrow);
+                    const btn = otherContainer ? otherContainer.querySelector('.filter-dropdown-toggle') : null;
+                    if (btn) btn.setAttribute('aria-expanded', 'false');
+                }
             });
         }
     });
@@ -174,7 +241,7 @@ document.addEventListener('click', (event) => {
                     e.preventDefault();
 
                     // hapus semua filter kecuali search tertentu kalau mau
-                    const filtersToDelete = ['page', 'jenis', 'Jenis', 'status', 'Status', 'jurusan', 'Jurusan', 'url', 'search', 'ruangan', 'bulan', 'tahun'];
+                    const filtersToDelete = ['page', 'jenis', 'Jenis', 'status', 'Status', 'jurusan', 'Jurusan', 'url', 'search', 'ruangan', 'bulan', 'tahun', 'Prodi', 'Role'];
 
                     //Loop array di atas dan hapus dari URL
                     filtersToDelete.forEach(p => url.searchParams.delete(p));
@@ -200,4 +267,24 @@ document.addEventListener('click', (event) => {
         window.addEventListener('popstate', update);
     })();
 });
-// Jangan lupa sertakan logika search dan clear filter Anda di file ini juga
+
+function exportData(baseUrl, mode) {
+    // Ambil parameter URL saat ini dari browser
+    const currentParams = new URLSearchParams(window.location.search);
+
+    // Bersihkan parameter yang tidak perlu
+    currentParams.delete('page'); 
+    currentParams.delete('tab'); 
+    
+    // TAMBAHKAN MODE (Excel / Print)
+    // Jika mode diisi, kita tambahkan ke parameter URL
+    if (mode) {
+        currentParams.set('mode', mode);
+    }
+
+    // Gabungkan Base URL dengan parameter
+    const finalUrl = `${baseUrl}?${currentParams.toString()}`;
+
+    // Buka di tab baru
+    window.open(finalUrl, '_blank');
+}

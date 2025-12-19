@@ -25,8 +25,15 @@ class RuanganModel {
         return $this->db->lastInsertId();
     }
 
+    // public function getRuanganForDashboard(){
+    //     $this->db->query("SELECT id_room, room_name, img_room, short_description, floor, max_capacity, min_capacity, status 
+    //                     FROM ". $this->table . " WHERE status = 'active'");
+    //     $this->db->execute();
+    //     return $this->db->resultSet();
+    // }
+
     public function getRuanganForDashboard(){
-        $this->db->query("SELECT id_room, room_name, img_room, short_description, floor, max_capacity, min_capacity, status FROM ". $this->table . " WHERE status = 'active'");
+        $this->db->query("SELECT * FROM v_ruangan_dashboard");
         $this->db->execute();
         return $this->db->resultSet();
     }

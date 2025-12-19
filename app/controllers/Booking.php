@@ -307,7 +307,7 @@ class Booking extends Controller {
         }
 
         if ($bookingData['status'] == 'done' || $bookingData['status'] == 'cancelled' || $bookingData['status'] == 'ongoing') {
-         Flasher::setFlash('Gagal', 'Booking yang sudah selesai/batal tidak bisa di-reschedule.', 'warning');
+         Flasher::setFlash('Gagal', 'Booking yang sudah selesai/batal tidak bisa di-reschedule.', 'error');
          header('Location: ' . BASEURL . '/Booking');
          exit;
         }

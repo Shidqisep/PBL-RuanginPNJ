@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             
                 const data = await response.json();
-                console.log("succes dapet data", data)
+                console.log("success dapet data", data)
 
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
 

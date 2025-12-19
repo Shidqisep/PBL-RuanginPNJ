@@ -10,9 +10,8 @@
 </head>
 <body class="font-sf-pro" >
     
-    <div class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center"
-         style="background-image: url('/img/Background 1.png'); 
-             background-color: rgba(139, 92, 113, 0.7); background-blend-mode: multiply;">
+    <div class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-4"
+         style="background-image: url('/img/Background 1.png'); ">
 
         <div class="bg-[#F3F5FA] rounded-2xl shadow-2xl p-8 w-full max-w-xl">
             <!-- Header -->
@@ -34,11 +33,13 @@
 
             <!-- Form -->
             <form action="/auth/handleRegister" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="role" value="<?= $role ?>">
+                
                 
                 <!-- Nama -->
                 <div class="col-span-2 sm:col-span-1 mb-3">
                     <label class="block text-xs font-medium text-gray-700 mb-1">Nama Lengkap</label>
-                    <input type="text" name="username" placeholder="Input nama" 
+                    <input type="text" name="username" placeholder="Input nama" value="<?=  $_SESSION['input']['username'] ?? '' ?>" 
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-xs">
                 </div>
                 <div class="grid grid-cols-2 gap-4">
@@ -46,28 +47,30 @@
                     <!-- NIM -->
                     <div class="col-span-2 sm:col-span-1">
                         <label class="block text-xs font-medium text-gray-700 mb-1">NIM</label>
-                        <input type="text" name="nomor_induk" placeholder="Input NIM" 
+                        <input type="text" name="nomor_induk" placeholder="Input NIM" value="<?=  $_SESSION['input']['nomor_induk'] ?? '' ?>" 
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-xs">
                     </div>
 
                     <!-- Email PNJ -->
                     <div class="col-span-2 sm:col-span-1">
                         <label class="block text-xs font-medium text-gray-700 mb-1">Email PNJ</label>
-                        <input type="email" name="email" placeholder="Input email (email PNJ)" 
+                        <input type="email" name="email" placeholder="Input email (email PNJ)" value="<?=  $_SESSION['input']['email'] ?? '' ?>" 
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-xs">
                     </div>
 
                     <!-- Jurusan -->
                     <div class="col-span-2 sm:col-span-1">
                         <label class="block text-xs font-medium text-gray-700 mb-1">Jurusan</label>
-                        <select name="jurusan_unit" id="jurusan"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-xs appearance-none">
-                            <option value=""disabled selected hidden>Jurusan</option>
-                            <option value="Teknik Informatika">Teknik Informatika</option>
+                        <select name="jurusan_unit" id="jurusan" 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-xs">
+                            <option value="" disabled selected hidden>Jurusan</option>
+                            <option value="Teknik Informatika dan Komputer">Teknik Informatika dan Komputer</option>
                             <option value="Teknik Elektro">Teknik Elektro</option>
                             <option value="Teknik Mesin">Teknik Mesin</option>
                             <option value="Teknik Sipil">Teknik Sipil</option>
                             <option value="Akuntansi">Akuntansi</option>
+                            <option value="Administrasi Niaga">Administrasi Niaga</option>
+                            <option value="Teknik Grafika Penerbitan">Teknik Grafika Penerbitan</option>
                         </select>
                     </div>
 
@@ -75,14 +78,14 @@
                     <div class="col-span-2 sm:col-span-1">
                         <label class="block text-xs font-medium text-gray-700 mb-1">Prodi</label>
                         <select name="prodi" id="prodi" disabled
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-xs disabled:opacity-50 select-none appearance-none">
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-xs disabled:opacity-50 select-none">
                             <option value="" disabled selected hidden>Prodi</option>
                         </select>
                     </div>
 
                     <!-- Password -->
                     <div class="mb-5" data-toggle-password>
-                        <label class="block text-xs font-medium text-gray-700 mb-2">Password</label>
+                        <label class="block text-xs font-medium text-gray-700 mb-2">Password (minimal 6 huruf dan 1 angka)</label>
                         <div class="relative">
                             <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="new-password"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white focus:border-transparent text-xs">
@@ -210,6 +213,8 @@
             </div>
         </div>
     </div>
+</body>
+</html>
 
     <script src="/js/togglePassword.js" defer></script>
     <script src="/js/uploadFile.js" defer></script>
@@ -217,39 +222,3 @@
         window.registerDataProdi = <?= json_encode($dataProdi); ?>;
     </script>
     <script src="/js/registerForm.js" defer></script>
-
-
-
-
-    <!-- <script>
-
-        // Ambil data dari PHP Helper, convert ke JSON biar bisa dibaca JS
-    const dataKampus = <?= json_encode($dataProdi); ?>; 
-
-    const jurusanSelect = document.getElementById('jurusan');
-    const prodiSelect = document.getElementById('prodi');
-
-    jurusanSelect.addEventListener('change', function() {
-        const selectedJurusan = this.value;
-        const listProdi = dataKampus[selectedJurusan]; // Ambil array prodi dari key jurusan
-
-        // Reset dropdown prodi
-        prodiSelect.innerHTML = '<option value="" disabled selected hidden>Pilih Prodi</option>';
-
-
-        if (listProdi) {
-            listProdi.forEach(function(prodiName) {
-                const option = document.createElement('option');
-                option.value = prodiName;
-                option.textContent = prodiName;
-                prodiSelect.appendChild(option);
-                prodiSelect.classList.remove('disabled:opacity-75')
-                prodiSelect.removeAttribute('disabled')
-            });
-        } else {
-            // KUNCI LAGI: Jika entah kenapa datanya kosong/error
-            prodiSelect.disabled = true;
-        }
-    });
-
-    </script> -->

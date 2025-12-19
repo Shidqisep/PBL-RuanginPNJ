@@ -34,6 +34,7 @@ class History extends Controller{
         $search = isset($_GET['search']) ? trim($_GET['search']) : '';
         $idUser = $_SESSION['user']['user_id'];
         $status = '';
+        
         if (isset($_GET['Status'])) {
             if (is_array($_GET['Status'])) {
                 $status = $_GET['Status']; 

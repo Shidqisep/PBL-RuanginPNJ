@@ -78,13 +78,18 @@
                                     </div>
                                 </div>
                                 <?php $i = 0 ?>
-                                    <?php foreach($members as $member) :?>
+                                <?php foreach($members as $member) :?>
                                 <div class="member-card p-4 bg-background1 rounded-xl border border-dark-overlay4">
                                     <div class="flex items-center justify-between mb-2">
                                         <div class="flex items-center">
                                             <span class="inline-flex items-center justify-center w-7 h-7 bg-dark-overlay7 text-white rounded-full text-xs font-bold"><?= $i + 2?></span>
                                             <span class="ml-2 font-medium text-sm text-dark-overlay7">Anggota</span>
                                         </div>
+                                        <button type="button" onclick="removeMember(this)" class="text-red1 hover:text-red-800 transition hover:cursor-pointer">
+                                            <div>
+                                                <?= icon('trash', 'w-6 h-6') ?>
+                                            </div>
+                                        </button>
                                     </div>
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                         <input type="text" maxlength="10" placeholder="NIM/NIP Anggota *" name="nim[]" value="<?= $member['nomor_induk'] ?>" required
@@ -224,10 +229,35 @@
 <script>const BASEURL = "<?= BASEURL ?>";</script>
 <script src="/js/bookingRoom.js"></script>
 <script>
+
+    const MIN_CAPACITY = <?= (int)$detailRuangan['min_capacity'] ?>;
+    const MAX_CAPACITY = <?= (int)$detailRuangan['max_capacity'] ?>;
+
     // Add member (WAJIB JS)
     const addButton = document.getElementById('addMember');
     addButton.addEventListener('click', addMember)
     let memberCount = <?= $i + 1?>;
+
+                                    // 2. FUNGSI UPDATE NOMOR URUT
+    // Fungsi ini dipanggil setiap kali tambah/hapus untuk merapikan angka 1, 2, 3...
+    function updateMemberNumbers() {
+        const cards = document.querySelectorAll('.member-card');
+        
+        cards.forEach((card, index) => {
+            const numberSpan = card.querySelector('.member-number');
+            if (numberSpan) {
+                numberSpan.textContent = index + 1; // Update angka (Index 0 jadi 1)
+            }
+        });
+
+        // Cek visibilitas tombol tambah
+        if (cards.length >= MAX_CAPACITY) {
+            addButton.classList.add('hidden');
+        } else {
+            addButton.classList.remove('hidden');
+        }
+    }
+
     function addMember() {
 
         memberCount++;
@@ -258,14 +288,15 @@
         addButton.classList.add('hidden'); // sembunyikan tombol
         return; // hentikan eksekusi fungsi 
         }
+        updateMemberNumbers();
     }
 
     // Remove member (WAJIB JS)
     function removeMember(button) {
         const cards = document.querySelectorAll('.member-card');
-        if (cards.length <= 2) {
+        if (cards.length <= MIN_CAPACITY) {
             // Mengganti showError() dengan alert sederhana
-            alert('Minimal harus ada 2 orang (perwakilan + 1 anggota).');
+            alert(`Minimal anggota untuk ruangan ini adalah ${MIN_CAPACITY} orang.`);
             return;
         }
         button.closest('.member-card').remove();

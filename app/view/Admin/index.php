@@ -5,12 +5,20 @@
     <h2 class="text-xl font-bold text-dark-overlay mb-6">Dashboard Laporan</h2>
 
     <!-- Section Booking yang Sedang Berjalan -->
-    <div class="bg-background2 p-6 shadow-xl rounded-lg">
-        <h2 class="text-xl font-semibold text-dark-overlay mb-4">Booking yang Sedang Berjalan</h2>
-        
+    <div class="bg-background2 p-6 shadow-md rounded-lg">
+        <div class="flex flex-row justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold text-dark-overlay mb-4">Booking yang Sedang Berjalan</h2>
+            <?php if(!empty($bookings)): ?>
+            <a href="<?= BASEURL; ?>/Admin/cetakLaporan" target="_blank" class="bg-blue-overlay hover:bg-blue-700 text-white1 font-medium my-1 px-3 py-2 rounded-lg flex items-center gap-2 shadow-md transition text-sm hover:cursor-pointer ml-auto w-fit mt-2">
+                <?= icon('documentExport', 'w-5 h-5') ?>
+                        Export Laporan Peminjaman
+            </a>
+            <?php endif ?>
+        </div>
+        <?php if(!empty($bookings)): ?>
         <!-- Grid untuk kartu-kartu booking (2 kolom di layar besar, 1 di kecil) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <?php if(!empty($bookings)): ?>
+        
         <?php foreach($bookings as $booking): ?>
             <!-- Kartu 1 -->
             <div class="p-4 rounded-lg shadow-md border border-dark-overlay5">
@@ -20,32 +28,41 @@
                 <p class="text-sm text-dark-overlay mt-2">Penanggung Jawab: <?= $booking['username'] ?></p>
             </div>
         <?php endforeach ?>
+        </div>
         <?php else: ?>
-            <div class="p-4 rounded-lg shadow-md border border-dark-overlay5">Belum ada Booking yang aktif</div>
+            <div class="p-12 rounded-lg shadow-sm border border-dark-overlay2 flex flex-col items-center gap-6">
+                <?= icon('fileList', 'w-20 h-20') ?>
+                <p>Belum ada Peminjaman yang sedang berlangsung</p>
+            </div>
         <?php endif ?>
             
-        </div>
-        <a href="<?= BASEURL; ?>/Admin/cetakLaporan" target="_blank" class="bg-blue-overlay hover:bg-blue-700 text-white1 font-medium my-1 px-3 py-2 rounded-lg flex items-center gap-2 shadow-md transition text-sm hover:cursor-pointer ml-auto w-fit mt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentcolor" d="m8 19.425l-2.25 2.25q-.3.3-.7.288t-.7-.313q-.275-.3-.287-.7t.287-.7L6.6 18H5.35q-.425 0-.712-.287T4.35 17t.288-.712T5.35 16H9q.425 0 .713.288T10 17v3.65q0 .425-.288.713T9 21.65t-.712-.287T8 20.65zM13 22q-.425 0-.712-.288T12 21v-4q0-1.25-.875-2.125T9 14H5q-.425 0-.712-.288T4 13V4q0-.825.588-1.412T6 2h8l6 6v12q0 .825-.587 1.413T18 22zm0-13h5l-5-5l5 5l-5-5z"/></svg>
-                    Export Laporan Peminjaman
-        </a>
+        
+        
     </div>
 
 
-    <div class="bg-background2 p-6 shadow-xl mt-12 rounded-lg">
+    <div class="bg-background2 p-6 shadow-md mt-12 rounded-lg">
         <div class="max-w-7xl mx-auto">
             <!-- Header -->
-            <div class="flex justify-between items-center mb-4">
+            <div class="flex flex-row justify-between items-center mb-4">
                 <h1 class="text-xl font-semibold text-dark-overlay">Booking</h1>
-                  <a href="<?= BASEURL; ?>/Admin/cetakLaporan" target="_blank" class="bg-blue-overlay hover:bg-blue-700 text-white1 font-medium my-1 px-3 py-2 rounded-lg flex items-center gap-2 shadow-md transition text-sm hover:cursor-pointer ml-auto w-fit mt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentcolor" d="m8 19.425l-2.25 2.25q-.3.3-.7.288t-.7-.313q-.275-.3-.287-.7t.287-.7L6.6 18H5.35q-.425 0-.712-.287T4.35 17t.288-.712T5.35 16H9q.425 0 .713.288T10 17v3.65q0 .425-.288.713T9 21.65t-.712-.287T8 20.65zM13 22q-.425 0-.712-.288T12 21v-4q0-1.25-.875-2.125T9 14H5q-.425 0-.712-.288T4 13V4q0-.825.588-1.412T6 2h8l6 6v12q0 .825-.587 1.413T18 22zm0-13h5l-5-5l5 5l-5-5z"/></svg>
-                    Export Semua Laporan Booking
+                <div class="flex gap-4">
+                    <a onclick="exportData('<?= BASEURL; ?>/Admin/cetakLaporan')" target="_blank" class="bg-blue-overlay hover:bg-blue-700 text-white1 font-medium my-1 px-3 py-2 rounded-lg flex items-center gap-2 shadow-md transition text-sm hover:cursor-pointer ml-auto w-fit mt-2">
+                <?= icon('documentExport', 'w-5 h-5') ?>
+                        Export PDF Laporan Peminjaman
                     </a>
+                    <a onclick="exportData('<?= BASEURL; ?>/Admin/cetakLaporan', 'excel')" target="_blank" class="bg-blue-overlay hover:bg-blue-700 text-white1 font-medium my-1 px-3 py-2 rounded-lg flex items-center gap-2 shadow-md transition text-sm hover:cursor-pointer ml-auto w-fit mt-2">
+                <?= icon('documentExport', 'w-5 h-5') ?>
+                        Download Excel Laporan Peminjaman
+                    </a>
+                </div>
             </div>
+
+            
         </div>
 
         <form method="GET" id="filterForm">
-        <div class="flex items-center gap-3 pb-2">
+        <div class=" filter-scope flex items-center gap-3 pb-2">
             <!-- Filter Hari Ini -->
 
            <?php 
@@ -77,16 +94,17 @@
                 include __DIR__ . '/../template/filterDropDown.php';
             ?>
 
-            <button type="button" id="filter-action-btn"
-                    class="px-3 py-1.5 flex items-center hover:cursor-pointer text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition border border-gray-300 bg-white">
-                    <div id="filter-action-icon" class="text-dark-overlay5"
+            <button type="button"
+                    class="filter-action-btn px-3 py-1.5 flex items-center hover:cursor-pointer text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition border border-gray-300 bg-white"
+                    data-filter-list="bulan,tahun">
+                    <div id="filter-action-icon" class="filter-action-icon text-dark-overlay5"
                         data-check="<?= htmlspecialchars(icon('check', 'w-4 h-4 text-blue-overlay'), ENT_QUOTES) ?>"
                         data-cross="<?= htmlspecialchars(icon('cross', 'w-4 h-4 text-red1'), ENT_QUOTES) ?>">
                         <?= icon('check', 'w-4 h-4 text-blue-overlay') ?>
                     </div>
 
-                <span id="filter-action-text" 
-                        class="ms-2" 
+                <span
+                        class="filter-action-text ms-2 text-blue-overlay" 
                         data-text-check="Terapkan" 
                         data-text-cross="Reset">
                         Terapkan
@@ -105,13 +123,13 @@
                 </div>
 
                 <!-- Reschedule -->
-                <div class="bg-blue-overlay7 text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Reschedule</p>
                     <p class="text-2xl font-bold mt-2"><?= $stats_booking['reschedule'] ?> Reschedule</p>
                 </div>
 
                 <!-- Selesai -->
-                <div class="bg-green1 text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Selesai</p>
                     <p class="text-2xl font-bold mt-2"><?= $stats_booking['selesai'] ?> Booking</p>
                 </div>
@@ -120,13 +138,13 @@
 
             <div class="grid grid-cols-2 gap-6">
                 <!-- Dibatalkan -->
-                <div class="bg-red1 text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Dibatalkan</p>
                     <p class="text-2xl font-bold mt-2"><?= $stats_booking['dibatalkan'] ?> Booking</p>
                 </div>
 
                 <!-- Dipinjam -->
-                <div class="bg-blue-overlay5 text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Dipinjam</p>
                     <p class="text-2xl font-bold mt-2"><?= $stats_booking['dipinjam'] ?> Booking</p>
                 </div>
@@ -135,50 +153,76 @@
     </div>
 
 
-    <div class="bg-background2 p-6 shadow-xl mt-12 rounded-lg">
+    <div class="bg-background2 p-6 shadow-md mt-12 rounded-lg">
         <div class="max-w-7xl mx-auto">
             <!-- Header -->
             <div class="flex justify-between items-center mb-4">
                 <h1 class="text-xl font-semibold text-dark-overlay">Anggota</h1>
-                <a href="<?= BASEURL; ?>/Admin/cetakLaporan" target="_blank" class="bg-blue-overlay hover:bg-blue-700 text-white1 font-medium my-1 px-3 py-2 rounded-lg flex items-center gap-2 shadow-md transition text-sm hover:cursor-pointer ml-auto w-fit mt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentcolor" d="m8 19.425l-2.25 2.25q-.3.3-.7.288t-.7-.313q-.275-.3-.287-.7t.287-.7L6.6 18H5.35q-.425 0-.712-.287T4.35 17t.288-.712T5.35 16H9q.425 0 .713.288T10 17v3.65q0 .425-.288.713T9 21.65t-.712-.287T8 20.65zM13 22q-.425 0-.712-.288T12 21v-4q0-1.25-.875-2.125T9 14H5q-.425 0-.712-.288T4 13V4q0-.825.588-1.412T6 2h8l6 6v12q0 .825-.587 1.413T18 22zm0-13h5l-5-5l5 5l-5-5z"/></svg>
-                    Export Laporan Peminjaman
-                </a>
+                <div class="flex gap-4">
+                    <a onclick="exportData('<?= BASEURL; ?>/Admin/cetakAnggota')" target="_blank" class="bg-blue-overlay hover:bg-blue-700 text-white1 font-medium my-1 px-3 py-2 rounded-lg flex items-center gap-2 shadow-md transition text-sm hover:cursor-pointer ml-auto w-fit mt-2">
+                <?= icon('documentExport', 'w-5 h-5') ?>
+                        Export PDF Laporan Anggota
+                    </a>
+                    <a onclick="exportData('<?= BASEURL; ?>/Admin/cetakAnggota', 'excel')" target="_blank" class="bg-blue-overlay hover:bg-blue-700 text-white1 font-medium my-1 px-3 py-2 rounded-lg flex items-center gap-2 shadow-md transition text-sm hover:cursor-pointer ml-auto w-fit mt-2">
+                <?= icon('documentExport', 'w-5 h-5') ?>
+                        Download Excel Laporan Anggota
+                    </a>
+                </div>
             </div>
         </div>
 
         <form method="GET" id="filterForm">
-        <div class="flex items-center gap-3 pb-2">
-            <!-- Filter Hari Ini -->
-            <!-- <?php 
-                // $filter_id = 'Jurusan'; 
-                // $label = 'Jurusan'; 
-                // $options = ['TIK' => 'TIK', 'Teknik Elektro' => 'Teknik Elektro']; 
-                // $current_values = $_GET[$filter_id] ?? ''; 
-                // include __DIR__ . '/../template/filterDropDown.php';
-                ?>
+        <div class="filter-scope flex items-center gap-3 pb-2">
+            <!-- program studi -->
+
             <?php 
                 // $filter_id = 'Prodi'; 
                 // $label = 'Prodi'; 
-                // $options = ['Ruang Duta' => 'Ruang Duta', 'Ruang Meeting Kecil' => 'Ruang Meeting Kecil']; 
+                // $options = ['' => 'Ruang Duta', 'Ruang Meeting Kecil' => 'Ruang Meeting Kecil']; 
                 // $current_values = $_GET[$filter_id] ?? ''; 
                 // include __DIR__ . '/../template/filterDropDown.php';
                 ?>
-            <button type="button" id="filter-action-btn" 
-                    class="px-3 py-1.5 flex items-center hover:cursor-pointer text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition border border-gray-300 bg-white">
-                    <div id="filter-action-icon" class="text-dark-overlay5"
+
+            <?php 
+                $filter_id = 'Role'; 
+                $label = 'Jenis Anggota'; 
+                $options = ['Dosen' => 'Dosen', 'Mahasiswa' => 'Mahasiswa', 'Tendik' => 'Tendik']; 
+                $current_values = $_GET[$filter_id] ?? ''; 
+                include __DIR__ . '/../template/filterDropDown.php';
+            ?>
+
+            <!-- jurusan -->
+            <?php 
+                $filter_id = 'Jurusan'; 
+                $label = 'Jurusan'; 
+                $options = [
+                    'Teknik Informatika dan Komputer' => 'Teknik Informatika dan Komputer', 
+                    'Teknik Elektro' => 'Teknik Elektro', 
+                    'Teknik Mesin' => 'Teknik Mesin',
+                    'Teknik Sipil' => 'Teknik Sipil',
+                    'Akutansi' => 'Akutansi',
+                    'Administrasi Niaga' => 'Administrasi Niaga',
+                    'Teknik Grafika dan Penerbitan' => 'Teknik Grafika dan Penerbitan'
+                ]; 
+                $current_values = $_GET[$filter_id] ?? ''; 
+                include __DIR__ . '/../template/filterDropDown.php';
+                ?>
+            <button type="button"
+                    class="filter-action-btn px-3 py-1.5 flex items-center hover:cursor-pointer text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition border border-gray-300 bg-white"
+                    data-filter-list="Prodi, Jurusan, Role">
+                    <div class="filter-action-btn text-dark-overlay5"
                         data-check="<?= htmlspecialchars(icon('check', 'w-4 h-4 text-blue-overlay'), ENT_QUOTES) ?>"
                         data-cross="<?= htmlspecialchars(icon('cross', 'w-4 h-4 text-red1'), ENT_QUOTES) ?>">
                         <?= icon('check', 'w-4 h-4 text-blue-overlay') ?>
                     </div>
-            
-                <span id="filter-action-text" 
-                        class="ms-2" 
+
+                <span
+                        class="filter-action-text ms-2 text-blue-overlay" 
                         data-text-check="Terapkan" 
                         data-text-cross="Reset">
                         Terapkan
                 </span> 
-            </button> -->
+            </button>
         </div>
         </form>
 
@@ -190,27 +234,27 @@
                     <p class="text-2xl font-bold mt-2"><?= $stats_anggota['total_anggota'] ?> Orang</p>
                 </div>
 
-                <div class="bg-blue-overlay8 text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Dosen</p>
                     <p class="text-2xl font-bold mt-2"><?= $stats_anggota['total_dosen'] ?> Orang</p>
                 </div>
 
-                <div class="bg-blue-overlay7 text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Mahasiswa</p>
                     <p class="text-2xl font-bold mt-2"><?= $stats_anggota['total_mahasiswa'] ?> Orang</p>
                 </div>
 
-                <div class="bg-blue-overlay5 text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Tenaga Pendidik</p>
                     <p class="text-2xl font-bold mt-2"><?= $stats_anggota['total_tendik'] ?> Orang</p>
                 </div>
 
-                <div class="bg-green1 text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Aktif</p>
                     <p class="text-2xl font-bold mt-2"><?= $stats_anggota['aktif'] ?> Orang</p>
                 </div>
 
-                <div class="bg-red1 text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Tidak Aktif</p>
                     <p class="text-2xl font-bold mt-2"><?= ($stats_anggota['total_anggota'] - $stats_anggota['aktif']) ?> Orang</p>
                 </div>   
@@ -218,12 +262,12 @@
             
 
             <div class="grid grid-cols-2 gap-6">
-                <div class="bg-blue-overlay4 text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Menunggu Approval</p>
                     <p class="text-2xl font-bold mt-2"><?= $stats_anggota['menunggu'] ?> Orang</p>
                 </div>
                 
-                <div class="bg-red1 text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Ditolak</p>
                     <p class="text-2xl font-bold mt-2"><?= $stats_anggota['ditolak'] ?> Orang</p>
                 </div>
@@ -236,15 +280,21 @@
     </div>
 
 
-    <div class="bg-background2 p-6 shadow-xl mt-12 rounded-lg">
+    <div class="bg-background2 p-6 shadow-md mt-12 rounded-lg">
         <div class="max-w-7xl mx-auto">
             <!-- Header -->
             <div class="flex justify-between items-center mb-4">
                 <h1 class="text-xl font-semibold text-dark-overlay">Ruangan</h1>
-                <a href="<?= BASEURL; ?>/Admin/cetakRuangan" target="_blank" class="bg-blue-overlay hover:bg-blue-700 text-white1 font-medium my-1 px-3 py-2 rounded-lg flex items-center gap-2 shadow-md transition text-sm hover:cursor-pointer ml-auto w-fit mt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentcolor" d="m8 19.425l-2.25 2.25q-.3.3-.7.288t-.7-.313q-.275-.3-.287-.7t.287-.7L6.6 18H5.35q-.425 0-.712-.287T4.35 17t.288-.712T5.35 16H9q.425 0 .713.288T10 17v3.65q0 .425-.288.713T9 21.65t-.712-.287T8 20.65zM13 22q-.425 0-.712-.288T12 21v-4q0-1.25-.875-2.125T9 14H5q-.425 0-.712-.288T4 13V4q0-.825.588-1.412T6 2h8l6 6v12q0 .825-.587 1.413T18 22zm0-13h5l-5-5l5 5l-5-5z"/></svg>
-                    Export Laporan Peminjaman
-                </a>
+                 <div class="flex gap-4">
+                    <a onclick="exportData('<?= BASEURL; ?>/Admin/cetakRuangan')" target="_blank" class="bg-blue-overlay hover:bg-blue-700 text-white1 font-medium my-1 px-3 py-2 rounded-lg flex items-center gap-2 shadow-md transition text-sm hover:cursor-pointer ml-auto w-fit mt-2">
+                <?= icon('documentExport', 'w-5 h-5') ?>
+                        Export PDF Laporan Ruangan
+                    </a>
+                    <a onclick="exportData('<?= BASEURL; ?>/Admin/cetakRuangan', 'excel')" target="_blank" class="bg-blue-overlay hover:bg-blue-700 text-white1 font-medium my-1 px-3 py-2 rounded-lg flex items-center gap-2 shadow-md transition text-sm hover:cursor-pointer ml-auto w-fit mt-2">
+                <?= icon('documentExport', 'w-5 h-5') ?>
+                        Download Excel Laporan Ruangan
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -255,28 +305,28 @@
                     <p class="text-2xl font-bold mt-2"><?= $stats_ruangan['total_ruangan'] ?> Ruangan</p>
                 </div>
 
-                <div class="bg-green1 text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Tersedia</p>
                     <p class="text-2xl font-bold mt-2"><?= $stats_ruangan['tersedia'] ?> Ruangan</p>
                 </div>
 
-                <div class="bg-red1 text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Tidak Tersedia</p>
                     <p class="text-2xl font-bold mt-2"><?= $stats_ruangan['tidak_tersedia'] ?> Ruangan</p>
                 </div>
 
-                <div class="bg-blue-overlay text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Ruangan Terpopuler</p>
                     <p class="text-2xl font-bold mt-2"><?= $stats_ruangan['populer_nama'] ?></p>
                 </div>
 
-                <div class="bg-yellow1 text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Rating Terbaik</p>
                     <p class="text-2xl font-bold mt-2"><?= $stats_ruangan['rating_terbaik_nama'] . ' ' . $stats_ruangan['rating_terbaik_nilai'] ?></p>
                 </div>
 
                 <!-- Reschedule -->
-                <div class="bg-dark-overlay4 text-white1 p-6 rounded-2xl shadow-lg">
+                <div class="bg-blue-overlay9 text-white1 p-6 rounded-2xl shadow-lg">
                     <p class="text-white1 text-sm font-medium">Rating Terendah</p>
                     <p class="text-2xl font-bold mt-2"><?= $stats_ruangan['rating_terendah_nama'] . ' ' . $stats_ruangan['rating_terendah_nilai'] ?></p>
                 </div>
@@ -286,6 +336,6 @@
         
 </main>
 
-<script src="/js/filterDropDown.js" defer></script>
+<script src="/js/filterAdmin.js" defer></script>
 </body>
 </html>

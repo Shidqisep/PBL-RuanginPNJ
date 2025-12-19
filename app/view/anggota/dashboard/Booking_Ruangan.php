@@ -43,7 +43,7 @@
                                 <label class="block text-sm font-semibold text-dark-overlay7 mb-2 flex items-center">
                                     Jam Mulai
                                 </label>
-                                <select id="jamMulai" name="jamMulai" disabled required class="w-full p-4 py-2 border border-dark-overlay5 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-dark-overlay bg-white appearance-none text-sm">
+                                <select id="jamMulai" name="jamMulai" disabled required class="w-full p-4 py-2 border border-dark-overlay5 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-dark-overlay bg-white text-sm">
                                     <option value="" disabled selected hidden>Pilih jam mulai</option>
                                 </select>
                             </div>
@@ -51,7 +51,7 @@
                                 <label class="block text-sm font-semibold text-dark-overlay7 mb-2 flex items-center">
                                     Jam Selesai
                                 </label>
-                                <select id="jamSelesai" name="jamSelesai" disabled required class="w-full p-4 py-2 border border-dark-overlay5 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-dark-overlay bg-white appearance-none text-sm">
+                                <select id="jamSelesai" name="jamSelesai" disabled required class="w-full p-4 py-2 border border-dark-overlay5 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-dark-overlay bg-white text-sm">
                                     <option value="" disabled selected hidden>Pilih jam selesai</option>
                                 </select>
                             </div>
@@ -69,10 +69,10 @@
                                         <span class="ml-2 font-medium text-sm text-blue-overlay text-center">Penanggung Jawab</span>
                                     </div>
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                        <input type="text" maxlength="10" max="10" placeholder="<?= $user['nomor_induk'] ?>" name="nim[]" value="<?= $user['nomor_induk'] ?>" readonly
-                                            class="nim-input w-full px-4 py-2.5 border border-dark-overlay5 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-dark-overlay5 bg-white text-sm">
-                                        <input type="text" placeholder="<?= $user['username'] ?>" name="nama[]" readonly
-                                            class="nama-input w-full px-4 py-2.5 border border-dark-overlay5 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-dark-overlay5 bg-white text-sm">
+                                        <input type="text" maxlength="10" max="10" value="<?= $user['nomor_induk'] ?>" name="nim[]" value="<?= $user['nomor_induk'] ?>" readonly
+                                            class="nim-input w-full px-4 py-2.5 border border-dark-overlay5 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-dark-overlay bg-white text-sm">
+                                        <input type="text" value="<?= $user['username'] ?>" name="nama[]" readonly
+                                            class="nama-input w-full px-4 py-2.5 border border-dark-overlay5 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-dark-overlay bg-white text-sm">
                                     </div>
                                 </div>
                                 <?php for ($i= 0; $i < $detailRuangan['min_capacity'] - 1 ; $i++) :?>
@@ -103,7 +103,7 @@
 
                         <button type="button" onclick="konfirmasiBooking()"
                                 class="w-full py-3 hover:cursor-pointer bg-green1 text-white font-bold rounded-xl hover:bg-green-700 transition shadow-sm text-base">
-                            Booking Ruangan Ini
+                            Ajukan Peminjaman
                         </button>
                     </form>
                 </div>
@@ -203,7 +203,6 @@
         </div>
     </div>
 </main>
-<?php echo $i ?>
 <script>const BASEURL = "<?= BASEURL ?>";</script>
 <script src="/js/bookingRoom.js?"v=<?php echo time(); ?>></script>
 <script>
@@ -269,7 +268,7 @@
             },
             {
             icon: <?= json_encode(icon("calendar", "w-12 h-12", "green1")) ?>,
-            confirmText: 'Booking',
+            confirmText: 'Ya',
             confirmClass: 'w-full px-6 py-2 bg-green1 text-white rounded-lg font-semibold hover:bg-green-700 transition hover:cursor-pointer',
             cancelText: 'Batalkan'
             }

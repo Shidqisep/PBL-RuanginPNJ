@@ -19,6 +19,8 @@ class m_20251119_05_create_table_bookings extends Migration{
                 status ENUM('pending','ongoing','done', 'cancelled') DEFAULT 'pending',
                 reject_reason VARCHAR(255) NULL,
                 cancel_by ENUM('user','system','admin') NULL,
+                start_reminder BOOLEAN DEFAULT 0,
+                end_reminder BOOLEAN DEFAULT 0,
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
                 updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 CONSTRAINT fk_bookings_room FOREIGN KEY (id_room)

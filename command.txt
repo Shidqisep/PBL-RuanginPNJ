@@ -16,3 +16,8 @@ php cli.php migrate:fresh
 #kalo mau seeding
 php cli.php seed
 
+# matiin docker
+docker-compose down
+
+#nyalain docker
+docker-compose up

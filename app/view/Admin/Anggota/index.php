@@ -197,7 +197,15 @@ $nomor = ($current_page - 1) * $limit + 1
                         <?php 
                         $filter_id = 'jurusan'; 
                         $label = 'Jurusan/Unit Kerja'; 
-                        $options = ['Teknik Informatika & Komputer' => 'Teknik Informatika dan Komputer', 'Teknik Elektro' => 'Teknik Elektro', 'Teknik Mesin' => 'Teknik Mesin', 'Teknik Sipil' => 'Teknik Sipil'];
+                        $options = [
+                            'Teknik Informatika & Komputer' => 'Teknik Informatika dan Komputer', 
+                            'Teknik Elektro' => 'Teknik Elektro', 
+                            'Teknik Mesin' => 'Teknik Mesin', 
+                            'Teknik Sipil' => 'Teknik Sipil',
+                            'Akuntansi' => 'Akuntansi',
+                            'Administrasi Niaga' => 'Administrasi Niaga',
+                            'Teknik Grafika Penerbitan' => 'Teknik Grafika Penerbitan'
+                        ];
                         $current_values = $_GET[$filter_id] ?? ''; 
                         include __DIR__ . '/../../template/filterDropDown.php';
                         ?>
@@ -205,7 +213,7 @@ $nomor = ($current_page - 1) * $limit + 1
                         <?php 
                         $filter_id = 'status'; 
                         $label = 'Status'; 
-                        $options = ['Aktif' => 'active', 'Belum Aktif' => 'pending', 'NonAktif' => 'suspended']; 
+                        $options = ['Aktif' => 'active', 'Belum Aktif' => 'pending', 'NonAktif' => 'non-active', 'suspended' => 'suspended']; 
                         $current_values = $_GET[$filter_id] ?? ''; 
                         include __DIR__ . '/../../template/filterDropDown.php';
                         ?>
@@ -279,7 +287,7 @@ $nomor = ($current_page - 1) * $limit + 1
                                 <td class="px-6 py-4 text-sm text-dark-overlay"><?= $user['jurusan_unit'] ?></td>
                                 <td class="px-6 py-4">
                                     <span class="inline-flex px-3 py-1 text-xs font-medium rounded-sm <?= getStyleStatus($user['status']) ?> text-background2 min-w-24 justify-center">
-                                        <?= htmlspecialchars($user['status'] ?? '-') ?>
+                                        <?= htmlspecialchars(translateStatusUser($user['status']) ?? '-') ?>
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 text-center">
@@ -316,7 +324,7 @@ $nomor = ($current_page - 1) * $limit + 1
         
         <!-- pagination total euyy -->
         <?php if (!empty($users) && $total_page >= 1): ?>   
-        <div class="flex items-center justify-center px-6 py-4 bg-white mx-8">
+        <div class="flex items-center justify-center px-6 py-4 mx-8">
             
             <div class="flex items-center gap-2">
                 

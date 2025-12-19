@@ -13,7 +13,7 @@
 <body class="font-sf-pro" >
     
     
-    <div class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center"
+    <div class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-4"
          style="background-image: url('/img/Background 1.png'); 
              background-color: rgba(139, 92, 113, 0.7); background-blend-mode: multiply;">
 
@@ -86,7 +86,7 @@
             <div class="flex flex-col items-start justify-between text-xs gap-4 mt-4">
                 <div>
                     <span class="text-gray-600">Tidak mendapatkan kode? </span>
-                    <a href="" class="text-blue-600 hover:underline font-medium">Kirim ulang kode</a>
+                    <a href="/auth/resendOTP" class="text-blue-600 hover:underline font-medium">Kirim ulang kode</a>
                 </div>
 
                 <div>

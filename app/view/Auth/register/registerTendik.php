@@ -11,9 +11,8 @@
 </head>
 <body class="font-sf-pro" >
     
-    <div class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center"
-         style="background-image: url('/img/Background 1.png'); 
-             background-color: rgba(139, 92, 113, 0.7); background-blend-mode: multiply;">
+    <div class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-4"
+         style="background-image: url('/img/Background 1.png'); ">
 
         <div class="bg-[#F3F5FA] rounded-2xl shadow-2xl p-8 w-full max-w-xl">
             <!-- Header -->
@@ -34,18 +33,19 @@
 
             <!-- Form -->
             <form action="/auth/handleRegister" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="role" value="<?= $role ?>">
                 
                 <!-- Nama -->
                 <div class="col-span-2 sm:col-span-1 mb-3">
                     <label class="block text-xs font-medium text-gray-700 mb-2">Nama Lengkap</label>
-                    <input type="text" name="username" placeholder="Input nama" 
+                    <input type="text" name="username" placeholder="Input nama" value="<?=  $_SESSION['input']['username'] ?? '' ?>"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs">
                 </div>
 
                 <!-- Email PNJ -->
                 <div class="col-span-2 sm:col-span-1 mb-3">
                     <label class="block text-xs font-medium text-gray-700 mb-2">Email PNJ</label>
-                    <input type="email" name="email" placeholder="Input email" 
+                    <input type="email" name="email" placeholder="Input email" value="<?=  $_SESSION['input']['email'] ?? '' ?>"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs">
                 </div>
 
@@ -54,7 +54,7 @@
                     <!-- NIM -->
                     <div class="col-span-2 sm:col-span-1">
                         <label class="block text-xs font-medium text-gray-700 mb-2">NIP</label>
-                        <input type="text" name="nomor_induk" placeholder="Input NIP" 
+                        <input type="text" name="nomor_induk" placeholder="Input NIP" value="<?=  $_SESSION['input']['nomor_induk'] ?? '' ?>"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs">
                     </div>
 
@@ -62,7 +62,7 @@
                     <div class="col-span-2 sm:col-span-1">
                         <label class="block text-xs font-medium text-gray-700 mb-2">Jurusan/Unit</label>
                         <select name="jurusan_unit" 
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs appearance-none">
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs">
                             <option value="" disabled selected hidden>Jurusan/Unit</option>
                             <option value="Teknik Informatika">Teknik Informatika</option>
                             <option value="Teknik Elektro">Teknik Elektro</option>
@@ -74,7 +74,7 @@
 
                     <!-- Password -->
                     <div class="mb-5" data-toggle-password>
-                        <label class="block text-xs font-medium text-gray-700 mb-2">Password</label>
+                        <label class="block text-xs font-medium text-gray-700 mb-2">Password (minimal 6 huruf dan 1 angka)</label>
                         <div class="relative">
                             <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="new-password"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs focus:border-transparent">

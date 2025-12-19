@@ -88,6 +88,21 @@
                 Data Feedback  
             </a>
 
+            <?php if ($_SESSION['role'] === 'Superadmin'): ?>
+            <!-- Supeer Admin -->
+            <a href="/superAdmin"
+                class="flex items-center px-4 py-2 mb-4
+                    <?= ($data['navbar'] === 'superAdmin')
+                ? 'text-blue-overlay8 border-r-4 border-blue-overlay font-medium'
+                : 'text-gray-700 hover:bg-dark-overlay1 rounded-lg' ?>
+                transition text-sm">
+                <div>
+                    <?= icon('shieldUser', 'w-6 h-6 mr-3') ?>
+                </div>
+                Data Admin
+            </a>
+            <?php endif; ?>
+
             <!-- Akun -->
             <a href="/Admin/Akun"
                 class="flex items-center px-4 py-2 mb-4

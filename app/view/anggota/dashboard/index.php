@@ -8,14 +8,13 @@
         INI UNTUK CARD RUANGAN
         ******************************************************* -->
         <?php foreach($ruangan as $r) : ?>
-
         <div class="bg-white1 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
-            <div class="relative h-48 bg-white1">
+            <div class="relative h-48 bg-gray-200">
                 <?php if($r['img_room'] !== 'DefaultRuangan.jpg'): ?>
-                    <img src="<?= BASEURL; ?>/File/showPhoto/<?= $r['img_room']; ?>"
+                    <img decoding="async" src="<?= BASEURL; ?>/File/showPhoto/<?= $r['img_room']; ?>"
                         alt="<?= $r['room_name'] ?>" class="w-full h-full object-cover">
                 <?php else: ?>
-                    <img src="/img/DefaultRuangan.jpg" 
+                    <img loading="lazy" src="/img/DefaultRuangan.jpg" 
                         alt="<?= $r['room_name'] ?>" class="w-full h-full object-cover">
                 <?php endif ?>
             </div>
@@ -45,7 +44,7 @@
                     <div class="w-full flex justify-end">
                         <a href="/Dashboard/Booking/<?= $r['id_room'] ?>"
                             class="flex items-center justify-center w-full bg-blue-overlay text-white1 text-center rounded-xl font-semibold text-xs hover:bg-green1 transition duration-200 py-3">
-                            Booking Sekarang
+                            Pinjam Sekarang
                         </a>
                     </div>
                 </div>

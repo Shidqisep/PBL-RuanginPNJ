@@ -245,6 +245,16 @@ function icon($name, $class = 'w-5 h-5', $color = 'currentColor', $size = '24') 
         //crossCircle
         'crossCircle' => '<svg class="' . $class . '" fill="' . $color . '" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path fill="currentColor" d="M12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m0-18C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2m2.59 6L12 10.59L9.41 8L8 9.41L10.59 12L8 14.59L9.41 16L12 13.41L14.59 16L16 14.59L13.41 12L16 9.41z"/>
+        </svg>',
+
+        //userShield
+        'shieldUser' => '<svg class="' . $class . '" fill="' . $color . '" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5zm0 4a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m5.13 12A9.7 9.7 0 0 1 12 20.92A9.7 9.7 0 0 1 6.87 17c-.34-.5-.63-1-.87-1.53c0-1.65 2.71-3 6-3s6 1.32 6 3c-.24.53-.53 1.03-.87 1.53"/>
+        </svg>',
+
+        //documentExport
+        'documentExport' => '<svg class="' . $class . '" fill="' . $color . '" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="m8 19.425l-2.25 2.25q-.3.3-.7.288t-.7-.313q-.275-.3-.287-.7t.287-.7L6.6 18H5.35q-.425 0-.712-.287T4.35 17t.288-.712T5.35 16H9q.425 0 .713.288T10 17v3.65q0 .425-.288.713T9 21.65t-.712-.287T8 20.65zM13 22q-.425 0-.712-.288T12 21v-4q0-1.25-.875-2.125T9 14H5q-.425 0-.712-.288T4 13V4q0-.825.588-1.412T6 2h8l6 6v12q0 .825-.587 1.413T18 22zm0-13h5l-5-5l5 5l-5-5z"/>
         </svg>'
     ];
     

@@ -54,6 +54,24 @@ class File extends Controller{
             die('File tidak ditemukan di server.');
         }
 
+        $lastModified = filemtime($filePath);
+        $etag = md5_file($filePath);
+        $maxAge = 604800; // 7 hari dalam detik
+
+        // Cek apakah browser sudah punya versi terbaru (Browser Validation)
+        if ((isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $lastModified) ||
+            (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag)) {
+            header('HTTP/1.1 304 Not Modified');
+            exit;
+        }
+
+        // Header untuk menginstruksikan browser menyimpan cache
+        header("Cache-Control: public, max-age=$maxAge, must-revalidate");
+        header("Last-Modified: " . gmdate("D, d M Y H:i:s", $lastModified) . " GMT");
+        header("Etag: $etag");
+        header("Pragma: cache");
+        header("Expires: " . gmdate("D, d M Y H:i:s", time() + $maxAge) . " GMT");
+
         // Tampilkan file
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $mimeType = finfo_file($finfo, $filePath);

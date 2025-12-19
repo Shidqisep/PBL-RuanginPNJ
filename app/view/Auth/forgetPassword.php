@@ -13,7 +13,7 @@
 <body class="font-sf-pro" >
     
     
-    <div class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center"
+    <div class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-4"
          style="background-image: url('/img/Background 1.png'); 
              background-color: rgba(139, 92, 113, 0.7); background-blend-mode: multiply;">
 

@@ -22,8 +22,13 @@
                     <div class="w-full mx-auto bg-background2 rounded-b-xl shadow-xl lg:p-12 p-4">
                         <div class="">
                             <div class="relative lg:h-96 md:h-96 h-48">
-                                <img src="/img/DefaultRuangan.jpg" 
-                                    alt="Ruang Lentera Edukasi" class="w-full h-full object-cover rounded-xl">
+                                <?php if($activeBooking['img_room'] !== 'DefaultRuangan.jpg'): ?>
+                                    <img loading="lazy" src="<?= BASEURL; ?>/File/showPhoto/<?= $activeBooking['img_room']; ?>"
+                                        alt="<?= $activeBooking['room_name'] ?>" class="w-full h-full object-cover rounded-xl">
+                                <?php else: ?>
+                                    <img loading="lazy" src="/img/DefaultRuangan.jpg" 
+                                        alt="<?= $activeBooking['room_name'] ?>" class="w-full h-full object-cover rounded-xl">
+                                <?php endif ?>
                             </div>
                             <div class="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 lg:justify-center justify-start items-center border border-dark-overlay7 mt-6 p-3 rounded-md pb-4 lg-pb-0">
                                 <div class="">
@@ -94,7 +99,7 @@
                                 <h3 class="text-xl font-semibold text-gray-700 mb-2">Belum Ada Booking Aktif</h3>
                                 <p class="text-gray-500 text-center mb-6">Anda belum memiliki booking yang sedang aktif saat ini</p>
                                 <a href="/Dashboard" class="bg-blue-overlay text-white px-6 py-2 rounded-md text-sm hover:bg-blue-700 transition">
-                                    Booking Ruangan Sekarang
+                                    Pinjam Ruangan Sekarang
                                 </a>
                             </div>
                         </div>

@@ -1,4 +1,3 @@
-
 services:
   # Service 1: Web Server (Apache + PHP)
   web:
@@ -7,11 +6,11 @@ services:
       dockerfile: .docker/php/Dockerfile
     container_name: ruanginPNJ_server
     ports:
-      - "8082:80"  # Akses project dari http://localhost:8082 di browser
+      - "8082:80" # Akses project dari http://localhost:8082 di browser
     volumes:
       - .:/var/www/html # Mapping folder 'public' kita ke web root Apache
     depends_on:
-      - db           # Pastikan 'db' nyala dulu sebelum 'web'
+      - db # Pastikan 'db' nyala dulu sebelum 'web'
     environment:
       - DB_HOST=${DB_HOST}
       - DB_DATABASE=${DB_DATABASE}
@@ -27,6 +26,11 @@ services:
       # ini akan berjalan setiap 5 menit untuk mengecek apakah ada booking yang sudah selesai tapi statusnya belum berubah
       ofelia.job-exec.complete-job.schedule: "@every 2m"
       ofelia.job-exec.complete-job.command: "php /var/www/html/cli.php bookings:autocomplete"
+      # ini untuk otomasi reminder
+      ofelia.job-exec.reminder-start.schedule: "@every 2m"
+      ofelia.job-exec.reminder-start.command: "php /var/www/html/cli.php reminders:start"
+      ofelia.job-exec.reminder-end.schedule: "@every 2m"
+      ofelia.job-exec.reminder-end.command: "php /var/www/html/cli.php reminders:end"
 
   # Service 2: Database (MySQL)
   db:

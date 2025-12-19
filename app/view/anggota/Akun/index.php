@@ -23,7 +23,7 @@
                 </div>
                 
                 <!-- Violation Count Badge -->
-                <div class="absolute bottom-4 right-0 text-xs mt-4 bg-dark-overlay6 text-white1 px-2 py-1 rounded-lg shadow-md">
+                <div class="absolute bottom-4 right-0 text-xs mt-4 bg-yellow1/50 text-red1 px-2 py-1 rounded-lg shadow-md">
                     <p class="text-xs">Pelanggaran: <span class="font-semibold"><?= $suspend_count ?></span></p>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 onclick="showAvatarOptions()"
                 class="text-blue-overlay hover:text-blue-700 text-sm font-medium transition hover:cursor-pointer">
             <?= icon('sync', 'w-4 h-4 inline-block mr-1') ?>
-            Ganti Avatar/Foto Profil
+            Ganti Avatar
         </button>
     </div>
 

@@ -18,41 +18,83 @@ use PHPMailer\PHPMailer\Exception;
  * @return bool True jika sukses, false jika gagal
  * @throws Exception Jika terjadi error PHPMailer
  */
-function sendEmail($toEmail, $toName, $subject, $body) {
+// function sendEmail($toEmail, $toName, $subject, $body) {
     
+//     $mail = new PHPMailer(true);
+
+//     try {
+//         $mail->isSMTP();
+//         $mail->Host = $_ENV['SMTP_HOST'];
+//         $mail->Port = (int)$_ENV['SMTP_PORT'];
+
+//         if (isset($_ENV['SMTP_AUTH']) && $_ENV['SMTP_AUTH'] === 'true') {
+//             $mail->SMTPAuth = true;
+//             $mail->Username = $_ENV['SMTP_USER'];
+//             $mail->Password = $_ENV['SMTP_PASS'];
+//             if (isset($_ENV['SMTP_SECURE']) && $_ENV['SMTP_SECURE'] === 'tls') {
+//                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+//             }
+//         } else {
+//             $mail->SMTPAuth = false;
+//             $mail->SMTPSecure = false;
+//         }
+//         $fromEmail = !empty($_ENV['SMTP_USER']) ? $_ENV['SMTP_USER'] : 'no-reply@ruanginpnj.com';
+//         $mail->setFrom($fromEmail, 'Ruangin PNJ');
+//         $mail->addAddress($toEmail, $toName);
+
+//         $mail->isHTML(false); // Asumsikan email adalah teks biasa
+//         $mail->Subject = $subject;
+//         $mail->Body    = $body;
+//         $mail->AltBody = strip_tags($body); // Versi teks biasa
+
+//         $mail->send();
+//         return true;
+
+//     } catch (Exception $e) {
+//         // Sebaiknya di-log errornya, bukan di-echo
+//         error_log("Email Error: " . $mail->ErrorInfo);
+//         throw $e; // Lempar lagi errornya agar controller bisa tangkap
+//     }
+// }
+
+//ini bisa pake email asli
+function sendEmail($toEmail, $toName, $subject, $body) {
     $mail = new PHPMailer(true);
 
     try {
         $mail->isSMTP();
-        $mail->Host = $_ENV['SMTP_HOST'];
-        $mail->Port = (int)$_ENV['SMTP_PORT'];
+        $mail->Host       = $_ENV['SMTP_HOST'];
+        $mail->SMTPAuth   = ($_ENV['SMTP_AUTH'] === 'true');
+        $mail->Username   = $_ENV['SMTP_USER'];
+        $mail->Password   = $_ENV['SMTP_PASS'];
+        $mail->Port       = (int)$_ENV['SMTP_PORT'];
 
-        if (isset($_ENV['SMTP_AUTH']) && $_ENV['SMTP_AUTH'] === 'true') {
-            $mail->SMTPAuth = true;
-            $mail->Username = $_ENV['SMTP_USER'];
-            $mail->Password = $_ENV['SMTP_PASS'];
-            if (isset($_ENV['SMTP_SECURE']) && $_ENV['SMTP_SECURE'] === 'tls') {
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            }
+        // Pengaturan Enkripsi
+        $smtpSecure = $_ENV['SMTP_SECURE'] ?? '';
+        if ($smtpSecure === 'tls') {
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        } elseif ($smtpSecure === 'ssl') {
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         } else {
-            $mail->SMTPAuth = false;
             $mail->SMTPSecure = false;
+            $mail->SMTPAutoTLS = false;
         }
-        $fromEmail = !empty($_ENV['SMTP_USER']) ? $_ENV['SMTP_USER'] : 'no-reply@ruanginpnj.com';
+
+
+       $fromEmail = !empty($_ENV['SMTP_USER']) ? $_ENV['SMTP_USER'] : 'no-reply@ruanginpnj.com';
         $mail->setFrom($fromEmail, 'Ruangin PNJ');
         $mail->addAddress($toEmail, $toName);
 
-        $mail->isHTML(false); // Asumsikan email adalah teks biasa
+        $mail->isHTML(true); // Ubah ke true jika ingin kirim format HTML
         $mail->Subject = $subject;
         $mail->Body    = $body;
-        $mail->AltBody = strip_tags($body); // Versi teks biasa
+        $mail->AltBody = strip_tags($body);
 
         $mail->send();
         return true;
 
     } catch (Exception $e) {
-        // Sebaiknya di-log errornya, bukan di-echo
         error_log("Email Error: " . $mail->ErrorInfo);
-        throw $e; // Lempar lagi errornya agar controller bisa tangkap
+        throw $e;
     }
 }

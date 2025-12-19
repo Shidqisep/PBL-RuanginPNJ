@@ -16,13 +16,14 @@ $current_array = array_filter(explode(',', $current_values));
      data-default-label="<?= $label ?>">
 
     <button onclick="toggleDropdown('<?= $filter_id ?>_menu')" type="button" 
-        class="flex items-center gap-2 px-4 py-2 border border-dark-overlay5 rounded-lg text-sm text-blue-overlay bg-white hover:bg-dark-overlay1 transition min-w-[10rem] focus:outline-none focus:ring-2 focus:ring-blue-500">
+        class="filter-dropdown-toggle flex items-center gap-2 px-4 py-2 border border-dark-overlay5 rounded-lg text-sm text-blue-overlay bg-white hover:bg-dark-overlay1 transition min-w-[10rem] focus:outline-none focus:ring-2 focus:ring-blue-500"
+        aria-haspopup="true" aria-expanded="false">
         
         <span class="font-medium" id="<?= $filter_id ?>_label">
             <?= $label ?> 
         </span>
         
-        <div class="ml-auto">
+        <div class="ml-auto filter-dropdown-arrow transition-transform duration-300">
             <?= icon('arrowDown', 'w-5 h-5') ?>
         </div>
     </button>

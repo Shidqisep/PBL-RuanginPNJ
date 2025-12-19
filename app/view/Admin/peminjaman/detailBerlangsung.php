@@ -81,7 +81,7 @@
                         <p class="mb-2 text-dark-overlay7"><?= $detailBooking['username'] ? 'Jurusan' : 'Tujuan' ?></p>
                         <span 
                             class="block w-full px-3 py-2 bg-white border border-dark-overlay4 rounded-lg text-left">
-                            <?= htmlspecialchars($detailBooking['nomor_induk'] ?? $detailBooking['purpose']) ?>
+                            <?= htmlspecialchars($detailBooking['jurusan_unit'] ?? $detailBooking['purpose']) ?>
                         </span>
                     </div>
                     <?php if(!empty($detailBooking['booking_letter'])): ?>

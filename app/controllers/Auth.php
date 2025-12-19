@@ -33,7 +33,6 @@ class Auth extends Controller {
         }
         unset($_SESSION['regisRole']);
         $this->view('Auth/login');
-        $this->view('Layout/Footer');
     }
 
     // public function registerForm(){
@@ -45,14 +44,14 @@ class Auth extends Controller {
 
         if (isset($_POST['backToRole'])) {
             unset($_SESSION['regisRole']);
+            unset($_SESSION['input']);
         }
 
         if (isset($_POST['role'])) {
-            $_SESSION['regisRole'] = $_POST['role'];
+            $data['role'] =  $_POST['role'];
         }
 
-        $forms = $_SESSION['regisRole'] ?? null;
-
+        $forms = $_POST['role'] ?? null;
         switch ($forms) {
             case "3":
                 $data['dataProdi'] = getProdi();
@@ -60,19 +59,18 @@ class Auth extends Controller {
 
                 break;
             case "4":
-                $this->view('Auth/register/registerDosen');
+                $this->view('Auth/register/registerDosen', $data);
 
                 break;
             case "5":
-                $this->view('Auth/register/registerTendik');
-        
+                $this->view('Auth/register/registerTendik', $data);
+
                 break;
             default:
                 $this->view('Auth/register/index');
             
                 break;
             }
-            $this->view('Layout/Footer');
     }
 
     // public function 
@@ -97,47 +95,59 @@ class Auth extends Controller {
         try {
 
              //Cek apakah token dikirim dari form
-            if (!isset($_POST['cf-turnstile-response'])) {
-                throw new Exception('Mohon selesaikan verifikasi keamanan (CAPTCHA).');
-            }
+            // if (!isset($_POST['cf-turnstile-response'])) {
+            //     throw new Exception('Mohon selesaikan verifikasi keamanan (CAPTCHA).');
+            // }
 
-            // Persiapkan data untuk verifikasi ke Cloudflare
-            $turnstileResponse = $_POST['cf-turnstile-response'];
-            $remoteIp = $_SERVER['REMOTE_ADDR'];
-            $url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+            // // Persiapkan data untuk verifikasi ke Cloudflare
+            // $turnstileResponse = $_POST['cf-turnstile-response'];
+            // $remoteIp = $_SERVER['REMOTE_ADDR'];
+            // $url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
             
-            $data = [
-                'secret' => TURNSTILE_SECRET_KEY,
-                'response' => $turnstileResponse,
-                'remoteip' => $remoteIp
-            ];
+            // $data = [
+            //     'secret' => TURNSTILE_SECRET_KEY,
+            //     'response' => $turnstileResponse,
+            //     'remoteip' => $remoteIp
+            // ];
 
-            // Kirim request verifikasi menggunakan cURL
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $response = curl_exec($ch);
-            curl_close($ch);    
+            // // Kirim request verifikasi menggunakan cURL
+            // $ch = curl_init();
+            // curl_setopt($ch, CURLOPT_URL, $url);
+            // curl_setopt($ch, CURLOPT_POST, true);
+            // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+            // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // $response = curl_exec($ch);
+            // curl_close($ch);    
 
-            // Cek hasil verifikasi
-            $result = json_decode($response);
+            // // Cek hasil verifikasi
+            // $result = json_decode($response);
             
-            if (!$result || !$result->success) {
-                throw new Exception('Verifikasi keamanan gagal. Silakan coba lagi.');
-            }
+            // if (!$result || !$result->success) {
+            //     throw new Exception('Verifikasi keamanan gagal. Silakan coba lagi.');
+            // }
+
+            $_SESSION['input'] = $_POST;
+            // var_dump($_SESSION['input']);
+            // die();
 
             if ($_POST['password'] != $_POST['confirmPassword']) {
                 throw new Exception('Password tidak sama');
             }
 
-            $role = $_SESSION['regisRole'] ?? null;
+            if (!validatePassword($_POST['password'])) {
+                throw new Exception('Password minimal 6 huruf dan 1 angka');
+            }
+
+            if (!validateNIM($_POST['nomor_induk'])) {
+                throw new Exception('NIM hanya boleh berisi angka');
+            }
+
+            $role = $_POST['role'] ?? null;
             if (!$role) {
                 throw new Exception('Role tidak ditemukan, silakan ulangi proses registrasi.');
             }
 
-            if ($_SESSION['regisRole'] === '3') {
+            if ($_POST['role'] === '3') {
             // Validasi email hanya untuk mahasiswa
                 if (!validateEmail($_POST['email'])) {
                     throw new Exception('Email tidak valid');
@@ -147,7 +157,11 @@ class Auth extends Controller {
 
                 // Upload bukti hanya untuk mahasiswa
                 if (isset($_FILES['buktiKubaca']) && $_FILES['buktiKubaca']['error'] === 0) {
+
                     $buktiKubaca = uploadImage($_FILES['buktiKubaca'], 'storage/FotoBukti/');
+                    if (!$buktiKubaca) {
+                        throw new Exception('Error mengupload File');
+                    }
                 } else {
                     throw new Exception('Mohon upload file bukti');
                 }
@@ -157,7 +171,7 @@ class Auth extends Controller {
                 }
             }
             $data = [
-                'id_role' => $_SESSION['regisRole'],
+                'id_role' => $_POST['role'],
                 'username' => $_POST['username'],
                 'password' => password_hash($_POST['password'], PASSWORD_BCRYPT),
                 'nomor_induk' => $_POST['nomor_induk'],
@@ -205,12 +219,12 @@ class Auth extends Controller {
                 }
             }
             
-
+            unset($_SESSION['input']);
             header('Location: /auth/pending');
             exit;
 
         } catch (\Exception $e ) {
-            Flasher::setFlash($e->getMessage(), 'Gagal Registrasi', 'danger');
+            Flasher::setModalInfo( 'Gagal Registrasi',$e->getMessage(), 'error');
             header('Location: /auth/registerForms');
             exit;
         }
@@ -219,37 +233,37 @@ class Auth extends Controller {
     public function handleLogin(){
         try{
 
-            //Cek apakah token dikirim dari form
-            if (!isset($_POST['cf-turnstile-response'])) {
-                throw new Exception('Mohon selesaikan verifikasi keamanan (CAPTCHA).');
-            }
+            // //Cek apakah token dikirim dari form
+            // if (!isset($_POST['cf-turnstile-response'])) {
+            //     throw new Exception('Mohon selesaikan verifikasi keamanan (CAPTCHA).');
+            // }
 
-            // Persiapkan data untuk verifikasi ke Cloudflare
-            $turnstileResponse = $_POST['cf-turnstile-response'];
-            $remoteIp = $_SERVER['REMOTE_ADDR'];
-            $url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+            // // Persiapkan data untuk verifikasi ke Cloudflare
+            // $turnstileResponse = $_POST['cf-turnstile-response'];
+            // $remoteIp = $_SERVER['REMOTE_ADDR'];
+            // $url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
             
-            $data = [
-                'secret' => TURNSTILE_SECRET_KEY,
-                'response' => $turnstileResponse,
-                'remoteip' => $remoteIp
-            ];
+            // $data = [
+            //     'secret' => TURNSTILE_SECRET_KEY,
+            //     'response' => $turnstileResponse,
+            //     'remoteip' => $remoteIp
+            // ];
 
-            // Kirim request verifikasi menggunakan cURL
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $response = curl_exec($ch);
-            curl_close($ch);    
+            // // Kirim request verifikasi menggunakan cURL
+            // $ch = curl_init();
+            // curl_setopt($ch, CURLOPT_URL, $url);
+            // curl_setopt($ch, CURLOPT_POST, true);
+            // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+            // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // $response = curl_exec($ch);
+            // curl_close($ch);    
 
-            // Cek hasil verifikasi
-            $result = json_decode($response);
+            // // Cek hasil verifikasi
+            // $result = json_decode($response);
             
-            if (!$result || !$result->success) {
-                throw new Exception('Verifikasi keamanan gagal. Silakan coba lagi.');
-            }
+            // if (!$result || !$result->success) {
+            //     throw new Exception('Verifikasi keamanan gagal. Silakan coba lagi.');
+            // }
 
             $data = [
             'email' => $_POST['email'],
@@ -363,7 +377,40 @@ class Auth extends Controller {
             }
         }
         $this->view('Auth/forgetPassword');
-        $this->view('Layout/Footer');
+    }
+
+        public function resendOTP() {
+        // die("Method resendOTP terpanggil!");
+        // 1. Cek apakah ada email di session (artinya user memang sedang dalam proses reset)
+        if (!isset($_SESSION['reset_email'])) {
+            Flasher::setModalInfo('Sesi berakhir', 'Silakan masukkan email kembali', 'danger');
+            header('Location: /auth/forgetPassword');
+            exit;
+        }
+
+        // 2. (Opsional) Cek cooldown agar tidak spam (misal: hanya boleh resend tiap 60 detik)
+        if (isset($_SESSION['last_otp_resend']) && (time() - $_SESSION['last_otp_resend'] < 60)) {
+            Flasher::setModalInfo('Tunggu sebentar', 'Harap tunggu 60 detik sebelum mengirim ulang', 'warning');
+            header('Location: /auth/verifyPassword');
+            exit;
+        }
+
+        // 3. Generate OTP baru
+        $_SESSION['otp'] = generateOTP();
+        $_SESSION['otp_expire'] = time() + 600; // 10 menit
+        $_SESSION['last_otp_resend'] = time(); // Simpan waktu kirim terakhir
+
+        // 4. Kirim ulang email
+        try {
+            sendEmail($_SESSION['reset_email'], $_SESSION['name'], 'Ini adalah kode OTP baru anda', $_SESSION['otp']);
+            Flasher::setModalInfo('OTP Berhasil dikirim ulang', 'Silakan cek email anda', 'success');
+            header('Location: /auth/verifyPassword');
+            exit;
+        } catch (Exception $e) {
+            Flasher::setModalInfo($e->getMessage(), 'Gagal mengirim email', 'error');
+            header('Location: /auth/verifyPassword');
+            exit;
+        }
     }
 
     // ini buat lupa password ya bukan password biasa
@@ -400,10 +447,6 @@ class Auth extends Controller {
                 unset($_SESSION['otp'], $_SESSION['otp_expire']);
                 header('location: /auth/resetPassword');
                 exit;
-
-            
-            header('location: /auth/resetPassword');
-            exit;
         }
 
         $this->view('auth/verifyOTP');
@@ -498,6 +541,5 @@ class Auth extends Controller {
 
     public function pending(){
         $this->view('Auth/pending');
-        $this->view('Layout/Footer');
     }
 }

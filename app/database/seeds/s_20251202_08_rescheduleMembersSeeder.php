@@ -6,10 +6,8 @@ class s_20251202_08_rescheduleMembersSeeder extends Seeder {
                   (1, 4, NOW(), NOW()),
                   (1, 3, NOW(), NOW()),
                   (1, 12, NOW(), NOW()),
-                  (2, 13, NOW(), NOW()),
-                  (2, 11, NOW(), NOW()),
-                  (3, 16, NOW(), NOW()),
-                  (3, 14, NOW(), NOW());";
+                  (2, 16, NOW(), NOW()),
+                  (2, 14, NOW(), NOW());";
 
         $this->db->query($query);
         $this->db->execute();

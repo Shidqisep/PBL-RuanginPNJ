@@ -61,9 +61,20 @@ class BookingModel {
         return $this->db->singleSet();
     }
 
-    public function getAllBooking(){
-        $query = "SELECT
-                    b.id_booking,   
+    public function getAllBooking($bulan = [], $tahun = [])
+    {
+        // --- 1. NORMALISASI INPUT (pastikan array) ---
+        if (!empty($bulan) && !is_array($bulan)) {
+            $bulan = explode(',', $bulan); // ← penting kalau datang dari "2,1"
+        }
+
+        if (!empty($tahun) && !is_array($tahun)) {
+            $tahun = explode(',', $tahun);
+        }
+
+        // --- 2. BASE QUERY ---
+        $sql = "SELECT
+                    b.id_booking,
                     u.username AS nama_penanggung_jawab,
                     r.room_name AS nama_ruangan,
                     b.start_time,
@@ -72,10 +83,56 @@ class BookingModel {
                 FROM bookings b
                 JOIN users u ON b.id_user = u.id_user
                 JOIN rooms r ON b.id_room = r.id_room
-                ORDER BY b.start_time DESC;";
-        $this->db->query($query);
+                WHERE 1=1";
+
+
+        // --- 3. FILTER BULAN ---
+        if (!empty($bulan)) {
+            $inBulan = [];
+            foreach ($bulan as $i => $b) {
+                $inBulan[] = ":bulan$i"; // :bulan0, :bulan1
+            }
+            $sql .= " AND MONTH(b.start_time) IN (" . implode(',', $inBulan) . ")";
+        }
+
+        // --- 4. FILTER TAHUN ---
+        if (!empty($tahun)) {
+            $inTahun = [];
+            foreach ($tahun as $i => $t) {
+                $inTahun[] = ":tahun$i"; // :tahun0, :tahun1
+            }
+            $sql .= " AND YEAR(b.start_time) IN (" . implode(',', $inTahun) . ")";
+        }
+
+        // --- 5. ORDER ---
+        $sql .= " ORDER BY b.start_time DESC";
+
+
+        // --- 6. PREPARE QUERY ---
+        $this->db->query($sql);
+
+
+        // --- 7. BINDING (SESUAI PERMINTAAN: tetap 1–1) ---
+
+        // Bind bulan
+        if (!empty($bulan)) {
+            foreach ($bulan as $i => $b) {
+                $this->db->bind("bulan$i", intval($b));
+            }
+        }
+
+        // Bind tahun
+        if (!empty($tahun)) {
+            foreach ($tahun as $i => $t) {
+                $this->db->bind("tahun$i", intval($t));
+            }
+        }
+
+
+        // --- 8. RETURN RESULT ---
         return $this->db->resultSet();
     }
+
 
     public function getBookingById($id)
     {
@@ -274,7 +331,7 @@ public function getAllBookingByUser($id_user, $limit, $offset) {
 
 
     public function getActiveBookingJoinRoom($id_booking){
-        $query = "SELECT b.id_booking, b.start_time, b.status, b.end_time, b.total_person, b.booking_code, r.room_name, r.short_description
+        $query = "SELECT b.id_booking, b.start_time, b.status, b.end_time, b.total_person, b.booking_code, r.room_name, r.img_room, r.short_description
                 FROM bookings b JOIN rooms r ON b.id_room = r.id_room
                 WHERE b.status IN ('pending', 'active', 'ongoing') AND b.id_booking = :id_booking";
         $this->db->query($query);
@@ -451,7 +508,9 @@ public function getAllBookingByUser($id_user, $limit, $offset) {
         if (!empty($search)) {
             $sql .= " AND ( 
                         u.username LIKE :search OR 
-                        r.room_name LIKE :search
+                        r.room_name LIKE :search OR 
+                        b.booking_code LIKE :search OR
+                        b.start_time LIKE :search
                     )";
         }
 
@@ -501,7 +560,7 @@ public function getAllBookingByUser($id_user, $limit, $offset) {
         }
 
         if (!empty($search)) {
-            $sql .= " AND (u.username LIKE :search OR r.room_name LIKE :search)";
+            $sql .= " AND (u.username LIKE :search OR r.room_name LIKE :search OR b.booking_code LIKE :search)";
         }
 
         $this->db->query($sql);
@@ -678,6 +737,28 @@ public function getAllBookingByUser($id_user, $limit, $offset) {
         // Mengembalikan jumlah baris yang di-update
         return $this->db->rowCount();
     }
+
+    public function getLateBookings(){
+        $query = "SELECT b.id_booking, b.booking_code, b.start_time, u.username, u.id_user
+                  FROM bookings b
+                  JOIN users u ON b.id_user = u.id_user
+                  WHERE b.status = 'pending'
+                  AND NOW() > DATE_ADD(b.start_time, INTERVAL 10 MINUTE)";
+        
+        $this->db->query($query);
+        return $this->db->resultSet();  
+    }
+
+    public function cancelBookingSystem($id_booking)
+    {
+        $query = "UPDATE bookings SET status = 'cancelled', cancel_by = 'system' WHERE id_booking = :id_booking";
+        $this->db->query($query);
+        $this->db->bind('id_booking', $id_booking);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+
+
 
     public function autoCompleteFinishedBookings()
     {

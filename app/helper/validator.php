@@ -67,3 +67,25 @@ function validateEmailPHP($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
 }
 
+function validatePassword($password) {
+    // 1. Hitung jumlah huruf (a-z, A-Z)
+    $jumlahHuruf = preg_match_all('/[a-zA-Z]/', $password);
+    
+    // 2. Hitung jumlah angka (0-9)
+    $jumlahAngka = preg_match_all('/[0-9]/', $password);
+
+    // 3. Cek kondisi: Minimal 6 huruf DAN Minimal 1 angka
+    if ($jumlahHuruf === 4 && $jumlahAngka === 1) {
+        return true; // Valid
+    } else {
+        return false; // Tidak Valid
+    }
+}
+
+/**
+ * Helper untuk validasi NIM agar hanya berisi digit
+ */
+function validateNIM($value): bool {
+    // Pastikan input tidak kosong dan benar-benar hanya angka
+    return !empty($value) && ctype_digit((string)$value);
+}

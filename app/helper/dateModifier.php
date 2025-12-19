@@ -67,5 +67,11 @@ function waktu_indonesia($datetime) {
     return date('H:i', strtotime($datetime));
 }
 
-
-
+//array lookup buat translate bulan
+function monthTranslate($monthNumber) {
+    $bulan = [
+        1 => 'JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI',
+             'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'
+    ];
+    return $bulan[$monthNumber] ?? NULL;
+}

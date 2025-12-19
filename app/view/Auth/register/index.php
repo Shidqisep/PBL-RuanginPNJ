@@ -10,14 +10,13 @@
 </head>
 <body class="font-sf-pro" >
     
-    <div class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center"
-         style="background-image: url('/img/Background 1.png'); 
-             background-color: rgba(139, 92, 113, 0.7); background-blend-mode: multiply;">
+    <div class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-4"
+         style="background-image: url('/img/Background 1.png');">
 
         <div class="bg-[#F3F5FA] rounded-2xl shadow-2xl p-8 w-full max-w-lg">
             <!-- Header -->
             <div class="mb-4">
-                <h1 class="text-3xl font-bold text-[#171E29] mb-2">Registrasi Akun</h1>
+                <h1 class="text-3xl font-bold text-dark-overlay mb-2">Registrasi Akun</h1>
                 <p class="text-sm text-gray-600">Pilih role yang sesuai</p>
             </div>
 
@@ -53,3 +52,5 @@
             </form>
         </div>
     </div>
+</body>
+</html>
