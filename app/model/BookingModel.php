@@ -383,7 +383,7 @@ public function getAllBookingByUser($id_user, $limit, $offset) {
         $sql = "SELECT 1
                 FROM bookings b
                 LEFT JOIN booking_members bm 
-                ON bm.id_booking = b.id_booking
+                ON bm.id_booking = b.id_booking 
                 WHERE (b.id_user = :uid OR bm.id_user = :uid)
                 AND b.status IN ('pending', 'ongoing')";
 

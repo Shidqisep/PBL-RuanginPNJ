@@ -577,7 +577,7 @@ class Admin extends Controller {
     }
 
     public function Ruangan(){
-        $data['limit'] = 3; // Jumlah data per halaman
+        $data['limit'] = 6; // Jumlah data per halaman  
         
         // Ambil Search Key
         $search = isset($_GET['search']) ? trim($_GET['search']) : '';
